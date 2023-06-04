@@ -1,0 +1,2 @@
+class MealLike < ApplicationRecord
+end

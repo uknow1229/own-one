@@ -1,0 +1,2 @@
+class MealComment < ApplicationRecord
+end

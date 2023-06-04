@@ -1,0 +1,2 @@
+class BlogLike < ApplicationRecord
+end

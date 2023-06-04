@@ -1,0 +1,2 @@
+class WorkoutMenu < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class PostMeal < ApplicationRecord
+end

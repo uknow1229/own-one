@@ -1,0 +1,2 @@
+class WorkoutComment < ApplicationRecord
+end
