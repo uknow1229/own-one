@@ -1,4 +1,28 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'post_blogs/index'
+    get 'post_blogs/show'
+    get 'post_blogs/edit'
+  end
+  namespace :public do
+    get 'post_meals/index'
+    get 'post_meals/show'
+    get 'post_meals/edit'
+  end
+  namespace :public do
+    get 'post_workouts/index'
+    get 'post_workouts/show'
+    get 'post_workouts/edit'
+  end
+  namespace :public do
+    get 'homes/top'
+    get 'homes/about'
+  end
+  namespace :public do
+    get 'end_users/show'
+    get 'end_users/edit'
+    get 'end_users/check'
+  end
   namespace :admin do
     get 'post_blogs/index'
     get 'post_meals/index'
