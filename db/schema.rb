@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_03_125821) do
+ActiveRecord::Schema.define(version: 2023_06_04_153459) do
 
   create_table "admins", force: :cascade do |t|
     t.string "last_name"
@@ -24,6 +24,25 @@ ActiveRecord::Schema.define(version: 2023_06_03_125821) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "blog_comments", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "post_blog_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_blog_comments_on_end_user_id"
+    t.index ["post_blog_id"], name: "index_blog_comments_on_post_blog_id"
+  end
+
+  create_table "blog_likes", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "post_blog_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_blog_likes_on_end_user_id"
+    t.index ["post_blog_id"], name: "index_blog_likes_on_post_blog_id"
   end
 
   create_table "end_users", force: :cascade do |t|
@@ -49,4 +68,113 @@ ActiveRecord::Schema.define(version: 2023_06_03_125821) do
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
+  create_table "meal_comments", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "post_meal_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_meal_comments_on_end_user_id"
+    t.index ["post_meal_id"], name: "index_meal_comments_on_post_meal_id"
+  end
+
+  create_table "meal_likes", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "post_meal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_meal_likes_on_end_user_id"
+    t.index ["post_meal_id"], name: "index_meal_likes_on_post_meal_id"
+  end
+
+  create_table "meal_menus", force: :cascade do |t|
+    t.integer "post_meal_id", null: false
+    t.string "title"
+    t.string "quantity"
+    t.integer "calorie"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_meal_id"], name: "index_meal_menus_on_post_meal_id"
+  end
+
+  create_table "post_blogs", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content", null: false
+    t.boolean "is_closed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_meals", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "timing", default: 0
+    t.integer "meal_type", default: 0
+    t.text "memo"
+    t.boolean "is_closed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_workouts", force: :cascade do |t|
+    t.datetime "date"
+    t.string "title"
+    t.integer "site", default: 0
+    t.string "time"
+    t.text "memo"
+    t.integer "is_disclosure", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "workout_comments", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "post_workout_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_workout_comments_on_end_user_id"
+    t.index ["post_workout_id"], name: "index_workout_comments_on_post_workout_id"
+  end
+
+  create_table "workout_likes", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "post_workout_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_workout_likes_on_end_user_id"
+    t.index ["post_workout_id"], name: "index_workout_likes_on_post_workout_id"
+  end
+
+  create_table "workout_menus", force: :cascade do |t|
+    t.integer "post_workout_id"
+    t.string "title"
+    t.float "weight"
+    t.integer "reptition_count"
+    t.integer "set_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_workout_id"], name: "index_workout_menus_on_post_workout_id"
+  end
+
+  add_foreign_key "blog_comments", "end_users"
+  add_foreign_key "blog_comments", "post_blogs"
+  add_foreign_key "blog_likes", "end_users"
+  add_foreign_key "blog_likes", "post_blogs"
+  add_foreign_key "meal_comments", "end_users"
+  add_foreign_key "meal_comments", "post_meals"
+  add_foreign_key "meal_likes", "end_users"
+  add_foreign_key "meal_likes", "post_meals"
+  add_foreign_key "meal_menus", "post_meals"
+  add_foreign_key "workout_comments", "end_users"
+  add_foreign_key "workout_comments", "post_workouts"
+  add_foreign_key "workout_likes", "end_users"
+  add_foreign_key "workout_likes", "post_workouts"
+  add_foreign_key "workout_menus", "post_workouts"
 end
