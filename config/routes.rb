@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'post_blogs/index'
+    get 'post_meals/index'
+    get 'post_workouts/index'
+  end
+  namespace :admin do
+    get 'end_users/index'
+    get 'end_users/show'
+    get 'end_users/edit'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
 }
