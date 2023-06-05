@@ -1,0 +1,71 @@
+<nav class="navbar text-center">
+    <div class="navbar navbar-brand">
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png', alt: "ロゴ", width: "100" %>
+      <% end %>
+    </div>
+    <ul class="navbar-nav justify-content-around">
+      <% if end_user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to end_users_mypage_path ,class: "nav-link" do %>
+        <i class="fa-solid fa-user"></i>
+        マイページ
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to post_workouts_path ,class: "nav-link" do %>
+        <i class="fa-solid fa-dumbbell"></i>
+        投稿一覧
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to destroy_end_user_session_path, method: :delete, class: "nav-link" do %>
+        <i class="fa-solid fa-right-from-bracket"></i>
+        ログアウト
+        <% end %>
+      </li>
+      <% elsif admin_signed_in? %>
+      <li class="nav-item">
+        <%= link_to admin_customers_path ,class: "nav-link" do %>
+        <i class="fa-solid fa-user-check"></i>
+        会員一覧
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to admin_post_workouts_path ,class: "nav-link" do %>
+        <i class="fa-solid fa-dumbbell"></i>
+        投稿一覧
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
+      <i class="fa-solid fa-right-from-bracket"></i>
+        ログアウト
+        <% end %>
+      </li>
+        <% else %>
+      <li class="nav-item">
+        <%= link_to homes_about_path, class: "nav-link" do %>
+      <i class="fa-solid fa-face-smile"></i>
+        About
+        <% end %>
+      <li class="nav-item">
+        <%= link_to post_workouts_path, class: "nav-link" do %>
+      <i class="fa-solid fa-dumbbell"></i>
+        投稿一覧
+        <% end %>
+      <li class="nav-item">
+        <%= link_to new_end_user_registration_path, class: "nav-link" do %>
+        <i class="fa-solid fa-user-plus"></i>
+        新規登録
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_end_user_session_path, class: "nav-link"  do %>
+        <i class="fa-solid fa-right-to-bracket"></i>
+        ログイン
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+</nav>
