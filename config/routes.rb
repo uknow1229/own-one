@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  # 管理者用
+  devise_for :admin, controllers: {
+    sessions: "admin/sessions"
+  }
+
+  # 顧客用
+  devise_for :end_users, controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+  
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about'
@@ -11,7 +22,6 @@ Rails.application.routes.draw do
       patch  '/end_users/information' => 'end_users#update'
       get  '/end_users/check' => 'end_users#check'
       patch  '/end_users/withdraw' => 'end_users#withdraw'
-      get :check
   end
 
   namespace :admin do
@@ -22,17 +32,6 @@ Rails.application.routes.draw do
 
     get "/" => "homes#top"
   end
-
-  # 管理者用
-  devise_for :admin, controllers: {
-  sessions: "admin/sessions"
-}
-
-  # 顧客用
-  devise_for :end_users, controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

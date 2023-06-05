@@ -70,4 +70,3 @@ gem 'pry-byebug'
 gem 'rails-i18n'
 
 gem 'jquery-rails'
-gem "importmap-rails", "~> 1.1"
