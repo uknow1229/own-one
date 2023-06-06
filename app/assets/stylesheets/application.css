@@ -52,6 +52,24 @@ body {
   position: relative;
 }
 
+.backimage {
+  justify-content: center;
+}
+
+.top-image {
+  height: 600px;
+  overflow: hidden;
+  position: fixed;
+  object-fit: cover;
+  object-position: 100% 40%;
+}
+
+.logo-image {
+  overflow: hidden;
+  position: fixed;
+  object-fit: cover;
+}
+
 footer {
   width: 100%;
   background-color: #609966;
