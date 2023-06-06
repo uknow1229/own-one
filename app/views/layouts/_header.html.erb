@@ -66,6 +66,12 @@
         ログイン
         <% end %>
       </li>
+      <li class="nav-item">
+        <%= link_to end_users_guest_sign_in_path, class: "nav-link", method: :post  do %>
+        <i class="fa-solid fa-right-to-bracket"></i>
+        ゲストログイン
+        <% end %>
+      </li>
       <% end %>
     </ul>
 </nav>

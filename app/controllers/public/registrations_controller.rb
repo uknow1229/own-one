@@ -2,7 +2,14 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params,  if: :devise_controller?
+  before_action :ensure_nomal_end_user, only: %i[update destroy]
   # before_action :configure_account_update_params, only: [:update]
+
+  def ensure_nomal_end_user
+    if resource.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの更新・削除できません。'
+    end
+  end
 
   # GET /resource/sign_up
   def new

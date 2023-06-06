@@ -4,5 +4,11 @@ class EndUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
-  has_one_attached :image	
+  has_one_attached :image
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |end_user|
+      end_user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end
