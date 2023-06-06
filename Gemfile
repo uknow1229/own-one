@@ -70,3 +70,5 @@ gem 'pry-byebug'
 gem 'rails-i18n'
 
 gem 'jquery-rails'
+
+gem 'faker'
