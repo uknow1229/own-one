@@ -4,7 +4,7 @@
         <%= image_tag 'logo.png', alt: "ロゴ", width: "100" %>
       <% end %>
     </div>
-    <ul class="navbar-nav justify-content-around">
+    <ul class="navbar-nav justify-content-around" style="flex-direction:row;">
       <% if end_user_signed_in? %>
       <li class="nav-item">
         <%= link_to end_users_mypage_path ,class: "nav-link" do %>
@@ -14,7 +14,7 @@
       </li>
       <li class="nav-item">
         <%= link_to post_workouts_path ,class: "nav-link" do %>
-        <i class="fa-sharp fa-light fa-dumbbell"></i>
+        <i class="fa-sharp fa-solid fa-dumbbell"></i>
         投稿一覧
         <% end %>
       </li>
@@ -33,7 +33,7 @@
       </li>
       <li class="nav-item">
         <%= link_to admin_post_workouts_path ,class: "nav-link" do %>
-        <i class="fa-solid fa-dumbbell"></i>
+        <i class="fa-sharp fa-solid fa-dumbbell"></i>
         投稿一覧
         <% end %>
       </li>
@@ -51,7 +51,7 @@
         <% end %>
       <li class="nav-item">
         <%= link_to post_workouts_path, class: "nav-link" do %>
-      <i class="fa-solid fa-dumbbell"></i>
+      <i class="fa-sharp fa-solid fa-dumbbell"></i>
         投稿一覧
         <% end %>
       <li class="nav-item">

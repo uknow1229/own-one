@@ -48,4 +48,13 @@ header {
 
 body {
   background-color: #E8F6EF;
+  min-height: 100vh;
+  position: relative;
+}
+
+footer {
+  width: 100%;
+  background-color: #609966;
+  position: absolute;
+  bottom: 0;
 }
