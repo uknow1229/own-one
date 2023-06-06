@@ -11,4 +11,8 @@ class EndUser < ApplicationRecord
       end_user.password = SecureRandom.urlsafe_base64
     end
   end
+
+  def full_name
+    (self.first_name || "") + " " + (self.last_name || "")
+  end
 end

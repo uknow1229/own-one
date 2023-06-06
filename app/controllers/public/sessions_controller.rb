@@ -37,6 +37,6 @@ class Public::SessionsController < Devise::SessionsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:first_name, :last_name, :furigana_first_name, :furigana_last_name, :post_code, :address, :telephone_number])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:body_weight, :age, :sex, :target_weight, :target_calorie, :activelevel, :introduction])
   end
 end

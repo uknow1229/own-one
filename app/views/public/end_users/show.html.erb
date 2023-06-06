@@ -1,2 +1,37 @@
-<h1>Public::EndUsers#show</h1>
-<p>Find me in app/views/public/end_users/show.html.erb</p>
+<div class="container mt-4">
+  <div class="row d-flex">
+    <h1>My Page</h1>
+    <div class="row">
+      <div>
+        <% if @end_user.image.present? %>
+          <%= image_tag @end_user.get_image(400,400), class: "image" %>
+        <% else %>
+          <%= image_tag 'noimage.jpg', class: "no-image" %>
+        <% end %>
+      </div>
+      <div>
+        <h2>ユーザー名</h2>
+        <% if @end_user.target_calorie.blank? %>
+        <p><%= @end_user.full_name %></p>
+        <% end %>
+      </div>
+      <div>
+        <h2>目標カロリー</h2>
+        <% if @end_user.target_calorie.blank? %>
+          <p>未設定</p>
+        <% else %>
+        <p><%= @end_user.target_calorie%>kcal/日</p>
+        <% end %>
+      </div>
+      <div>
+        <h2>自己紹介</h2>
+        <% if @end_user.introduction.blank? %>
+          <p>未設定</p>
+        <% end %>
+        <p><%= @end_user.introduction%></p>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+</div>
