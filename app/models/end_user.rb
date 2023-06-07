@@ -22,4 +22,8 @@ class EndUser < ApplicationRecord
   def full_name
     (self.first_name || "") + " " + (self.last_name || "")
   end
+
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
 end

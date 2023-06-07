@@ -9,6 +9,14 @@ class Public::EndUsersController < ApplicationController
   def check
   end
 
+  def withdraw
+    @end_user = EndUser.find(current_end_user.id)
+    @end_user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
+  end
+
   private
 
   def end_user_params
