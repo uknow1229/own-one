@@ -48,8 +48,12 @@ header {
 
 body {
   background-color: #E8F6EF;
-  min-height: 100vh;
+
   position: relative;
+}
+
+main {
+  min-height: 100vh;
 }
 
 .backimage {
@@ -59,14 +63,14 @@ body {
 .top-image {
   height: 600px;
   overflow: hidden;
-  position: fixed;
   object-fit: cover;
+  position: absolute;
   object-position: 100% 40%;
 }
 
 .logo-image {
+  position: relative;
   overflow: hidden;
-  position: fixed;
   object-fit: cover;
 }
 
