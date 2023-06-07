@@ -1,11 +1,26 @@
 ---
 ja:
+  enums:
+    end_user:
+      sex:
+        woman: "女性"
+        man: "男性"
+        neither: "どちらでもない"
+        no_answer: "無回答"
+      activelevel:
+        level1: "レベル1"
+        level2: "レベル2"
+        level3: "レベル3"
   activerecord:
     models:
       end_user: "ユーザー"
     attributes:
       end_user:
         sex:
+          woman: "女性"
+          man: "男性"
+          neither: "どちらでもない"
+          no_answer: "無回答"
         sexes:
           woman: "女性"
           man: "男性"

@@ -42,7 +42,7 @@
         </div>
         <div>
           <label>活動レベル</label>
-          <%= f.select :activelevel, options_for_select(EndUser.activelevels.map { |k, _v| [t("activerecord.attributes.end_user.activelevels.#{k}"), k] }), { class: 'form-control', style: 'margin-bottom: 15px;', data: {} } ,class: 'form-control' %>
+          <%= f.select :activelevel, options_for_select(EndUser.activelevels.map { |k, _v| [t("activerecord.attributes.end_user.activelevels.#{k}"), k] }), { data: {} } ,class: 'form-control' %>
         </div>
         <table class="table">
           <p>※活動レベルは以下の表を目安に設定してください</p>

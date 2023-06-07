@@ -7,6 +7,10 @@ class Public::EndUsersController < ApplicationController
     @end_user = EndUser.find(current_end_user.id)
   end
 
+  def profile
+    @end_user = EndUser.find(current_end_user.id)
+  end
+
   def update
     @end_user = EndUser.find(current_end_user.id)
     @end_user.update(end_user_params)
