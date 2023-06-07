@@ -70,6 +70,11 @@ body {
   object-fit: cover;
 }
 
+.profile-image {
+  width: 150px;
+  height: 150px;
+}
+
 footer {
   width: 100%;
   background-color: #609966;

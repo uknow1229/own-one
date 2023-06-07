@@ -11,6 +11,11 @@ ja:
           man: "男性"
           neither: "どちらでもない"
           no_answer: "無回答"
+        activelevel:
+        activelevels:
+          level1: "レベル1"
+          level2: "レベル2"
+          level3: "レベル3"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

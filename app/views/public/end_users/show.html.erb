@@ -4,8 +4,8 @@
     <div class="row">
       <div>
       
-        <% if @end_user.image.present? %>
-          <%= image_tag @end_user.get_image(400,400), class: "image" %>
+        <% if @end_user.image.attached? %>
+          <%= image_tag @end_user.image, class: "profile-image" %>
         <% else %>
           <%= image_tag 'noimage.jpg', class: "no-image" %>
         <% end %>
