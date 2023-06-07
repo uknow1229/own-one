@@ -1,2 +1,54 @@
-<h1>Public::EndUsers#edit</h1>
-<p>Find me in app/views/public/end_users/edit.html.erb</p>
+<div class="container mt-4">
+  <div class="row">
+    <h1>プロフィール編集</h1>
+    
+    <%= form_with model: @end_user, url:end_users_information_path do |f| %>
+    
+      <div>
+        <label>性</label>
+        <%= f.text_field :first_name %>
+      </div>
+      <div>
+        <label>名</label>
+        <%= f.text_field :last_name %>
+      </div>
+      <div>
+        <label>身長</label>
+        <%= f.text_field :height %> 
+      </div>
+      <div>
+        <label>体重</label>
+        <%= f.text_field :body_weight %>
+      </div>
+      <div>
+        <label>年齢</label>
+        <%= f.text_field :age %>
+      </div>
+      <div>
+        <label>性別</label>
+        <%= f.text_field :sex %>
+      </div>
+      <div>
+        <label>目標体重</label>
+        <%= f.text_field :target_weight %>
+      </div>
+      <div>
+        <label>目標カロリー</label>
+        <%= f.text_field :target_calorie %>
+      </div>
+      <div>
+        <label>活動レベル</label>
+        <%= f.text_field :activelevel %>
+      </div>
+      <div>
+        <label>自己紹介</label>
+        <%= f.text_field :introduction %>
+      </div>
+      <div>
+        <label>メールアドレス</label>
+        <%= f.text_field :email %>
+      </div>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
