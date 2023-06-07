@@ -26,7 +26,7 @@
       </div>
       <div>
         <label>性別</label>
-        <%= f.text_field :sex %>
+        <%= f.select :sex, options_for_select(EndUser.sexes.map { |k, _v| [t("activerecord.attributes.end_user.sexes.#{k}"), k] }), { class: 'form-control', style: 'margin-bottom: 15px;', data: {} } %>
       </div>
       <div>
         <label>目標体重</label>

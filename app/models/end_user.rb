@@ -13,6 +13,8 @@ class EndUser < ApplicationRecord
   has_many :blog_likes, dependent: :destroy
   has_many :blog_comments, dependent: :destroy
 
+  enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |end_user|
       end_user.password = SecureRandom.urlsafe_base64
