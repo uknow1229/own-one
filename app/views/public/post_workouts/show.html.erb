@@ -1,2 +1,15 @@
-<h1>Public::PostWorkouts#show</h1>
-<p>Find me in app/views/public/post_workouts/show.html.erb</p>
+<div class="container mt-4">
+  <h1>フィットネス投稿詳細</h1>
+  <div>
+    <% if @post_workout.image.attached? %>
+      <%= image_tag @post_workout.image, class: "profile-image" %>
+    <% else %>
+      <%= image_tag 'noimage.jpg', class: "no-image" %>
+    <% end %>
+    <p><%= @post_workout.date.strftime("%Y-%m-%d") %></p>
+    <p><%= @post_workout.title %></p>
+    <p><%= @post_workout.site %></p>
+    <p><%= @post_workout.time %>分</p>
+    <p><%= @post_workout.memo %></p>
+  </div>
+</div>

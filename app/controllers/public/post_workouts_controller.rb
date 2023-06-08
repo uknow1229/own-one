@@ -4,10 +4,8 @@ class Public::PostWorkoutsController < ApplicationController
   end
 
   def show
-
     @post_workouts = PostWorkout.all
     @post_workout = PostWorkout.find(params[:id])
-
   end
 
   def edit

@@ -12,8 +12,10 @@
       </div>
       <div>
         <h2>ユーザー名</h2>
-        <% if @end_user.target_calorie.blank? %>
-        <p><%= @end_user.full_name %></p>
+        <% if @end_user.full_name.blank? %>
+          <p>未設定</p>
+        <% else %>
+          <p><%= @end_user.full_name %></p>
         <% end %>
       </div>
       <div>

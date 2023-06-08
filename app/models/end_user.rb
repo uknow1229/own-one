@@ -5,6 +5,7 @@ class EndUser < ApplicationRecord
         :recoverable, :rememberable, :validatable
 
   has_one_attached :image
+  has_many :post_workouts, dependent: :destroy
 
   has_many :workout_likes, dependent: :destroy
   has_many :workout_comments, dependent: :destroy
@@ -12,6 +13,9 @@ class EndUser < ApplicationRecord
   has_many :meal_comments, dependent: :destroy
   has_many :blog_likes, dependent: :destroy
   has_many :blog_comments, dependent: :destroy
+
+  has_many :post_workouts, through: :workout_likes
+  has_many :post_workouts, through: :workout_comments
 
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
   enum activelevel: { level1: 0, level2: 1, level3: 2 }
