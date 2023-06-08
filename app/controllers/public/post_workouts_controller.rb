@@ -18,7 +18,7 @@ class Public::PostWorkoutsController < ApplicationController
 
   def create
     @post_workout = PostWorkout.new(post_workout_params)
-
+    @post_workout.end_user_id = current_end_user.id
     if @post_workout.save
       redirect_to post_workouts_path
     else
