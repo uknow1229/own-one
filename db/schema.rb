@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2023_06_04_171507) do
   end
 
   create_table "end_users", force: :cascade do |t|
+    t.string "user_name"
     t.string "last_name"
     t.string "first_name"
     t.integer "height"
@@ -126,14 +127,17 @@ ActiveRecord::Schema.define(version: 2023_06_04_171507) do
   end
 
   create_table "post_blogs", force: :cascade do |t|
+    t.integer "end_user_id", null: false
     t.string "title", null: false
     t.text "content", null: false
     t.boolean "is_closed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_post_blogs_on_end_user_id"
   end
 
   create_table "post_meals", force: :cascade do |t|
+    t.integer "end_user_id", null: false
     t.datetime "date"
     t.integer "timing", default: 0
     t.integer "meal_type", default: 0
@@ -141,9 +145,11 @@ ActiveRecord::Schema.define(version: 2023_06_04_171507) do
     t.boolean "is_closed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_post_meals_on_end_user_id"
   end
 
   create_table "post_workouts", force: :cascade do |t|
+    t.integer "end_user_id", null: false
     t.datetime "date"
     t.string "title"
     t.integer "site", default: 0
@@ -152,6 +158,7 @@ ActiveRecord::Schema.define(version: 2023_06_04_171507) do
     t.integer "is_disclosure", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_post_workouts_on_end_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -202,6 +209,9 @@ ActiveRecord::Schema.define(version: 2023_06_04_171507) do
   add_foreign_key "meal_likes", "end_users"
   add_foreign_key "meal_likes", "post_meals"
   add_foreign_key "meal_menus", "post_meals"
+  add_foreign_key "post_blogs", "end_users"
+  add_foreign_key "post_meals", "end_users"
+  add_foreign_key "post_workouts", "end_users"
   add_foreign_key "workout_comments", "end_users"
   add_foreign_key "workout_comments", "post_workouts"
   add_foreign_key "workout_likes", "end_users"

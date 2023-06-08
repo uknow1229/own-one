@@ -11,16 +11,24 @@ ja:
         level1: "レベル1"
         level2: "レベル2"
         level3: "レベル3"
+      site:
+        shoulder: "肩"
+        arm: "腕"
+        chest: "胸"
+        back: "背中"
+        belly: "腹"
+        buttocks: "尻"
+        thigh: "太もも"
+        calf: "ふくらはぎ"
+        the_upper_body: "上半身"
+        lower_half_of_the_body: "下半身"
   activerecord:
     models:
       end_user: "ユーザー"
+      post_wotkout:
     attributes:
       end_user:
         sex:
-          woman: "女性"
-          man: "男性"
-          neither: "どちらでもない"
-          no_answer: "無回答"
         sexes:
           woman: "女性"
           man: "男性"
@@ -31,6 +39,19 @@ ja:
           level1: "レベル1"
           level2: "レベル2"
           level3: "レベル3"
+      post_workout:
+        site:
+        sites:
+          shoulder: "肩"
+          arm: "腕"
+          chest: "胸"
+          back: "背中"
+          belly: "腹"
+          buttocks: "尻"
+          thigh: "太もも"
+          calf: "ふくらはぎ"
+          the_upper_body: "上半身"
+          lower_half_of_the_body: "下半身"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

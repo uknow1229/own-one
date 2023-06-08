@@ -1,5 +1,6 @@
 <div class="container mt-4">
   <h2>フィットネス投稿一覧</h2>
+    <%= link_to '投稿する', new_post_workout_path %>
   <div class="workout-wrapper d-flex">
     <% @post_workouts.each do |post_workout| %>
       <%= link_to post_workout_path(post_workout) do %>

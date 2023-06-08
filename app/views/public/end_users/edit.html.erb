@@ -5,7 +5,7 @@
     <%= form_with model: @end_user, url:end_users_information_path do |f| %>
     <div class="form-group">
         <div>
-          <label>プロフィール画像</label>
+          <label>画像</label>
           <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
         </div>
         <div>

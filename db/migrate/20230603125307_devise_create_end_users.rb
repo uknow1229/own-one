@@ -4,7 +4,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :end_users do |t|
       ## Database authenticatable
-
+      t.string :user_name
       t.string :last_name
       t.string :first_name
       t.integer :height

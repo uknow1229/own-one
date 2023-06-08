@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'homes/about'
     resources :post_blogs, only: [:index, :show, :edit]
     resources :post_meals, only: [:index, :show, :edit]
-    resources :post_workouts, only: [:index, :show, :edit]
+    resources :post_workouts, only: [:new, :create, :index, :show]
     # end_users
       get  '/end_users/mypage' => 'end_users#show'
       get  '/end_users/profile' => 'end_users#profile'
