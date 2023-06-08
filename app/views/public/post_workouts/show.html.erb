@@ -1,15 +1,33 @@
-<div class="container mt-4">
-  <h1>フィットネス投稿詳細</h1>
-  <div>
-    <% if @post_workout.image.attached? %>
-      <%= image_tag @post_workout.image, class: "profile-image" %>
+<div class="container workout-wrapper mt-4">
+  <h2>フィットネス投稿詳細</h2>
+
+  <div class="enduser-wrapper mb-4 d-flex justify-content-center">
+    <% if @post_workout.end_user.image.attached? %>
+      <%= image_tag @post_workout.end_user.image, class: "profile-image" %>
     <% else %>
       <%= image_tag 'noimage.jpg', class: "no-image" %>
     <% end %>
-    <p><%= @post_workout.date.strftime("%Y-%m-%d") %></p>
-    <p><%= @post_workout.title %></p>
-    <p><%= @post_workout.site %></p>
-    <p><%= @post_workout.time %>分</p>
-    <p><%= @post_workout.memo %></p>
+    <p><%= @post_workout.end_user.first_name %></p>
+  </div>
+
+  <div class="workout d-flex">
+    <div class="workout-menu">
+      <h2><%= @post_workout.date.strftime("%Y-%m-%d") %></h2>
+      <% if @post_workout.image.attached? %>
+        <%= image_tag @post_workout.image, class: "fitness-image" %>
+      <% else %>
+        <%= image_tag 'noimage.jpg', class: "no-image" %>
+      <% end %>
+    </div>
+    <div class="workout-menu">
+      <h2>タイトル</h2>
+      <p><%= @post_workout.title %></p>
+      <h2>部位</h2>
+      <p><%= @post_workout.site_i18n %></p>
+      <h2>時間</h2>
+      <p><%= @post_workout.time %>分</p>
+      <h2>メモ</h2>
+      <p><%= @post_workout.memo %></p>
+    </div>
   </div>
 </div>

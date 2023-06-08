@@ -108,6 +108,11 @@ main {
   height: 150px;
 }
 
+.fitness-image {
+  width: 200px;
+  height: 200px;
+}
+
 .no-image {
   width: 150px;
   height: 150px;
@@ -139,6 +144,11 @@ main {
   padding-left: 10px;
 }
 
+.workout-menu h2{
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .no-decoration {
   text-decoration: none;
   color: black;
@@ -148,6 +158,13 @@ main {
   text-decoration: underline;
   text-decoration-color: #B0BBF6;
 }
+
+.enduser-wrapper img{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
 
 footer {
   width: 100%;
