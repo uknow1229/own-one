@@ -28,7 +28,9 @@ header .navbar {
 
 .navbar-nav li:hover {
   color: black;
-  text-decoration: underline;
+
+  border-bottom: 3px solid #ECF6B0;
+
 }
 
 .nav-link {
@@ -144,6 +146,7 @@ main {
 
 .no-decoration:hover {
   text-decoration: underline;
+  text-decoration-color: #B0BBF6;
 }
 
 footer {
