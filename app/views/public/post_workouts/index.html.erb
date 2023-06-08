@@ -1,22 +1,6 @@
 <div class="container mt-4">
   <h2>フィットネス投稿一覧</h2>
     <%= link_to '投稿する', new_post_workout_path %>
-  <div class="workout-wrapper d-flex">
-    <% @post_workouts.each do |post_workout| %>
-      <%= link_to post_workout_path(post_workout) do %>
-        <div class="workout d-flex">
-          <% if post_workout.image.attached? %>
-            <%= image_tag post_workout.image, class: "profile-image" %>
-          <% else %>
-            <%= image_tag 'noimage.jpg', class: "no-image" %>
-          <% end %>
-          <div class="workout-menu">
-            <p><%= post_workout.title %></p>
-            <p><%= post_workout.date.strftime("%Y-%m-%d") %></p>
-            <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render "index", post_workouts: @post_workouts %>
   </div>
 </div>
