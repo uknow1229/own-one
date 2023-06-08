@@ -1,6 +1,6 @@
 <div class="workout-wrapper d-flex">
     <% post_workouts.each do |post_workout| %>
-      <%= link_to post_workout_path(post_workout) do %>
+      <%= link_to post_workout_path(post_workout), class: 'no-decoration' do %>
         <div class="workout d-flex">
           <% if post_workout.image.attached? %>
             <%= image_tag post_workout.image, class: "profile-image" %>

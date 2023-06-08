@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <h2>フィットネス投稿一覧</h2>
-    <%= link_to '投稿する', new_post_workout_path %>
+    <%= link_to '投稿する', new_post_workout_path, class: 'no-decoration' %>
     <%= render "index", post_workouts: @post_workouts %>
   </div>
 </div>

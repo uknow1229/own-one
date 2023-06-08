@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  text-decoration: none;
 }
 
 header {
@@ -118,9 +117,6 @@ main {
 
 .container .workout-wrapper a{
   background-color: #CAD2FE;
-  text-decoration: none;
-  color: black;
-
   gap: 20px;
   margin: 10px;
   padding: 20px;
@@ -132,6 +128,23 @@ main {
   border-radius: 10px;
 }
 
+.workout-wrapper  {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.workout-menu {
+  padding-left: 10px;
+}
+
+.no-decoration {
+  text-decoration: none;
+  color: black;
+}
+
+.no-decoration:hover {
+  text-decoration: underline;
+}
 
 footer {
   width: 100%;
