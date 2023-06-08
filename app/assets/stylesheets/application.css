@@ -97,13 +97,31 @@ main {
   position: relative;
   overflow: hidden;
   -o-object-fit: cover;
-     object-fit: cover;
-     z-index: 2;
+  object-fit: cover;
+  z-index: 2;
 }
 
 .profile-image {
   width: 150px;
   height: 150px;
+}
+.no-image {
+  width: 150px;
+  height: 150px;
+}
+
+.row.d-flex {
+  justify-content: center;
+}
+
+
+.workout {
+  background-color: rgba(96, 153, 102, 0.5);
+  border-radius: 10px;
+  gap: 20px;
+  margin: 10px;
+  padding: 20px;
+
 }
 
 footer {

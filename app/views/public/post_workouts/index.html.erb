@@ -1,2 +1,19 @@
-<h1>Public::PostWorkouts#index</h1>
-<p>Find me in app/views/public/post_workouts/index.html.erb</p>
+<div class="container mt-4">
+  <h2>フィットネス投稿一覧</h2>
+  <div class="row d-flex">
+    <% @post_workouts.each do |post_workout| %>
+    <div class="workout col-sm-3 d-flex">
+      <% if post_workout.image.attached? %>
+        <%= image_tag post_workout.image, class: "profile-image" %>
+      <% else %>
+        <%= image_tag 'noimage.jpg', class: "no-image" %>
+      <% end %>
+      <div>
+        <p><%= post_workout.title %></p>
+        <p><%= post_workout.date.strftime("%Y-%m-%d") %></p>
+        <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
