@@ -1,7 +1,7 @@
 <nav class="navbar text-center">
     <div class="navbar navbar-brand">
       <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: "ロゴ", width: "100" %>
+        <%= image_tag 'logo.png', alt: "ロゴ", width: "70" %>
       <% end %>
     </div>
     <ul class="navbar-nav justify-content-around" style="flex-direction:row;">
@@ -18,12 +18,29 @@
         投稿一覧
         <% end %>
       </li>
-      <li class="nav-item">
-        <%= link_to destroy_end_user_session_path, method: :delete , class: "nav-link" do %>
-        <i class="fa-solid fa-right-from-bracket"></i>
-        ログアウト
-        <% end %>
-      </li>
+      <div>
+        <li class="nav-item rounded-image" id="toggle-button">
+          <% if current_end_user.image.attached? %>
+            <%= image_tag current_end_user.image.variant(resize: "50x50") %>
+          <% else %>
+            <%= image_tag('noimage.jpg', size: "50x50") %>
+          <% end %>
+        </li>
+        <div class="toggle-item">
+          <li class="nav-item">
+            <%= link_to end_users_profile_path, class: "nav-link" do %>
+            <i class="fa-sharp fa-solid fa-address-card"></i>
+            プロフィール
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_end_user_session_path, method: :delete , class: "nav-link" do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            ログアウト
+            <% end %>
+          </li>
+        </div>
+      </div>
       <% elsif admin_signed_in? %>
       <li class="nav-item">
         <%= link_to admin_customers_path ,class: "nav-link" do %>
@@ -75,3 +92,11 @@
       <% end %>
     </ul>
 </nav>
+
+<script>
+$(function () {
+  $("#toggle-button").click(function() {
+    $(".toggle-item").slideToggle("");
+  });
+});
+</script>

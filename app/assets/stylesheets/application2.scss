@@ -1,4 +1,4 @@
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,38 +9,31 @@ header {
   background-color: #609966;
   padding: 0px 10px;
 }
-
 header .navbar {
   display: flex;
   padding: 0;
   justify-content: space-between;
 }
-
 .navbar-nav {
   display: flex;
   gap: 10px;
   align-items: center;
 }
-
 .navbar.navbar-brand {
   margin-right: 0;
 }
-
 .navbar-nav li:hover {
   color: black;
   text-decoration: underline;
 }
-
 .nav-link {
   color: white;
   text-decoration: none;
 }
-
 .nav-item {
   list-style: none;
 }
-
-.rounded-image img {
+.rounded-image img{
   border-radius: 50%;
   cursor: pointer;
   transition-duration: 0.3s;
@@ -51,8 +44,7 @@ header .navbar {
   cursor: pointer;
   position: relative;
 }
-
-#toggle-button:hover img {
+#toggle-button:hover img{
   opacity: 0.6;
   transition-duration: 0.3s;
 }
@@ -66,8 +58,8 @@ header .navbar {
   top: 80px;
   right: 10px;
   padding: 10px;
-  z-index: 3;
 }
+
 
 body {
   background-color: #E8F6EF;
@@ -85,20 +77,15 @@ main {
 .top-image {
   height: 600px;
   overflow: hidden;
-  -o-object-fit: cover;
   object-fit: cover;
   position: absolute;
-  -o-object-position: 100% 40%;
   object-position: 100% 40%;
-  z-index: 1;
 }
 
 .logo-image {
   position: relative;
   overflow: hidden;
-  -o-object-fit: cover;
-     object-fit: cover;
-     z-index: 2;
+  object-fit: cover;
 }
 
 .profile-image {
