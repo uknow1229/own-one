@@ -14,7 +14,10 @@
       </div>
       <div>
         <label>部位</label>
-        <%= f.select :site, options_for_select(PostWorkout.sites.map { |k, _v| [t("activerecord.attributes.post_workout.sites.#{k}"), k] }), { class: 'form-control', style: 'margin-bottom: 15px;', data: {} } ,class: 'form-control' %>
+      <% PostWorkout.sites.each do |key, value| %>
+        <%= f.radio_button :site, key %>
+        <%= f.label "site_#{key}", t("activerecord.attributes.post_workout.sites.#{key}") %>
+      <% end %>
       </div>
       <div>
         <label>時間</label>
