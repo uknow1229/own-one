@@ -1,0 +1,37 @@
+<%= form_with model: post_meal , local: true do |f| %>
+  <div class="form-group">
+      <div>
+        <label>画像</label>
+        <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
+      </div>
+      <div>
+        <label>日付</label>
+        <%= f.date_field :date,  class: 'form-control' %>
+      </div>
+      <div>
+        <label>タイミング</label><br>
+        <% PostMeal.timings.each do |key, value| %>
+          <%= f.radio_button :timing, key %>
+          <%= f.label "timing_#{key}", t("activerecord.attributes.post_meal.timings.#{key}") %>
+        <% end %>
+      </div>
+      <div>
+        <label>食事タイプ</label><br>
+        <% PostMeal.meal_types.each do |key, value| %>
+          <%= f.radio_button :meal_type, key %>
+          <%= f.label "meal_type_#{key}", t("activerecord.attributes.post_meal.meal_types.#{key}") %>
+        <% end %>
+      </div>
+      <div>
+        <label>メモ</label>
+        <%= f.text_field :memo, class: 'form-control' %>
+      </div>
+      <div>
+      <% if post_meal.new_record? %>
+        <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
+      <% else %>
+        <%= f.submit '更新する', class: "btn btn-success mt-4" %>
+      <% end %>
+      </div>
+    <% end %>
+  </div>

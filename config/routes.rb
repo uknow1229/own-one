@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'homes/about'
-    resources :post_blogs, only: [:index, :show, :edit]
-    resources :post_meals, only: [:index, :show, :edit]
+    resources :post_blogs
+    resources :post_meals
     resources :post_workouts
     # end_users
       get  '/end_users/mypage' => 'end_users#show'

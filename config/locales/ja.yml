@@ -23,6 +23,17 @@ ja:
         calf: "ふくらはぎ"
         the_upper_body: "上半身"
         lower_half_of_the_body: "下半身"
+    post_meal:
+      timing:
+        breakfast: "朝食"
+        lunch: "昼食"
+        dinner: "夕食"
+        snacking: "間食"
+      meal_type:
+        cooking_for_oneself: "自炊"
+        eating_out: "外食"
+        takeout: "テイクアウト"
+        convenience_store: "コンビニ"
   activerecord:
     models:
       end_user: "ユーザー"
@@ -53,6 +64,19 @@ ja:
           calf: "ふくらはぎ"
           the_upper_body: "上半身"
           lower_half_of_the_body: "下半身"
+      post_meal:
+        timing:
+        timings:
+          breakfast: "朝食"
+          lunch: "昼食"
+          dinner: "夕食"
+          snacking: "間食"
+        meal_type:
+        meal_types:
+          cooking_for_oneself: "自炊"
+          eating_out: "外食"
+          takeout: "テイクアウト"
+          convenience_store: "コンビニ"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
