@@ -4,6 +4,8 @@ class Public::PostBlogsController < ApplicationController
   end
 
   def show
+    @post_blogs = PostBLog.all
+    @post_blog = PostBlog.find(params[:id])
   end
 
   def edit

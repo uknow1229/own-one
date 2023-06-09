@@ -1,2 +1,33 @@
-<h1>Public::PostBlogs#show</h1>
-<p>Find me in app/views/public/post_blogs/show.html.erb</p>
+<div class="container blog-wrapper mt-4">
+  <h2>ブログ投稿詳細</h2>
+
+  <div class="enduser-wrapper mb-4 d-flex justify-content-center">
+    <% if @post_blog.end_user.image.attached? %>
+      <%= image_tag @post_blog.end_user.image, class: "profile-image" %>
+    <% else %>
+      <%= image_tag 'noimage.jpg', class: "no-image" %>
+    <% end %>
+    <p><%= @post_blog.end_user.first_name %></p>
+  </div>
+
+  <div class="blog d-flex">
+    <div class="blog-menu">
+      <h2><%= @post_blog.date.strftime("%Y-%m-%d") %></h2>
+      <% if @post_blog.image.attached? %>
+        <%= image_tag @post_blog.image, class: "fitness-image" %>
+      <% else %>
+        <%= image_tag 'noimage.jpg', class: "no-image" %>
+      <% end %>
+    </div>
+    <div class="blog-menu">
+      <h2>タイトル</h2>
+      <p><%= @post_blog.title %></p>
+      <h2>内容</h2>
+      <p><%= @post_blog.content %></p>
+    </div>
+  </div>
+  <div class="blog-menu-link">
+    <%= link_to "編集", edit_post_blog_path, :class => "btn btn-success ms-3" %>
+    <%= link_to "削除", post_blog_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>
+  </div>
+</div>
