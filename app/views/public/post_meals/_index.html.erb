@@ -1,7 +1,7 @@
 <div class="meal-wrapper d-flex">
     <% post_meals.each do |post_meal| %>
       <%= link_to post_meal_path(post_meal), class: 'no-decoration' do %>
-        <div class="meeal d-flex">
+        <div class="meal d-flex">
           <% if post_meal.image.attached? %>
             <%= image_tag post_meal.image, class: "profile-image" %>
           <% else %>
