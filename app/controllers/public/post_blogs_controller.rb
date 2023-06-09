@@ -35,6 +35,13 @@ class Public::PostBlogsController < ApplicationController
     end
   end
 
+  def destroy
+    @post_blog = PostBlog.find(params[:id])
+    @post_blog.destroy
+    redirect_to post_blogs_path
+    flash[:notice] = "削除が完了しました"
+  end
+
   private
 
   def post_blog_params
