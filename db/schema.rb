@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2023_06_04_171507) do
   create_table "post_blogs", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.string "title", null: false
+    t.datetime "date", null: false
     t.text "content", null: false
     t.boolean "is_closed", default: false
     t.datetime "created_at", precision: 6, null: false
