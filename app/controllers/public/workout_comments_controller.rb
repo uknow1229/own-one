@@ -7,6 +7,11 @@ class Public::WorkoutCommentsController < ApplicationController
     redirect_to post_workout_path(post_workout)
   end
 
+  def destroy
+    WorkoutComment.find(params[:id]).destroy
+    redirect_to post_workout_path(params[:post_workout_id])
+  end
+
   private
 
   def workout_comment_params
