@@ -23,14 +23,23 @@ class Public::PostMealsController < ApplicationController
   end
 
   def edit
+    @post_meal = PostMeal.find(params[:id])
   end
 
   def update
-
+    @post_meal = PostMeal.find(params[:id])
+    if @post_meal.update(post_meal_params)
+      redirect_to post_meals_path
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+    @post_meal = PostMeal.find(params[:id])
+    @post_meal.destroy
+    redirect_to post_meals_path
+    flash[:notice] = "削除が完了しました"
   end
 
   private
