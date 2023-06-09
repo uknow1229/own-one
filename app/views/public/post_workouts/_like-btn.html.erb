@@ -1,0 +1,15 @@
+<% if post_workout.liked_by?(current_end_user) %>
+  <p>
+    <%= link_to post_workout_workout_likes_path(post_workout), method: :delete do %>
+      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+    <%= post_workout.workout_likes.count %>
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_workout_workout_likes_path(post_workout), method: :post do %>
+      <i class="fas fa-heart" aria-hidden="true"></i>
+    <%= post_workout.workout_likes.count %>
+    <% end %>
+  </p>
+<% end %>

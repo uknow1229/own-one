@@ -1,0 +1,2 @@
+module WorkoutLikesHelper
+end
