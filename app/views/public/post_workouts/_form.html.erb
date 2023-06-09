@@ -1,9 +1,5 @@
-<div class="container mt-4">
-  <div class="row">
-    <h1>フィットネス新規登録</h1>
-
-    <%= form_with model: @post_workout , url: post_workouts_path, local: true do |f| %>
-    <div class="form-group">
+<%= form_with model: post_workout , local: true do |f| %>
+  <div class="form-group">
       <div>
         <label>画像</label>
         <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
@@ -19,7 +15,6 @@
       <div>
         <label>部位</label>
         <%= f.select :site, options_for_select(PostWorkout.sites.map { |k, _v| [t("activerecord.attributes.post_workout.sites.#{k}"), k] }), { class: 'form-control', style: 'margin-bottom: 15px;', data: {} } ,class: 'form-control' %>
-
       </div>
       <div>
         <label>時間</label>
@@ -30,11 +25,11 @@
         <%= f.text_field :memo, class: 'form-control' %>
       </div>
       <div>
-        <%= f.submit '登録する', :class => "btn btn-success mt-4" %>
-      </div>
+      <% if post_workout.new_record? %>
+        <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
+      <% else %>
+        <%= f.submit '更新する', class: "btn btn-success mt-4" %>
       <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-</div>
-
-

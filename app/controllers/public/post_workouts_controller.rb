@@ -9,7 +9,7 @@ class Public::PostWorkoutsController < ApplicationController
   end
 
   def edit
-    @post_workout = PostWorkout.find(post_workout_params)
+    @post_workout = PostWorkout.find(params[:id])
   end
 
   def new
@@ -27,7 +27,12 @@ class Public::PostWorkoutsController < ApplicationController
   end
     
   def update
-
+    @post_workout = PostWorkout.find(params[:id])
+    if @post_workout.update(post_workout_params)
+      redirect_to post_workouts_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -37,7 +42,7 @@ class Public::PostWorkoutsController < ApplicationController
   private
 
   def post_workout_params
-    params.require(:post_workout).permit(:image, :date, :title, :site, :time, :memo)
+    params.require(:post_workout).permit(:end_user_id, :image, :date, :title, :site, :time, :memo)
   end
 
 end
