@@ -11,7 +11,10 @@
             <p><%= post_workout.title %></p>
             <p><%= post_workout.date.strftime("%Y-%m-%d") %></p>
             <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
+            <p>コメント件数:<%= post_workout.workout_comments.count %></p>
+            <p><%= render "like-btn", post_workout: post_workout %></p>
           </div>
+          
         </div>
       <% end %>
     <% end %>

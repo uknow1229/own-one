@@ -10,5 +10,12 @@ class PostMeal < ApplicationRecord
 
   enum timing: { breakfast: 0, lunch: 1, dinner: 2, snacking: 3 }
   enum meal_type: { cooking_for_oneself: 0, eating_out: 1, takeout: 2, convenience_store: 3 }
-
+  
+  def get_image
+    if image.attached?
+      image
+    else
+      'npimage.jpg'
+    end
+  end
 end

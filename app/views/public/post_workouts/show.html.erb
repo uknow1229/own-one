@@ -1,4 +1,4 @@
-<div class="container workout-wrapper mt-4">
+<div class="container wor%kout-wrapper mt-4">
   <h2>フィットネス投稿詳細</h2>
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
@@ -31,10 +31,17 @@
 
       <!-- いいね機能 -->
       <%= render "like-btn", post_workout: @post_workout %>
+
+      <!-- コメント機能 -->
+      <p>コメント件数:<%= @post_workout.workout_comments.count %></p>
+      <div class="workout-comment">
+        <%= render 'comment-index', post_workout: @post_workout %>
+        <%= render 'comment-form', post_workout: @post_workout, workout_comment: @workout_comment %>
+      </div>
     </div>
   </div>
   <div class="workout-menu-link">
     <%= link_to "編集", edit_post_workout_path, :class => "btn btn-success ms-3" %>
-    <%= link_to "削除", post_workout_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>
+    <%= link_to "削除", post_workout_path, method: :delete, data: { confirm: "本当に削除しますか？" } , :class => "btn btn-danger ms-3" %>
   </div>
 </div>

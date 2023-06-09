@@ -122,8 +122,8 @@ main {
   justify-content: center;
 }
 
-.container .workout-wrapper a{
-  background-color: #CAD2FE;
+.container .workout-wrapper {
+  
   gap: 20px;
   margin: 10px;
   padding: 20px;
@@ -136,14 +136,19 @@ main {
 }
 
 .workout-wrapper  {
+
   flex-wrap: wrap;
   justify-content: center;
 }
 
-/* .workout {
-  width: 300px;
-  height: 200px; 
-} */
+.workout {
+  background-color: #CAD2FE;
+  gap: 20px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  
+}
 
 .workout-menu {
   padding-left: 10px;
