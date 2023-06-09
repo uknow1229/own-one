@@ -9,12 +9,18 @@
         <%= f.date_field :date,  class: 'form-control' %>
       </div>
       <div>
-        <label>タイミング</label>
-        <%= f.text_field :timing, class: 'form-control' %>
+        <label>タイミング</label><br>
+        <% PostMeal.timings.each do |key, value| %>
+          <%= f.radio_button :timing, key %>
+          <%= f.label "timing_#{key}", t("activerecord.attributes.post_meal.timings.#{key}") %>
+        <% end %>
       </div>
       <div>
-        <label>食事タイプ</label>
-        <%= f.text_field  :meal_type, class: 'form-control' %>
+        <label>食事タイプ</label><br>
+        <% PostMeal.meal_types.each do |key, value| %>
+          <%= f.radio_button :meal_type, key %>
+          <%= f.label "meal_type_#{key}", t("activerecord.attributes.post_meal.meal_types.#{key}") %>
+        <% end %>
       </div>
       <div>
         <label>メモ</label>
