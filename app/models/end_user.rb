@@ -34,4 +34,13 @@ class EndUser < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
+
+  def get_profile_image(width, height)
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/noimage.jpg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    image.variant(resize_to_limit: [100, 100]).processed
+  end
+
 end

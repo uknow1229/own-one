@@ -1,4 +1,4 @@
-<div class="container workout-wrapper mt-4">
+<div class="container wor%kout-wrapper mt-4">
   <h2>フィットネス投稿詳細</h2>
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
@@ -31,6 +31,26 @@
 
       <!-- いいね機能 -->
       <%= render "like-btn", post_workout: @post_workout %>
+
+      <!-- コメント機能 -->
+      
+      <p>コメント件数:<%= @post_workout.workout_comments.count %></p>
+      
+      <% @post_workout.workout_comments.each do |workout_comment| %>
+      <div>
+        <%= image_tag workout_comment.end_user.get_profile_image(100,100)%>
+        <%= workout_comment.end_user.first_name %>
+        <%= workout_comment.created_at.strftime('%Y/%m/%d') %><%= workout_comment.comment %>
+      <% end %>
+      </div>
+
+      <div>
+        <%= form_with model: [@post_workout, @workout_comment] do |f| %>
+          <%= f.text_area :comment, rows: 5, placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+
     </div>
   </div>
   <div class="workout-menu-link">

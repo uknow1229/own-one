@@ -6,6 +6,7 @@ class Public::PostWorkoutsController < ApplicationController
   def show
     @post_workouts = PostWorkout.all
     @post_workout = PostWorkout.find(params[:id])
+    @workout_comment = WorkoutComment.new
   end
 
   def edit
