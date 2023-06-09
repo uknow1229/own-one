@@ -36,7 +36,10 @@ class Public::PostWorkoutsController < ApplicationController
   end
 
   def destroy
-
+    @post_workout = PostWorkout.find(params[:id])
+    @post_workout.destroy
+    redirect_to post_workouts_path
+    flash[:notice] = "削除が完了しました"
   end
 
   private
