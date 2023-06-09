@@ -1,2 +1,35 @@
-<h1>Public::PostMeals#show</h1>
-<p>Find me in app/views/public/post_meals/show.html.erb</p>
+<div class="container workout-wrapper mt-4">
+  <h2>食事投稿詳細</h2>
+
+  <div class="enduser-wrapper mb-4 d-flex justify-content-center">
+    <% if @post_meal.end_user.image.attached? %>
+      <%= image_tag @post_meal.end_user.image, class: "profile-image" %>
+    <% else %>
+      <%= image_tag 'noimage.jpg', class: "no-image" %>
+    <% end %>
+    <p><%= @post_meal.end_user.first_name %></p>
+  </div>
+
+  <div class="workout d-flex">
+    <div class="workout-menu">
+      <h2><%= @post_meal.date.strftime("%Y-%m-%d") %></h2>
+      <% if @post_meal.image.attached? %>
+        <%= image_tag @post_meal.image, class: "fitness-image" %>
+      <% else %>
+        <%= image_tag 'noimage.jpg', class: "no-image" %>
+      <% end %>
+    </div>
+    <div class="workout-menu">
+      <h2>食事タイミング</h2>
+      <p><%= @post_meal.timing_i18n %></p>
+      <h2>食事タイプ</h2>
+      <p><%= @post_meal.meal_type_i18n %></p>
+      <h2>メモ</h2>
+      <p><%= @post_meal.memo %></p>
+    </div>
+  </div>
+  <div class="workout-menu-link">
+    <%= link_to "編集", edit_post_meal_path, :class => "btn btn-success ms-3" %>
+    <%= link_to "削除", post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>
+  </div>
+</div>

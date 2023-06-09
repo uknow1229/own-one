@@ -18,6 +18,8 @@ class Public::PostMealsController < ApplicationController
   end
 
   def show
+    @post_meals = PostMeal.all
+    @post_meal = PostMeal.find(params[:id])
   end
 
   def edit
