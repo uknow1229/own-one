@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     get 'homes/about'
     resources :post_blogs
     resources :post_meals
-    resources :post_workouts
+    resources :post_workouts do
+      resource :likes, only: [:create, :destroy]
+    end
     # end_users
       get  '/end_users/mypage' => 'end_users#show'
       get  '/end_users/profile' => 'end_users#profile'

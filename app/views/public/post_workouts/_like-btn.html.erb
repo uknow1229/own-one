@@ -1,0 +1,13 @@
+<% if post_workout.liked_by?(current_end_user) %>
+  <p>
+    <%= link_to post_workout_likes_path(post_workout), method: :delete do %>
+      ♥<%= post_workout.workout_likes.count %> いいね
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_workout_likes_path(post_workout), method: :post do %>
+      ♡<%= post_workout.workout_likes.count %> いいね
+    <% end %>
+  </p>
+<% end %>
