@@ -1,0 +1,27 @@
+<%= form_with model: post_blog , local: true do |f| %>
+  <div class="form-group">
+      <div>
+        <label>画像</label>
+        <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
+      </div>
+      <div>
+        <label>タイトル</label>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      <div>
+        <label>日付</label>
+        <%= f.date_field :date,  class: 'form-control' %>
+      </div>
+      <div>
+        <label>内容</label>
+        <%= f.text_field :content, class: 'form-control' %>
+      </div>
+      <div>
+      <% if post_blog.new_record? %>
+        <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
+      <% else %>
+        <%= f.submit '更新する', class: "btn btn-success mt-4" %>
+      <% end %>
+      </div>
+    <% end %>
+  </div>

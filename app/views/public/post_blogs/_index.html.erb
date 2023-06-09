@@ -1,6 +1,6 @@
 <div class="blog-wrapper d-flex">
     <% post_blogs.each do |post_blog| %>
-      <%= link_to post_blog_path(post_meal), class: 'no-decoration' do %>
+      <%= link_to post_blog_path(post_blog), class: 'no-decoration' do %>
         <div class="blog d-flex">
           <% if post_blog.image.attached? %>
             <%= image_tag post_blog.image, class: "profile-image" %>

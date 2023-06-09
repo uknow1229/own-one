@@ -4,10 +4,30 @@ class Public::PostBlogsController < ApplicationController
   end
 
   def show
-    @post_blogs = PostBLog.all
+    @post_blogs = PostBlog.all
     @post_blog = PostBlog.find(params[:id])
   end
 
   def edit
+  end
+
+  def new
+    @post_blog = PostBlog.new
+  end
+
+  def create
+    @post_blog = PostBlog.new(post_blog_params)
+    @post_blog.end_user_id = current_end_user.id
+    if @post_blog.save
+      redirect_to post_blogs_path
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def post_blog_params
+    params.require(:post_blog).permit(:end_user_id, :image, :date, :title, :content)
   end
 end
