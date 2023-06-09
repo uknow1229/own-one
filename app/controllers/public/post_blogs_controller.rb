@@ -9,6 +9,16 @@ class Public::PostBlogsController < ApplicationController
   end
 
   def edit
+    @post_blog = PostBlog.find(params[:id])
+  end
+
+  def update
+    @post_blog = PostBlog.find(params[:id])
+    if @post_blog.update(post_blog_params)
+      redirect_to post_blogs_path
+    else
+      render :edit
+    end
   end
 
   def new
