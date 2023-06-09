@@ -140,6 +140,11 @@ main {
   justify-content: center;
 }
 
+.workout {
+  width: 300px;  /* コンテンツの幅を指定 */
+  height: 200px; /* コンテンツの高さを指定 */
+}
+
 .workout-menu {
   padding-left: 10px;
 }

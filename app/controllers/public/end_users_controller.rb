@@ -1,6 +1,7 @@
 class Public::EndUsersController < ApplicationController
   def show
     @end_user = EndUser.find(current_end_user.id)
+    @post_workouts = @end_user.post_workouts
   end
 
   def edit
