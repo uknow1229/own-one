@@ -34,9 +34,10 @@
 
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_workout.workout_comments.count %></p>
-      <%= render 'comment-index', post_workout: @post_workout %>
-      <%= render 'comment-form', post_workout: @post_workout, workout_comment: @workout_comment %>
-      
+      <div class="workout-comment">
+        <%= render 'comment-index', post_workout: @post_workout %>
+        <%= render 'comment-form', post_workout: @post_workout, workout_comment: @workout_comment %>
+      </div>
     </div>
   </div>
   <div class="workout-menu-link">
