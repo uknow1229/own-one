@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :post_blogs
     resources :post_meals
     resources :post_workouts do
-      resource :likes, only: [:create, :destroy]
+      resource :workout_likes, only: [:create, :destroy]
     end
     # end_users
       get  '/end_users/mypage' => 'end_users#show'
