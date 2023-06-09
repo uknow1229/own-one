@@ -1,0 +1,31 @@
+<%= form_with model: post_meal , local: true do |f| %>
+  <div class="form-group">
+      <div>
+        <label>画像</label>
+        <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
+      </div>
+      <div>
+        <label>日付</label>
+        <%= f.date_field :date,  class: 'form-control' %>
+      </div>
+      <div>
+        <label>タイミング</label>
+        <%= f.text_field :timing, class: 'form-control' %>
+      </div>
+      <div>
+        <label>食事タイプ</label>
+        <%= f.text_field  :meal_type, class: 'form-control' %>
+      </div>
+      <div>
+        <label>メモ</label>
+        <%= f.text_field :memo, class: 'form-control' %>
+      </div>
+      <div>
+      <% if post_meal.new_record? %>
+        <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
+      <% else %>
+        <%= f.submit '更新する', class: "btn btn-success mt-4" %>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
