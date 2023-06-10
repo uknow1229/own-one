@@ -35,8 +35,8 @@
         <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
       </div>
       <!-- いいね機能 -->            
-      <span id="meal_likes_<%= post_meal.id %>">
-        <p><%= render "like-btn", post_meal: post_meal %></p>
+      <span id="meal_likes_<%= @post_meal.id %>">
+        <p><%= render "like-btn", post_meal: @post_meal %></p>
       </span>
     </div>
   </div>

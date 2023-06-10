@@ -1,1 +1,1 @@
-$('#meal_likes_<%= @post_meal.id %>').html("<%= j(render "post_meals/like-btn", post_meal: @post_meal) %>");
+$('#meal_likes_<%= @post_meal.id %>').html("<%= j(render "public/post_meals/like-btn", post_meal: @post_meal) %>");
