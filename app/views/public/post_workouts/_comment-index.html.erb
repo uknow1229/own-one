@@ -4,7 +4,7 @@
   <%= workout_comment.end_user.first_name %>
   <%= workout_comment.created_at.strftime('%Y/%m/%d') %><%= workout_comment.comment %>
   <% if workout_comment.end_user == current_end_user %>
-    <%= link_to "削除", post_workout_workout_comment_path(workout_comment.post_workout, workout_comment), method: :delete, data: { confirm: "本当に削除しますか？" }, :class => "btn btn-danger ms-3" %>
+    <%= link_to "削除", post_workout_workout_comment_path(workout_comment.post_workout, workout_comment), method: :delete, data: { confirm: "本当に削除しますか？" }, :class => "btn btn-danger ms-3" ,remote: true %>
   <% end %>
 <% end %>
 </div>
