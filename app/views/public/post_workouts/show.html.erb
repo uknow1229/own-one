@@ -28,10 +28,10 @@
       <p><%= @post_workout.time %>分</p>
       <h2>メモ</h2>
       <p><%= @post_workout.memo %></p>
-
       <!-- いいね機能 -->
-      <%= render "like-btn", post_workout: @post_workout %>
-
+      <span id="workout_likes_<%= @post_workout.id %>">
+        <%= render "like-btn", post_workout: @post_workout %>
+      </span>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_workout.workout_comments.count %></p>
       <div class="workout-comment">
