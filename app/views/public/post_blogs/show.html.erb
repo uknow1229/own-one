@@ -26,7 +26,7 @@
       <p><%= @post_blog.content %></p>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_blog.blog_comments.count %></p>
-      <div id="post-comments">
+      <div id="blog-comments">
         <%= render 'comment-index', post_blog: @post_blog %>
       </div>
       <div id="comment-form">
