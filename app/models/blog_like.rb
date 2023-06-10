@@ -1,4 +1,4 @@
 class BlogLike < ApplicationRecord
-  belongs_to :end_user, dependent: :destroy
-  belongs_to :post_blog, dependent: :destroy
+  belongs_to :end_user
+  belongs_to :post_blog
 end
