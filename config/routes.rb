@@ -25,8 +25,8 @@ Rails.application.routes.draw do
       resource :meal_likes, only: [:create, :destroy]
     end
     resources :post_workouts do
-      resource :workout_likes, only: [:create, :destroy]
       resources :workout_comments, only: [:create, :destroy]
+      resource :workout_likes, only: [:create, :destroy]
     end
     # end_users
       get  '/end_users/mypage' => 'end_users#show'

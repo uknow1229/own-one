@@ -1,3 +1,2 @@
-$('#blog-comments').html("<%= j(render "post_blogs/comment-lists", post_blog: @post_blog) %>");
-$('#comment-form').html("<%= @post_blog.blog_comments.count %>")
+$('#blog-comments').html("<%= j(render "public/blog_comments/comment-index", post_blog: @post_blog) %>");
 $("textarea").val('');

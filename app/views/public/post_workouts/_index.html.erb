@@ -1,20 +1,23 @@
 <div class="workout-wrapper d-flex">
-    <% post_workouts.each do |post_workout| %>
-      <%= link_to post_workout_path(post_workout), class: 'no-decoration' do %>
-        <div class="workout d-flex">
-          <% if post_workout.image.attached? %>
-            <%= image_tag post_workout.image, class: "profile-image" %>
-          <% else %>
-            <%= image_tag 'noimage.jpg', class: "no-image" %>
-          <% end %>
-          <div class="workout-menu">
-            <p><%= post_workout.title %></p>
-            <p><%= post_workout.date.strftime("%Y-%m-%d") %></p>
-            <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
-            <p>コメント件数:<%= post_workout.workout_comments.count %></p>
-            <p><%= render "like-btn", post_workout: post_workout %></p>
-          </div>
+  <% post_workouts.each do |post_workout| %>
+    <%= link_to post_workout_path(post_workout), class: 'no-decoration' do %>
+      <div class="workout d-flex">
+        <% if post_workout.image.attached? %>
+          <%= image_tag post_workout.image, class: "profile-image" %>
+        <% else %>
+          <%= image_tag 'noimage.jpg', class: "no-image" %>
+        <% end %>
+        <div class="workout-menu">
+          <p><%= post_workout.title %></p>
+          <p><%= post_workout.date.strftime("%Y-%m-%d") %></p>
+          <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
+          <p>コメント件数:<%= post_workout.workout_comments.count %></p>
         </div>
-      <% end %>
+      </div>
     <% end %>
+    <!-- いいね機能 -->            
+    <span id="workout_likes_<%= post_workout.id %>">
+      <p><%= render "like-btn", post_workout: post_workout %></p>
+    </span>
+  <% end %>
 </div>

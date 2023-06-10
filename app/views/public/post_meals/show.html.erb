@@ -26,20 +26,20 @@
       <p><%= @post_meal.meal_type_i18n %></p>
       <h2>メモ</h2>
       <p><%= @post_meal.memo %></p>
+      <!-- いいね機能 -->            
+      <span id="meal_likes_<%= @post_meal.id %>">
+        <p><%= render "like-btn", post_meal: @post_meal %></p>
+      </span>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_meal.meal_comments.count %></p>
-      <div id="post-comments">
-        <%= render 'comment-index', post_meal: @post_meal %>
+        <div id="meal-comments">
+          <%= render 'comment-index', post_meal: @post_meal %>
+        </div>
+        <div id="comment-form">
+          <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
+        </div>
       </div>
-      <div id="comment-form">
-        <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
-      </div>
-      <!-- いいね機能 -->            
-      <span id="meal_likes_<%= post_meal.id %>">
-        <p><%= render "like-btn", post_meal: post_meal %></p>
-      </span>
     </div>
-  </div>
   <div class="workout-menu-link">
     <%= link_to "編集", edit_post_meal_path, :class => "btn btn-success ms-3" %>
     <%= link_to "削除", post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>

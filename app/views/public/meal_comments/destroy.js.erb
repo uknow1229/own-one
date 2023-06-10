@@ -1,2 +1,1 @@
-$('#post-comments').html("<%= j(render "post_comments/comment-lists", post_meal: @post_meal) %>");
-$('#comment_form').html("<%= @post_meal.meal_comments.count %>")
+$('#meal-comments').html("<%= j(render "public/meal_comments/comment-index", post_meal: @post_meal) %>");
