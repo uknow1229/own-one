@@ -11,6 +11,7 @@
             <p><%= post_blog.title %></p>
             <p><%= post_blog.date.strftime("%Y-%m-%d") %></p>
             <p><%= post_blog.content.truncate(18, omission: "...") %></p>
+            <p><%= render "like-btn", post_blog: post_blog %></p>
           </div>
         </div>
       <% end %>
