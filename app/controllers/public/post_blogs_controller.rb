@@ -6,6 +6,7 @@ class Public::PostBlogsController < ApplicationController
   def show
     @post_blogs = PostBlog.all
     @post_blog = PostBlog.find(params[:id])
+    @blog_comment = BlogComment.new
   end
 
   def edit

@@ -24,6 +24,14 @@
       <p><%= @post_blog.title %></p>
       <h2>内容</h2>
       <p><%= @post_blog.content %></p>
+      <!-- コメント機能 -->
+      <p>コメント件数:<%= @post_blog.blog_comments.count %></p>
+      <div id="post-comments">
+        <%= render 'comment-index', post_blog: @post_blog %>
+      </div>
+      <div id="comment-form">
+        <%= render 'comment-form', post_blog: @post_blog, blog_comment: @blog_comment %>
+      </div>
       <!-- いいね機能 -->
       <span id="blog_likes_<%= @post_blog.id %>">
         <%= render "like-btn", post_blog: @post_blog %>

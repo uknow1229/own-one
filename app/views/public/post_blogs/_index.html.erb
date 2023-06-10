@@ -11,6 +11,7 @@
             <p><%= post_blog.title %></p>
             <p><%= post_blog.date.strftime("%Y-%m-%d") %></p>
             <p><%= post_blog.content.truncate(18, omission: "...") %></p>
+            <p>コメント件数:<%= post_blog.blog_comments.count %></p>
             <!-- いいね機能 -->     
             <span id="blog_likes_<%= post_blog.id %>">
               <p><%= render "like-btn", post_blog: post_blog %></p>
