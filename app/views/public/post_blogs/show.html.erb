@@ -25,7 +25,9 @@
       <h2>内容</h2>
       <p><%= @post_blog.content %></p>
       <!-- いいね機能 -->
-      <%= render "like-btn", post_blog: @post_blog %>
+      <span id="blog_likes_<%= @post_blog.id %>">
+        <%= render "like-btn", post_blog: @post_blog %>
+      </span>
     </div>
   </div>
   <div class="blog-menu-link">
