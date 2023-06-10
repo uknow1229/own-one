@@ -26,6 +26,12 @@
       <p><%= @post_meal.meal_type_i18n %></p>
       <h2>メモ</h2>
       <p><%= @post_meal.memo %></p>
+      <!-- コメント機能 -->
+      <p>コメント件数:<%= @post_meal.meal_comments.count %></p>
+      <div class="meal-comment">
+        <%= render 'comment-index', post_meal: @post_meal %>
+        <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
+      </div>
     </div>
   </div>
   <div class="workout-menu-link">
