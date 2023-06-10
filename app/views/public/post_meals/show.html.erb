@@ -28,8 +28,10 @@
       <p><%= @post_meal.memo %></p>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_meal.meal_comments.count %></p>
-      <div class="meal-comment">
+      <div id="post-comments">
         <%= render 'comment-index', post_meal: @post_meal %>
+      </div>
+      <div id="comment-form">
         <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
       </div>
     </div>
