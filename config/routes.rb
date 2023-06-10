@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'homes/about'
     resources :post_blogs
     resources :post_meals do
+      resources :meal_comments, only: [:create, :destroy]
       resource :meal_likes, only: [:create, :destroy]
     end
     resources :post_workouts do

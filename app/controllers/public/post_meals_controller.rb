@@ -20,6 +20,7 @@ class Public::PostMealsController < ApplicationController
   def show
     @post_meals = PostMeal.all
     @post_meal = PostMeal.find(params[:id])
+    @meal_comment = MealComment.new
   end
 
   def edit

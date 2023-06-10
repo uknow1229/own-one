@@ -10,6 +10,7 @@
           <div class="meal-menu">
             <p><%= post_meal.date.strftime("%Y-%m-%d") %></p>
             <p><%= post_meal.memo.truncate(18, omission: "...") %></p>
+            <p>コメント件数:<%= post_meal.meal_comments.count %></p>
             <!-- いいね機能 -->            
             <span id="meal_likes_<%= post_meal.id %>">
             <p><%= render "like-btn", post_meal: post_meal %></p>
