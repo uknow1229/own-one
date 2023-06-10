@@ -159,14 +159,6 @@ main {
   font-weight: bold;
 }
 
-.container .meal-wrapper a{
-  background-color: #CAD2FE;
-  gap: 20px;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
-}
-
 .meal-wrapper a:hover {
   background: #ECF6B0;
   border-radius: 10px;
@@ -175,6 +167,14 @@ main {
 .meal-wrapper {
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.meal {
+  background-color: #CAD2FE;
+  gap: 20px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .no-decoration {

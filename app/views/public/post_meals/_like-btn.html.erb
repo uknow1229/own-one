@@ -1,0 +1,11 @@
+<% if post_meal.liked_by?(current_end_user) %>
+  <%= link_to post_meal_meal_likes_path(post_meal), method: :delete, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+  <%= post_meal.meal_likes.count %>
+  <% end %>
+<% else %>
+  <%= link_to post_meal_meal_likes_path(post_meal), method: :post , remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+  <%= post_meal.meal_likes.count %>
+  <% end %>
+<% end %>

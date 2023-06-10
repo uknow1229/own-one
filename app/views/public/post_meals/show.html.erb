@@ -26,6 +26,10 @@
       <p><%= @post_meal.meal_type_i18n %></p>
       <h2>メモ</h2>
       <p><%= @post_meal.memo %></p>
+      <!-- いいね機能 -->            
+      <span id="meal_likes_<%= post_meal.id %>">
+        <p><%= render "like-btn", post_meal: post_meal %></p>
+      </span>
     </div>
   </div>
   <div class="workout-menu-link">

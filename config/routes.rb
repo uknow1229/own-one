@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'homes/about'
     resources :post_blogs
-    resources :post_meals
+    resources :post_meals do
+      resource :meal_likes, only: [:create, :destroy]
+    end
     resources :post_workouts do
       resource :workout_likes, only: [:create, :destroy]
       resources :workout_comments, only: [:create, :destroy]
