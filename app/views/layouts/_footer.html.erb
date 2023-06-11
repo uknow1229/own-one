@@ -1,4 +1,7 @@
 <div class="p-3">
+  <% if current_end_user.try(:admin?) %>
+    <%= link_to '管理者ログイン', rails_admin_path %>
+  <% end %>
   <div class="text-center mt-3">
     <div class="mb-2">
       <i class="fa-brands fa-twitter"></i>
