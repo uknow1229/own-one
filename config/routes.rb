@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
   # 管理者用
-  devise_for :admin, controllers: {
-    sessions: "admin/sessions"
-  }
+  devise_for :admin
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
 
   # 顧客用
   devise_for :end_users, controllers: {
@@ -48,14 +45,6 @@ Rails.application.routes.draw do
       get "search" => "searches#search"
   end
 
-  # namespace :admin do
-  #   resources :post_blogs, only: [:index]
-  #   resources :post_meals, only: [:index]
-  #   resources :post_workouts, only: [:index]
-  #   resources :end_users, only: [:index, :show, :edit]
-
-  #   get "/" => "homes#top"
-  # end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
