@@ -36,13 +36,14 @@ Rails.application.routes.draw do
         get :workout_likes
       end
     end
-
       get  '/end_users/mypage' => 'end_users#show'
       get  '/end_users/profile' => 'end_users#profile'
       get  '/end_users/information/edit' => 'end_users#edit'
       patch  '/end_users/information' => 'end_users#update'
       get  '/end_users/check' => 'end_users#check'
       patch  '/end_users/withdraw' => 'end_users#withdraw'
+
+      get "search" => "searches#search"
   end
 
   namespace :admin do

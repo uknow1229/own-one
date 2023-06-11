@@ -3,6 +3,15 @@
       <%= link_to root_path do %>
         <%= image_tag 'logo.png', alt: "ロゴ", width: "70" %>
       <% end %>
+      <!-- 検索機能 -->
+      <div class="serch_form">
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+          <%= f.text_field :q, class:"form-control d-inline-block" %>
+          <button class="btn btn-outline-success" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        <% end %>
+      </div>
     </div>
     <ul class="navbar-nav justify-content-around" style="flex-direction:row;">
       <% if end_user_signed_in? %>
