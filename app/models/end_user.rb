@@ -11,6 +11,7 @@ class EndUser < ApplicationRecord
   has_many :workout_comments, dependent: :destroy
 
   has_many :meal_likes, dependent: :destroy
+  # has_many :like_post_meals, through: :blog_likes, source: :post_meal
   has_many :meal_comments, dependent: :destroy
 
   has_many :blog_likes, dependent: :destroy

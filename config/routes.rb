@@ -31,7 +31,8 @@ Rails.application.routes.draw do
     # end_users
     resources :end_users, only: [] do
       member do
-        get :likes
+        get :blog_likes
+        get :meal_likes
       end
     end
 

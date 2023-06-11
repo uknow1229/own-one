@@ -32,8 +32,12 @@ class Public::EndUsersController < ApplicationController
     redirect_to root_path
   end
 
-  def likes
+  def blog_likes
     @post_blog = PostBlog.find(params[:id])
+  end
+
+  def meal_likes
+    @post_meal = PostMeal.find(params[:id])
   end
 
   private

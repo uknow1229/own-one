@@ -26,6 +26,7 @@
       <span id="meal_likes_<%= @post_meal.id %>">
         <p><%= render "like-btn", post_meal: @post_meal %></p>
       </span>
+      <%= link_to "いいね", meal_likes_end_user_path %>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_meal.meal_comments.count %></p>
         <div id="meal-comments">
