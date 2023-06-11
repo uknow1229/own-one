@@ -2,7 +2,7 @@
   <h2>ブログ投稿詳細</h2>
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
-    <%= image_tag current_end_user.get_profile_image %>
+    <%= image_tag @post_blog.end_user.get_profile_image(50, 50) %>
     <p><%= @post_blog.end_user.first_name %></p>
   </div>
 

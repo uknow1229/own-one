@@ -1,6 +1,6 @@
 <% post_blog.blog_comments.each do |blog_comment| %>
 <div>
-  <%= image_tag blog_comment.end_user.get_profile_image %>
+  <%= image_tag blog_comment.end_user.get_profile_image(50,50) %>
   <%= blog_comment.end_user.first_name %>
   <%= blog_comment.created_at.strftime('%Y/%m/%d') %><%= blog_comment.comment %>
   <% if blog_comment.end_user == current_end_user %>

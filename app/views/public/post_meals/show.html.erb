@@ -2,11 +2,7 @@
   <h2>食事投稿詳細</h2>
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
-    <% if @post_meal.end_user.image.attached? %>
-      <%= image_tag @post_meal.end_user.image, class: "profile-image" %>
-    <% else %>
-      <%= image_tag 'noimage.jpg', class: "no-image" %>
-    <% end %>
+      <%= image_tag @post_meal.end_user.get_profile_image(100, 100), class: "profile-image" %>
     <p><%= @post_meal.end_user.first_name %></p>
   </div>
 
