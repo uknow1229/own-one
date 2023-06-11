@@ -33,9 +33,7 @@ class Public::EndUsersController < ApplicationController
   end
 
   def likes
-    @end_users = EndUser.all
     @post_blog = PostBlog.find(params[:id])
-    @end_user = @post_blog.blog_likes.map(&:end_user)
   end
 
   private

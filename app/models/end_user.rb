@@ -17,9 +17,6 @@ class EndUser < ApplicationRecord
   has_many :like_post_blogs, through: :blog_likes, source: :post_blog
   has_many :blog_comments, dependent: :destroy
 
-  # has_many :post_workouts, through: :workout_likes
-  # has_many :post_workouts, through: :workout_comments
-
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
   enum activelevel: { level1: 0, level2: 1, level3: 2 }
 
