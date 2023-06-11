@@ -72,3 +72,7 @@ gem 'rails-i18n'
 gem 'jquery-rails'
 
 gem 'faker'
+
+gem 'rails_admin'
+
+gem 'cancancan'
