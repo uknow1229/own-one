@@ -32,11 +32,7 @@
       </li>
       <div>
         <li class="nav-item rounded-image" id="toggle-button">
-          <% if current_end_user.image.attached? %>
-            <%= image_tag current_end_user.image.variant(resize: "50x50") %>
-          <% else %>
-            <%= image_tag('noimage.jpg', size: "50x50") %>
-          <% end %>
+          <%= image_tag current_end_user.get_profile_image %>
         </li>
         <div class="toggle-item">
           <li class="nav-item">

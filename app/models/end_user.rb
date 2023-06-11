@@ -4,7 +4,7 @@ class EndUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
-  has_one_attached :image
+  has_one_attached :profile_image
   has_many :post_workouts, dependent: :destroy
 
   has_many :workout_likes, dependent: :destroy
@@ -12,7 +12,9 @@ class EndUser < ApplicationRecord
 
   has_many :meal_likes, dependent: :destroy
   has_many :meal_comments, dependent: :destroy
+
   has_many :blog_likes, dependent: :destroy
+  has_many :like_post_blogs, through: :blog_likes, source: :post_blog
   has_many :blog_comments, dependent: :destroy
 
   # has_many :post_workouts, through: :workout_likes
@@ -35,12 +37,12 @@ class EndUser < ApplicationRecord
     super && (is_deleted == false)
   end
 
-  def get_profile_image(width, height)
-    unless image.attached?
+  def get_profile_image
+    unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image.variant(resize_to_limit: [100, 100]).processed
+    profile_image.variant(resize_to_limit: [50, 50]).processed
   end
 
 end

@@ -1,4 +1,6 @@
 class Public::EndUsersController < ApplicationController
+
+  
   def show
     @end_user = EndUser.find(current_end_user.id)
     @post_workouts = @end_user.post_workouts
@@ -28,6 +30,12 @@ class Public::EndUsersController < ApplicationController
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
+  end
+
+  def likes
+    @end_users = EndUser.all
+    @post_blog = PostBlog.find(params[:id])
+    @end_user = @post_blog.blog_likes.map(&:end_user)
   end
 
   private

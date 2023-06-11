@@ -1,0 +1,9 @@
+<% if @post_blog.liked_end_users.present?  %>
+  <% @post_blog.liked_end_users.each do |end_user| %>
+    <h2>いいねしたユーザー</h2>
+    <%= image_tag current_end_user.get_profile_image %>
+    <p><%= end_user.first_name %></p>
+    <% end %>
+<% else %>
+  <h2>いいねはありません</h2>
+<% end %>

@@ -19,7 +19,7 @@ class PostMeal < ApplicationRecord
     if image.attached?
       image
     else
-      'npimage.jpg'
+      'noimage.jpg'
     end
   end
 end
