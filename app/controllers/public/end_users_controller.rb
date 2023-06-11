@@ -1,4 +1,6 @@
 class Public::EndUsersController < ApplicationController
+
+  
   def show
     @end_user = EndUser.find(current_end_user.id)
     @post_workouts = @end_user.post_workouts
@@ -30,9 +32,21 @@ class Public::EndUsersController < ApplicationController
     redirect_to root_path
   end
 
+  def blog_likes
+    @post_blog = PostBlog.find(params[:id])
+  end
+
+  def meal_likes
+    @post_meal = PostMeal.find(params[:id])
+  end
+
+  def workout_likes
+    @post_workout = PostWorkout.find(params[:id])
+  end
+
   private
 
   def end_user_params
-    params.require(:end_user).permit(:last_name, :first_name, :height, :body_weight, :age, :sex, :target_weight, :target_calorie, :activelevel, :introduction, :email, :image)
+    params.require(:end_user).permit(:last_name, :first_name, :height, :body_weight, :age, :sex, :target_weight, :target_calorie, :activelevel, :introduction, :email, :profile_image)
   end
 end

@@ -2,11 +2,7 @@
   <h2>ブログ投稿詳細</h2>
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
-    <% if @post_blog.end_user.image.attached? %>
-      <%= image_tag @post_blog.end_user.image, class: "profile-image" %>
-    <% else %>
-      <%= image_tag 'noimage.jpg', class: "no-image" %>
-    <% end %>
+    <%= image_tag @post_blog.end_user.get_profile_image(50, 50) %>
     <p><%= @post_blog.end_user.first_name %></p>
   </div>
 
@@ -24,6 +20,11 @@
       <p><%= @post_blog.title %></p>
       <h2>内容</h2>
       <p><%= @post_blog.content %></p>
+      <!-- いいね機能 -->
+      <span id="blog_likes_<%= @post_blog.id %>">
+        <%= render "like-btn", post_blog: @post_blog %>
+      </span>
+      <%= link_to "いいね", blog_likes_end_user_path %>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_blog.blog_comments.count %></p>
       <div id="blog-comments">
@@ -32,10 +33,6 @@
       <div id="comment-form">
         <%= render 'comment-form', post_blog: @post_blog, blog_comment: @blog_comment %>
       </div>
-      <!-- いいね機能 -->
-      <span id="blog_likes_<%= @post_blog.id %>">
-        <%= render "like-btn", post_blog: @post_blog %>
-      </span>
     </div>
   </div>
   <div class="blog-menu-link">

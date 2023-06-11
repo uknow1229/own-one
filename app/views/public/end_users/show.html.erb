@@ -3,11 +3,7 @@
     <h1>My Page</h1>
     <div class=" d-flex">
       <div>
-        <% if @end_user.image.attached? %>
-          <%= image_tag @end_user.image, class: "profile-image" %>
-        <% else %>
-          <%= image_tag 'noimage.jpg', class: "no-image" %>
-        <% end %>
+        <%= image_tag current_end_user.get_profile_image(100, 100) %>
         <h2>ユーザー名</h2>
         <% if @end_user.full_name.blank? %>
           <p>未設定</p>

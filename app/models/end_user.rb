@@ -4,19 +4,19 @@ class EndUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable
 
-  has_one_attached :image
+  has_one_attached :profile_image
   has_many :post_workouts, dependent: :destroy
 
   has_many :workout_likes, dependent: :destroy
   has_many :workout_comments, dependent: :destroy
 
   has_many :meal_likes, dependent: :destroy
+  # has_many :like_post_meals, through: :blog_likes, source: :post_meal
   has_many :meal_comments, dependent: :destroy
-  has_many :blog_likes, dependent: :destroy
-  has_many :blog_comments, dependent: :destroy
 
-  # has_many :post_workouts, through: :workout_likes
-  # has_many :post_workouts, through: :workout_comments
+  has_many :blog_likes, dependent: :destroy
+  # has_many :like_post_blogs, through: :blog_likes, source: :post_blog
+  has_many :blog_comments, dependent: :destroy
 
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
   enum activelevel: { level1: 0, level2: 1, level3: 2 }
@@ -36,11 +36,11 @@ class EndUser < ApplicationRecord
   end
 
   def get_profile_image(width, height)
-    unless image.attached?
+    unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image.variant(resize_to_limit: [100, 100]).processed
+    profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
 end

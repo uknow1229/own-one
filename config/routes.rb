@@ -29,6 +29,14 @@ Rails.application.routes.draw do
       resource :workout_likes, only: [:create, :destroy]
     end
     # end_users
+    resources :end_users, only: [] do
+      member do
+        get :blog_likes
+        get :meal_likes
+        get :workout_likes
+      end
+    end
+
       get  '/end_users/mypage' => 'end_users#show'
       get  '/end_users/profile' => 'end_users#profile'
       get  '/end_users/information/edit' => 'end_users#edit'

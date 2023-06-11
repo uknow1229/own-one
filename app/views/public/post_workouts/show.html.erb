@@ -2,11 +2,7 @@
   <h2>フィットネス投稿詳細</h2>
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
-    <% if @post_workout.end_user.image.attached? %>
-      <%= image_tag @post_workout.end_user.image, class: "profile-image" %>
-    <% else %>
-      <%= image_tag 'noimage.jpg', class: "no-image" %>
-    <% end %>
+    <%= image_tag @post_workout.end_user.get_profile_image(100, 100) %>
     <p><%= @post_workout.end_user.first_name %></p>
   </div>
 
@@ -32,6 +28,7 @@
       <span id="workout_likes_<%= @post_workout.id %>">
         <%= render "like-btn", post_workout: @post_workout %>
       </span>
+      <%= link_to "いいね", workout_likes_end_user_path %>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_workout.workout_comments.count %></p>
       <div id="workout-comments">
