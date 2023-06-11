@@ -28,6 +28,7 @@
       <span id="workout_likes_<%= @post_workout.id %>">
         <%= render "like-btn", post_workout: @post_workout %>
       </span>
+      <%= link_to "いいね", workout_likes_end_user_path %>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_workout.workout_comments.count %></p>
       <div id="workout-comments">

@@ -15,7 +15,7 @@ class EndUser < ApplicationRecord
   has_many :meal_comments, dependent: :destroy
 
   has_many :blog_likes, dependent: :destroy
-  has_many :like_post_blogs, through: :blog_likes, source: :post_blog
+  # has_many :like_post_blogs, through: :blog_likes, source: :post_blog
   has_many :blog_comments, dependent: :destroy
 
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }

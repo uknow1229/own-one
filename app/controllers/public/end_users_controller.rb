@@ -40,6 +40,10 @@ class Public::EndUsersController < ApplicationController
     @post_meal = PostMeal.find(params[:id])
   end
 
+  def workout_likes
+    @post_workout = PostWorkout.find(params[:id])
+  end
+
   private
 
   def end_user_params

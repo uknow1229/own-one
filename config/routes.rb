@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       member do
         get :blog_likes
         get :meal_likes
+        get :workout_likes
       end
     end
 
