@@ -45,6 +45,12 @@ class Public::PostBlogsController < ApplicationController
     flash[:notice] = "削除が完了しました"
   end
 
+  def search_tag
+    @tag_list = BlogTag.all
+    @tag = BlogTag.find(params[:blog_tag_id])
+    @post_blogs = @tag.post_blogs
+  end
+
   private
 
   def post_blog_params
