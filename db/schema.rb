@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_11_110127) do
+ActiveRecord::Schema.define(version: 2023_06_12_083157) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -150,6 +150,16 @@ ActiveRecord::Schema.define(version: 2023_06_11_110127) do
     t.index ["end_user_id"], name: "index_post_meals_on_end_user_id"
   end
 
+  create_table "post_workout_tags", force: :cascade do |t|
+    t.integer "post_workout_id"
+    t.integer "workout_tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_workout_id", "workout_tag_id"], name: "index_post_workout_tags_on_post_workout_id_and_workout_tag_id", unique: true
+    t.index ["post_workout_id"], name: "index_post_workout_tags_on_post_workout_id"
+    t.index ["workout_tag_id"], name: "index_post_workout_tags_on_workout_tag_id"
+  end
+
   create_table "post_workouts", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.datetime "date"
@@ -203,6 +213,13 @@ ActiveRecord::Schema.define(version: 2023_06_11_110127) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_workout_id"], name: "index_workout_menus_on_post_workout_id"
+  end
+
+  create_table "workout_tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_workout_tags_on_name", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
