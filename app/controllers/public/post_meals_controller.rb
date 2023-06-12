@@ -46,6 +46,12 @@ class Public::PostMealsController < ApplicationController
     flash[:notice] = "削除が完了しました"
   end
 
+  def search_tag
+    @tag_list = MealTag.all
+    @tag = MealTag.find(params[:meal_tag_id])
+    @post_meals = @tag.post_meals
+  end
+
   private
 
   def post_meal_params
