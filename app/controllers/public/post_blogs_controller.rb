@@ -8,6 +8,8 @@ class Public::PostBlogsController < ApplicationController
     @post_blogs = PostBlog.all
     @post_blog = PostBlog.find(params[:id])
     @blog_comment = BlogComment.new
+    @tag_list = @post_blog.blog_tags.pluck(:name).join(',')
+    @post_blog_tags = @post_blog.blog_tags
   end
 
   def edit
