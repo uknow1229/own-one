@@ -29,8 +29,10 @@ class Public::PostBlogsController < ApplicationController
   def create
     @post_blog = PostBlog.new(post_blog_params)
     @post_blog.end_user_id = current_end_user.id
+    tag_list = params[:post_blog][:name].split(',')
     if @post_blog.save
-      redirect_to post_blogs_path
+      @post_blog.save_blog_tags(tag_list)
+      redirect_to post_blogs_path, notice:'投稿が完了しました'
     else
       render :new
     end
