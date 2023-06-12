@@ -59,3 +59,11 @@ EndUser.all.each do |end_user|
     十分に回復し、身体が充実したタイミングを見計らってトレーニングに挑むのが理想的です。",
   )
 end
+
+# Workout Tags Data
+WorkoutTag.create([
+  { name: '筋トレ' },
+  { name: '家トレ' },
+  { name: '宅トレ' },
+  { name: '筋トレ仲間と繋がりたい' },
+])

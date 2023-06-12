@@ -1,5 +1,6 @@
 class WorkoutTag < ApplicationRecord
-  validates :name, presense:true, length:{maximam:50}
-  has_many :post_workout, through: :post_workout_tags
   has_many :post_workout_tags, dependent: :destroy
+  has_many :post_workouts, through: :post_workout_tags
+
+  validates :name, presence:true, length:{maximum:50}
 end

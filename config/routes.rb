@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       patch  '/end_users/withdraw' => 'end_users#withdraw'
 
       get "search" => "searches#search"
+      get "search_tag" => "post_workouts#search_tag"
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_12_083157) do
+ActiveRecord::Schema.define(version: 2023_06_12_100437) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -151,8 +151,8 @@ ActiveRecord::Schema.define(version: 2023_06_12_083157) do
   end
 
   create_table "post_workout_tags", force: :cascade do |t|
-    t.integer "post_workout_id"
-    t.integer "workout_tag_id"
+    t.integer "post_workout_id", null: false
+    t.integer "workout_tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_workout_id", "workout_tag_id"], name: "index_post_workout_tags_on_post_workout_id_and_workout_tag_id", unique: true
@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_083157) do
   end
 
   create_table "workout_tags", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_workout_tags_on_name", unique: true
@@ -235,6 +235,8 @@ ActiveRecord::Schema.define(version: 2023_06_12_083157) do
   add_foreign_key "meal_menus", "post_meals"
   add_foreign_key "post_blogs", "end_users"
   add_foreign_key "post_meals", "end_users"
+  add_foreign_key "post_workout_tags", "post_workouts"
+  add_foreign_key "post_workout_tags", "workout_tags"
   add_foreign_key "post_workouts", "end_users"
   add_foreign_key "workout_comments", "end_users"
   add_foreign_key "workout_comments", "post_workouts"
