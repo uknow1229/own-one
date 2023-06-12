@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_11_110127) do
+ActiveRecord::Schema.define(version: 2023_06_12_171631) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 2023_06_11_110127) do
     t.index ["post_blog_id"], name: "index_blog_likes_on_post_blog_id"
   end
 
+  create_table "blog_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_blog_tags_on_name", unique: true
+  end
+
   create_table "end_users", force: :cascade do |t|
     t.string "user_name"
     t.string "last_name"
@@ -127,6 +134,23 @@ ActiveRecord::Schema.define(version: 2023_06_11_110127) do
     t.index ["post_meal_id"], name: "index_meal_menus_on_post_meal_id"
   end
 
+  create_table "meal_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_meal_tags_on_name", unique: true
+  end
+
+  create_table "post_blog_tags", force: :cascade do |t|
+    t.integer "post_blog_id", null: false
+    t.integer "blog_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_tag_id"], name: "index_post_blog_tags_on_blog_tag_id"
+    t.index ["post_blog_id", "blog_tag_id"], name: "index_post_blog_tags_on_post_blog_id_and_blog_tag_id", unique: true
+    t.index ["post_blog_id"], name: "index_post_blog_tags_on_post_blog_id"
+  end
+
   create_table "post_blogs", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.string "title", null: false
@@ -136,6 +160,16 @@ ActiveRecord::Schema.define(version: 2023_06_11_110127) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_post_blogs_on_end_user_id"
+  end
+
+  create_table "post_meal_tags", force: :cascade do |t|
+    t.integer "post_meal_id", null: false
+    t.integer "meal_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meal_tag_id"], name: "index_post_meal_tags_on_meal_tag_id"
+    t.index ["post_meal_id", "meal_tag_id"], name: "index_post_meal_tags_on_post_meal_id_and_meal_tag_id", unique: true
+    t.index ["post_meal_id"], name: "index_post_meal_tags_on_post_meal_id"
   end
 
   create_table "post_meals", force: :cascade do |t|
@@ -148,6 +182,16 @@ ActiveRecord::Schema.define(version: 2023_06_11_110127) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_post_meals_on_end_user_id"
+  end
+
+  create_table "post_workout_tags", force: :cascade do |t|
+    t.integer "post_workout_id", null: false
+    t.integer "workout_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_workout_id", "workout_tag_id"], name: "index_post_workout_tags_on_post_workout_id_and_workout_tag_id", unique: true
+    t.index ["post_workout_id"], name: "index_post_workout_tags_on_post_workout_id"
+    t.index ["workout_tag_id"], name: "index_post_workout_tags_on_workout_tag_id"
   end
 
   create_table "post_workouts", force: :cascade do |t|
@@ -205,6 +249,13 @@ ActiveRecord::Schema.define(version: 2023_06_11_110127) do
     t.index ["post_workout_id"], name: "index_workout_menus_on_post_workout_id"
   end
 
+  create_table "workout_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_workout_tags_on_name", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_comments", "end_users"
@@ -216,8 +267,14 @@ ActiveRecord::Schema.define(version: 2023_06_11_110127) do
   add_foreign_key "meal_likes", "end_users"
   add_foreign_key "meal_likes", "post_meals"
   add_foreign_key "meal_menus", "post_meals"
+  add_foreign_key "post_blog_tags", "blog_tags"
+  add_foreign_key "post_blog_tags", "post_blogs"
   add_foreign_key "post_blogs", "end_users"
+  add_foreign_key "post_meal_tags", "meal_tags"
+  add_foreign_key "post_meal_tags", "post_meals"
   add_foreign_key "post_meals", "end_users"
+  add_foreign_key "post_workout_tags", "post_workouts"
+  add_foreign_key "post_workout_tags", "workout_tags"
   add_foreign_key "post_workouts", "end_users"
   add_foreign_key "workout_comments", "end_users"
   add_foreign_key "workout_comments", "post_workouts"

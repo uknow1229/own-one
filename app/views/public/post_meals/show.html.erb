@@ -22,11 +22,18 @@
       <p><%= @post_meal.meal_type_i18n %></p>
       <h2>メモ</h2>
       <p><%= @post_meal.memo %></p>
-      <!-- いいね機能 -->            
-      <span id="meal_likes_<%= @post_meal.id %>">
-        <p><%= render "like-btn", post_meal: @post_meal %></p>
-      </span>
+      <!-- いいね機能 -->
+      <div class="workout-likes">       
+        <span id="meal_likes_<%= @post_meal.id %>">
+          <p><%= render "like-btn", post_meal: @post_meal %></p>
+        </span>
       <%= link_to "いいね", meal_likes_end_user_path %>
+      </div>
+      <!-- タグリスト -->
+      <% @post_meal_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,search_meal_tag_path(meal_tag_id: tag.id) %>
+      <% end %>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_meal.meal_comments.count %></p>
         <div id="meal-comments">

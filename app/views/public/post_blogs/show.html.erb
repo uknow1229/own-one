@@ -21,10 +21,17 @@
       <h2>内容</h2>
       <p><%= @post_blog.content %></p>
       <!-- いいね機能 -->
-      <span id="blog_likes_<%= @post_blog.id %>">
-        <%= render "like-btn", post_blog: @post_blog %>
-      </span>
-      <%= link_to "いいね", blog_likes_end_user_path %>
+      <div class="workout-likes">
+        <span id="blog_likes_<%= @post_blog.id %>">
+          <%= render "like-btn", post_blog: @post_blog %>
+        </span>
+        <%= link_to "いいね", blog_likes_end_user_path %>
+      </div>
+      <!-- タグリスト -->
+      <% @post_blog_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,search_blog_tag_path(blog_tag_id: tag.id) %>
+      <% end %>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_blog.blog_comments.count %></p>
       <div id="blog-comments">
