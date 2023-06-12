@@ -1,6 +1,7 @@
 class Public::PostBlogsController < ApplicationController
   def index
     @post_blogs = PostBlog.all
+    @tag_list = BlogTag.all
   end
 
   def show
