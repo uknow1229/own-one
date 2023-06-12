@@ -11,8 +11,10 @@ class Public::PostMealsController < ApplicationController
   def create
     @post_meal = PostMeal.new(post_meal_params)
     @post_meal.end_user_id = current_end_user.id
+    tag_list = params[:post_meal][:name].split(',')
     if @post_meal.save
-      redirect_to post_meals_path
+      @post_meal.save_meal_tags(tag_list)
+      redirect_to post_meals_path, notice:'投稿が完了しました'
     else
       render :new
     end
