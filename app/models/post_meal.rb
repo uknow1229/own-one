@@ -8,6 +8,9 @@ class PostMeal < ApplicationRecord
   has_many :liked_end_users, through: :meal_likes, source: :end_user
   has_many :commenting_end_users, through: :meal_comments, source: :end_user
 
+  has_many :post_meal_tags, dependent: :destroy
+  has_many :meal_tags, through: :post_meal_tags
+
   enum timing: { breakfast: 0, lunch: 1, dinner: 2, snacking: 3 }
   enum meal_type: { cooking_for_oneself: 0, eating_out: 1, takeout: 2, convenience_store: 3 }
   

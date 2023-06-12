@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_12_100437) do
+ActiveRecord::Schema.define(version: 2023_06_12_164153) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -127,6 +127,13 @@ ActiveRecord::Schema.define(version: 2023_06_12_100437) do
     t.index ["post_meal_id"], name: "index_meal_menus_on_post_meal_id"
   end
 
+  create_table "meal_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_meal_tags_on_name", unique: true
+  end
+
   create_table "post_blogs", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.string "title", null: false
@@ -136,6 +143,16 @@ ActiveRecord::Schema.define(version: 2023_06_12_100437) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_post_blogs_on_end_user_id"
+  end
+
+  create_table "post_meal_tags", force: :cascade do |t|
+    t.integer "post_meal_id", null: false
+    t.integer "meal_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meal_tag_id"], name: "index_post_meal_tags_on_meal_tag_id"
+    t.index ["post_meal_id", "meal_tag_id"], name: "index_post_meal_tags_on_post_meal_id_and_meal_tag_id", unique: true
+    t.index ["post_meal_id"], name: "index_post_meal_tags_on_post_meal_id"
   end
 
   create_table "post_meals", force: :cascade do |t|
@@ -234,6 +251,8 @@ ActiveRecord::Schema.define(version: 2023_06_12_100437) do
   add_foreign_key "meal_likes", "post_meals"
   add_foreign_key "meal_menus", "post_meals"
   add_foreign_key "post_blogs", "end_users"
+  add_foreign_key "post_meal_tags", "meal_tags"
+  add_foreign_key "post_meal_tags", "post_meals"
   add_foreign_key "post_meals", "end_users"
   add_foreign_key "post_workout_tags", "post_workouts"
   add_foreign_key "post_workout_tags", "workout_tags"
