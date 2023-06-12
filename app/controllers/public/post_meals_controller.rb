@@ -1,7 +1,7 @@
 class Public::PostMealsController < ApplicationController
   def index
     @post_meals = PostMeal.all
-
+    @tag_list = MealTag.all
   end
 
   def new

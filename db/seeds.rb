@@ -67,3 +67,9 @@ WorkoutTag.create([
   { name: '宅トレ' },
   { name: '筋トレ仲間と繋がりたい' },
 ])
+
+# Meal Tags Data
+MealTag.create([
+  { name: 'PFCバランス' },
+  { name: 'プロテイン' }
+])
