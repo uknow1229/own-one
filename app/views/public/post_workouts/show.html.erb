@@ -27,7 +27,7 @@
       <!-- いいね機能 -->
       <div class="workout-likes">
         <span id="workout_likes_<%= @post_workout.id %>">
-          <%= render "like-btn", post_workout: @post_workout %>
+          <p><%= render "like-btn", post_workout: @post_workout %></p>
         </span>
         <%= link_to "いいね", workout_likes_end_user_path %>
       </div>

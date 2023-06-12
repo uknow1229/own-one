@@ -24,6 +24,8 @@ class Public::PostMealsController < ApplicationController
     @post_meals = PostMeal.all
     @post_meal = PostMeal.find(params[:id])
     @meal_comment = MealComment.new
+    @tag_list = @post_meal.meal_tags.pluck(:name).join(',')
+    @post_meal_tags = @post_meal.meal_tags
   end
 
   def edit
