@@ -14,11 +14,14 @@ class Public::PostBlogsController < ApplicationController
 
   def edit
     @post_blog = PostBlog.find(params[:id])
+    @tag_list = @post_blog.blog_tags.pluck(:name).join(',')
   end
 
   def update
     @post_blog = PostBlog.find(params[:id])
+    tag_list = params[:post_blog][:name].split(',')
     if @post_blog.update(post_blog_params)
+      @post_blog.save_blog_tags(tag_list)
       redirect_to post_blogs_path
     else
       render :edit
