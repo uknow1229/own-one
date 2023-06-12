@@ -32,7 +32,7 @@
       <!-- タグリスト -->
       <% @post_meal_tags.each do |tag| %>
       <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to tag.name,meal_tag_path(meal_tag_id: tag.id) %>
+        <%= link_to tag.name,search_meal_tag_path(meal_tag_id: tag.id) %>
       <% end %>
       <!-- コメント機能 -->
       <p>コメント件数:<%= @post_meal.meal_comments.count %></p>

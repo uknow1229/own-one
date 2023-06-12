@@ -30,11 +30,14 @@ class Public::PostMealsController < ApplicationController
 
   def edit
     @post_meal = PostMeal.find(params[:id])
+    @tag_list = @post_meal.meal_tags.pluck(:name).join(',')
   end
 
   def update
     @post_meal = PostMeal.find(params[:id])
+    tag_list=params[:post_meal][:name].split(',')
     if @post_meal.update(post_meal_params)
+      @post_meal.save_meal_tags(tag_list)
       redirect_to post_meals_path
     else
       render :edit
