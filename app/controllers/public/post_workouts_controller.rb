@@ -10,6 +10,7 @@ class Public::PostWorkoutsController < ApplicationController
     @workout_comment = WorkoutComment.new
     @tag_list = @post_workout.workout_tags.pluck(:name).join(',')
     @post_workout_tags = @post_workout.workout_tags
+    @end_user = @post_workout.end_user
   end
 
   def edit

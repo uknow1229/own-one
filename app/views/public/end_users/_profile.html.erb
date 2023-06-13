@@ -1,0 +1,35 @@
+<%= image_tag end_user.get_profile_image(100, 100) %>
+  <h2>ユーザー名</h2>
+  <% if end_user.full_name.blank? %>
+    <p>未設定</p>
+  <% else %>
+    <p><%= end_user.full_name %></p>
+  <% end %>
+
+  <h6>フォロー中</h6>
+  <%= link_to  followeds_end_user_path(end_user) do %>
+    <% end_user.followers.count %>
+  <% end %>
+  <h6>フォロワー</h6>
+  <%= link_to followers_end_user_path(end_user) do %>
+    <% end_user.followeds.count %>
+  <% end %>
+  <% if current_end_user != end_user %>
+    <% if current_end_user.following?(end_user)%>
+      <%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-success" %>
+    <% end %>
+  <% end %>
+
+  <h2>目標カロリー</h2>
+  <% if end_user.target_calorie.blank? %>
+    <p>未設定</p>
+  <% else %>
+  <p><%= end_user.target_calorie%>kcal/日</p>
+  <% end %>
+  <h2>自己紹介</h2>
+  <% if end_user.introduction.blank? %>
+    <p>未設定</p>
+  <% end %>
+  <p><%= end_user.introduction%></p>

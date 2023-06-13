@@ -1,13 +1,16 @@
 <div class="container mt-4">
-  <% if @post_workout.liked_end_users.present? %>
-    <h2>いいねしたユーザー</h2>
-    <% @post_workout.liked_end_users.each do |end_user| %>
-    <div>
-      <%= image_tag end_user.get_profile_image(50, 50) %>
-      <%= end_user.first_name %>
-
+  <% if @end_user.follower_end_users.present? %>
+    <h2>フォロー中のユーザー</h2>
+    <% @end_user.follower_end_users.each do |end_user| %>
+      <%= image_tag end_user.get_profile_image(100, 100) %>
+      <h2>ユーザー名</h2>
+        <% if end_user.full_name.blank? %>
+          <p>未設定</p>
+        <% else %>
+          <p><%= end_user.full_name %></p>
+        <% end %>
       <h6>フォロー中</h6>
-      <%= link_to  followeds_end_user_path(end_user) do %>
+      <%= link_to followeds_end_user_path(end_user) do %>
         <%= end_user.followers.count %>
       <% end %>
       <h6>フォロワー</h6>
@@ -21,9 +24,8 @@
           <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-success" %>
         <% end %>
       <% end %>
-      </div>
-      <% end %>
+    <% end %>
   <% else %>
-    <h2>いいねはありません</h2>
+    <h2>フォロー中のユーザーはいません</h2>
   <% end %>
 </div>
