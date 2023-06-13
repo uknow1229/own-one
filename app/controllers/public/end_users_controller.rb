@@ -4,6 +4,8 @@ class Public::EndUsersController < ApplicationController
   def show
     @end_user = EndUser.find(current_end_user.id)
     @post_workouts = @end_user.post_workouts
+    @following_end_users = @end_user.following_end_user
+    @follower_end_users = @end_user.follower_end_user
   end
 
   def edit
@@ -42,6 +44,16 @@ class Public::EndUsersController < ApplicationController
 
   def workout_likes
     @post_workout = PostWorkout.find(params[:id])
+  end
+
+  def followeds
+    end_user = EndUser.find(params[:id])
+    @end_users = end_user.following_end_user
+  end
+
+  def followers
+    end_user = EndUser.find(params[:id])
+    @end_user = end_user.follower_end_user
   end
 
   private

@@ -18,11 +18,11 @@ class EndUser < ApplicationRecord
   has_many :like_post_blogs, through: :blog_likes, source: :post_blog
   has_many :blog_comments, dependent: :destroy
 
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
-  has_many :following_user, through: follower, source: followed
-  has_many :follower_user, through: followed, source: follower
+  has_many :following_users, through: :followers, source: :followed
+  has_many :follower_users, through: :followeds, source: :follower
 
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
   enum activelevel: { level1: 0, level2: 1, level3: 2 }
@@ -53,7 +53,7 @@ class EndUser < ApplicationRecord
     follower.create(followed_id: end_user_id)
   end
 
-  def unfollow(end_user.id)
+  def unfollow(end_user_id)
     follower.find_by(followed_id: end_user_id).destroy
   end
 

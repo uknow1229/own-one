@@ -33,7 +33,9 @@ Rails.application.routes.draw do
         get :blog_likes
         get :meal_likes
         get :workout_likes
+        get :followers, :followeds
       end
+      resource :relationships, only: [:create, :destroy]
     end
       get  '/end_users/mypage' => 'end_users#show'
       get  '/end_users/profile' => 'end_users#profile'
