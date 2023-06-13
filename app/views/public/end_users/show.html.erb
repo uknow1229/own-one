@@ -1,10 +1,9 @@
 <div class="container mt-4">
   <div class="row d-flex">
     <h1>User Page</h1>
-    <div class="">
-      <div>
-        <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
-      </div>
+    <div>
+      <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
+    </div>
     <div class="post__wrapper">
       <h2>フィットネス投稿</h2>
       <% if @post_workouts.exists? %>

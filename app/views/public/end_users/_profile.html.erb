@@ -1,4 +1,4 @@
-<%= image_tag end_user.get_profile_image(100, 100) %>
+<%= image_tag end_user.get_profile_image(150, 150) %>
   <h2>ユーザー名</h2>
   <% if end_user.full_name.blank? %>
     <p>未設定</p>
@@ -6,11 +6,11 @@
     <p><%= end_user.full_name %></p>
   <% end %>
 
-  <h6>フォロー中</h6>
+  <h3>フォロー中</h3>
   <%= link_to  followeds_end_user_path(end_user) do %>
     <%= end_user.followers.count %>
   <% end %>
-  <h6>フォロワー</h6>
+  <h3>フォロワー</h3>
   <%= link_to followers_end_user_path(end_user) do %>
     <%= end_user.followeds.count %>
   <% end %>
