@@ -10,8 +10,21 @@
         <% else %>
           <p><%= @end_user.full_name %></p>
         <% end %>
-      </div>
-      <div>
+
+        <%= link_to  followeds_end_user_path(@end_user) do %>
+          Follows<% @end_user.followers.count %>
+        <% end %>
+        <%= link_to followers_end_user_path(@end_user) do %>
+          Followers<% @end_user.followeds.count %>
+        <% end %>
+        <% if current_end_user != @end_user %>
+          <% if current_end_user.following?(@end_user)%>
+            <%= link_to "フォロー外す", end_user_relationships_path(@end_user.id), method: :delete, class: "btn btn-danger" %>
+          <% else %>
+            <%= link_to "フォローする", end_user_relationships_path(@end_user.id), method: :post, class:"btn btn-success" %>
+          <% end %>
+        <% end %>
+
         <h2>目標カロリー</h2>
         <% if @end_user.target_calorie.blank? %>
           <p>未設定</p>
