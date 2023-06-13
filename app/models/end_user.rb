@@ -6,6 +6,8 @@ class EndUser < ApplicationRecord
 
   has_one_attached :profile_image
   has_many :post_workouts, dependent: :destroy
+  has_many :post_blogs, dependent: :destroy
+  has_many :post_meals, dependent: :destroy
 
   has_many :workout_likes, dependent: :destroy
   has_many :workout_comments, dependent: :destroy

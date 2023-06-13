@@ -1,12 +1,12 @@
 <div class="container mt-4">
   <div class="row d-flex">
     <h1>User Page</h1>
-    <div class=" d-flex">
+    <div class="d-flex">
       <div>
-      <%= render "public/end_users/profile", end_user: @end_user %>
+      <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
     </div>
     <% if @post_workouts.exists? %>
-      <%= render "public/post_workouts/index", post_workouts: @post_workouts %>
+      <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
     <% else %>
       <p>投稿がありません</p>
     <% end %> 

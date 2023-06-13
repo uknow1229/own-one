@@ -6,6 +6,10 @@ class Public::EndUsersController < ApplicationController
     @post_workouts = @end_user.post_workouts
     @following_end_users = @end_user.following_end_users
     @follower_end_users = @end_user.follower_end_users
+
+    @post_blogs = @end_user.post_blogs
+    @post_meals = @end_user.post_meals
+    @events = @post_workouts + @post_meals + @post_blogs
   end
 
   def edit
@@ -14,6 +18,7 @@ class Public::EndUsersController < ApplicationController
 
   def profile
     @end_user = EndUser.find(params[:id])
+    @post_workouts = @end_user.post_workouts
   end
 
   def update

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_12_171631) do
+ActiveRecord::Schema.define(version: 2023_06_13_083452) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_171631) do
   create_table "post_blogs", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.string "title", null: false
-    t.datetime "date", null: false
+    t.datetime "start_time", null: false
     t.text "content", null: false
     t.boolean "is_closed", default: false
     t.datetime "created_at", precision: 6, null: false
@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_171631) do
 
   create_table "post_meals", force: :cascade do |t|
     t.integer "end_user_id", null: false
-    t.datetime "date"
+    t.datetime "start_time"
     t.integer "timing", default: 0
     t.integer "meal_type", default: 0
     t.text "memo"
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 2023_06_12_171631) do
 
   create_table "post_workouts", force: :cascade do |t|
     t.integer "end_user_id", null: false
-    t.datetime "date"
+    t.datetime "start_time"
     t.string "title"
     t.integer "site", default: 0
     t.string "time"

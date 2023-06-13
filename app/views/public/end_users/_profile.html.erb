@@ -32,4 +32,20 @@
   <% if end_user.introduction.blank? %>
     <p>未設定</p>
   <% end %>
-  <p><%= end_user.introduction%></p>
+  <p><%= end_user.introduction %></p>
+
+  <!-- カレンダー -->
+  <%= month_calendar events: events do |date, events| %>
+    <%= date.day %>
+    <% events.each do |event| %>
+      <div>
+        <% if event.is_a?(PostWorkout) %>
+          🏋️
+        <% elsif event.is_a?(PostMeal) %>
+          🍱
+        <% elsif event.is_a?(PostBlog) %>
+          📝
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
