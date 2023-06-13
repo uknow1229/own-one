@@ -1,0 +1,14 @@
+<%= month_calendar events: events do |date, events| %>
+  <%= date.day %>
+  <% events.each do |event| %>
+    <div>
+      <% if event.is_a?(PostWorkout) %>
+        <%= link_to '🏋️',post_workout_path(event) %>
+      <% elsif event.is_a?(PostMeal) %>
+        <%= link_to '🥗',post_meal_path(event) %>
+      <% elsif event.is_a?(PostBlog) %>
+      <%= link_to '📝',post_blog_path(event) %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
