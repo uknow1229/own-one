@@ -8,7 +8,7 @@
 
   <div class="blog d-flex">
     <div class="blog-menu">
-      <h2><%= @post_blog.date.strftime("%Y-%m-%d") %></h2>
+      <h2><%= @post_blog.start_time.strftime("%Y-%m-%d") %></h2>
       <% if @post_blog.image.attached? %>
         <%= image_tag @post_blog.image, class: "fitness-image" %>
       <% else %>

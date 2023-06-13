@@ -193,6 +193,14 @@ main {
   height: 100px;
 }
 
+.calendar-heading a{
+  color: black;
+  text-decoration: none;
+}
+
+.calendar-heading a:hover{
+  text-decoration: underline;
+}
 
 footer {
   width: 100%;

@@ -76,3 +76,5 @@ gem 'faker'
 gem 'rails_admin'
 
 gem 'cancancan'
+
+gem 'simple_calendar'

@@ -8,7 +8,7 @@
 
   <div class="workout d-flex">
     <div class="workout-menu">
-      <h2><%= @post_meal.date.strftime("%Y-%m-%d") %></h2>
+      <h2><%= @post_meal.start_time.strftime("%Y-%m-%d") %></h2>
       <% if @post_meal.image.attached? %>
         <%= image_tag @post_meal.image, class: "fitness-image" %>
       <% else %>

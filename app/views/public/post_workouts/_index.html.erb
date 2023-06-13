@@ -8,7 +8,7 @@
           <%= image_tag 'noimage.jpg', class: "no-image" %>
         <% end %>
         <div class="workout-menu">
-          <p><%= post_workout.date.strftime("%Y-%m-%d") %></p>
+          <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
           <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
           <p>コメント件数:<%= post_workout.workout_comments.count %></p>
         </div>

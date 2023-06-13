@@ -32,4 +32,8 @@
   <% if end_user.introduction.blank? %>
     <p>未設定</p>
   <% end %>
-  <p><%= end_user.introduction%></p>
+  <p><%= end_user.introduction %></p>
+
+  <div id="calendar">
+    <%= render 'public/end_users/calendar', events: events %>
+  </div>
