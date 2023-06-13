@@ -5,14 +5,10 @@
       <div>
       <%= render "public/end_users/profile", end_user: @end_user %>
     </div>
-      <%
-=begin%>
- <% if @post_workouts.exists? %>
-        <%= render "public/post_workouts/index", post_workouts: @post_workouts %>
-      <% else %>
-        <p>投稿がありません</p>
-      <% end %> 
-<%
-=end%>
+    <% if @post_workouts.exists? %>
+      <%= render "public/post_workouts/index", post_workouts: @post_workouts %>
+    <% else %>
+      <p>投稿がありません</p>
+    <% end %> 
   </div>
 </div>

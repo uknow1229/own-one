@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     # end_users
     resources :end_users, only: [:show, :edit, :update] do
       member do
+        get :profile
         get :blog_likes
         get :meal_likes
         get :workout_likes
@@ -37,7 +38,6 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
     end
-      get  '/end_users/profile' => 'end_users#profile'
       get  '/end_users/check' => 'end_users#check'
       patch  '/end_users/withdraw' => 'end_users#withdraw'
 

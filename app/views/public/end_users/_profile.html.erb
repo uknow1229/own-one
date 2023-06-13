@@ -8,11 +8,11 @@
 
   <h6>フォロー中</h6>
   <%= link_to  followeds_end_user_path(end_user) do %>
-    <% end_user.followers.count %>
+    <%= end_user.followers.count %>
   <% end %>
   <h6>フォロワー</h6>
   <%= link_to followers_end_user_path(end_user) do %>
-    <% end_user.followeds.count %>
+    <%= end_user.followeds.count %>
   <% end %>
   <% if current_end_user != end_user %>
     <% if current_end_user.following?(end_user)%>
