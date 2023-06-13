@@ -11,7 +11,7 @@ import "@rails/actioncable";
 
 import "jquery";
 import "popper.js";
-// import "bootstrap";
+import "bootstrap";
 import "../stylesheets/application.scss";
 
 Rails.start()

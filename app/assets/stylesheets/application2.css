@@ -1,14 +1,13 @@
-@import '~bootstrap/scss/bootstrap';
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 header {
   text-align: center;
-  background-color: #B0BBF6;
+  background-color: #609966;
   padding: 0px 10px;
 }
 
@@ -30,9 +29,7 @@ header .navbar {
 
 .navbar-nav li:hover {
   color: black;
-
-  border-bottom: 3px solid #ECF6B0;
-
+  text-decoration: underline;
 }
 
 .nav-link {
@@ -63,7 +60,7 @@ header .navbar {
 
 .toggle-item {
   display: none;
-  background: #CAD2FE;
+  background: rgba(128, 128, 128, 0.5);
   border-radius: 10%;
   height: 100px;
   position: absolute;
@@ -110,11 +107,6 @@ main {
   height: 150px;
 }
 
-.fitness-image {
-  width: 200px;
-  height: 200px;
-}
-
 .no-image {
   width: 150px;
   height: 150px;
@@ -124,92 +116,26 @@ main {
   justify-content: center;
 }
 
-.container .workout-wrapper {
-  
-  gap: 20px;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
+.container .workout-wrapper a {
+  background-color: rgba(96, 153, 102, 0.5);
+  text-decoration: none;
+  color: black;
 }
 
-.workout-wrapper a:hover {
-  background: #ECF6B0;
-  border-radius: 10px;
-}
-
-.workout-wrapper  {
-
-  flex-wrap: wrap;
-  justify-content: center;
+.container .workout-wrapper a:hover {
+  background-color: #e89410;
 }
 
 .workout {
-  background-color: #CAD2FE;
+  border-radius: 10px;
   gap: 20px;
   margin: 10px;
   padding: 20px;
-  border-radius: 10px;
-  
-}
-
-.workout-menu {
-  padding-left: 10px;
-}
-
-.workout-menu h2{
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.meal-wrapper a:hover {
-  background: #ECF6B0;
-  border-radius: 10px;
-}
-
-.meal-wrapper {
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.meal {
-  background-color: #CAD2FE;
-  gap: 20px;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.no-decoration {
-  text-decoration: none;
-  color: black;
-}
-
-.no-decoration:hover {
-  text-decoration: underline;
-  text-decoration-color: #B0BBF6;
-}
-
-.enduser-wrapper img{
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-}
-
-.calendar-heading a{
-  color: black;
-  text-decoration: none;
-}
-
-.calendar-heading a:hover{
-  text-decoration: underline;
-}
-.table thead tr th{
-  background-color: #CAD2FE;
 }
 
 footer {
   width: 100%;
-  background-color: #B0BBF6;
-  /* position: absolute; */
+  background-color: #609966;
+  position: absolute;
   bottom: 0;
 }
