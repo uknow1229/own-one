@@ -10,5 +10,15 @@
     <% else %>
       <p>投稿がありません</p>
     <% end %> 
+    <% if @post_meals.exists? %>
+      <%= render "public/post_meals/index", post_meals: @post_meals  %>
+    <% else %>
+      <p>投稿がありません</p>
+    <% end %> 
+    <% if @post_blogs.exists? %>
+      <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
+    <% else %>
+      <p>投稿がありません</p>
+    <% end %> 
   </div>
 </div>
