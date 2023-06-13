@@ -2,20 +2,22 @@ class Public::EndUsersController < ApplicationController
 
   
   def show
-    @end_user = EndUser.find(current_end_user.id)
+    @end_user = EndUser.find(params[:id])
     @post_workouts = @end_user.post_workouts
+    @following_end_users = @end_user.following_end_users
+    @follower_end_users = @end_user.follower_end_users
   end
 
   def edit
-    @end_user = EndUser.find(current_end_user.id)
+    @end_user = EndUser.find(params[:id])
   end
 
   def profile
-    @end_user = EndUser.find(current_end_user.id)
+    @end_user = EndUser.find(params[:id])
   end
 
   def update
-    @end_user = EndUser.find(current_end_user.id)
+    @end_user = EndUser.find(params[:id])
     @end_user.update(end_user_params)
     redirect_to end_users_mypage_path
     flash[:notice] = "変更が完了しました"
@@ -42,6 +44,16 @@ class Public::EndUsersController < ApplicationController
 
   def workout_likes
     @post_workout = PostWorkout.find(params[:id])
+  end
+
+  def followeds
+    @end_user = EndUser.find(params[:id])
+    @end_users = @end_user.following_end_users
+  end
+
+  def followers
+    @end_user = EndUser.find(params[:id])
+    @end_users = @end_user.follower_end_users
   end
 
   private

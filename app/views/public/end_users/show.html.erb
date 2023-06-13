@@ -1,34 +1,14 @@
 <div class="container mt-4">
   <div class="row d-flex">
-    <h1>My Page</h1>
+    <h1>User Page</h1>
     <div class=" d-flex">
       <div>
-        <%= image_tag current_end_user.get_profile_image(100, 100) %>
-        <h2>ユーザー名</h2>
-        <% if @end_user.full_name.blank? %>
-          <p>未設定</p>
-        <% else %>
-          <p><%= @end_user.full_name %></p>
-        <% end %>
-      </div>
-      <div>
-        <h2>目標カロリー</h2>
-        <% if @end_user.target_calorie.blank? %>
-          <p>未設定</p>
-        <% else %>
-        <p><%= @end_user.target_calorie%>kcal/日</p>
-        <% end %>
-        <h2>自己紹介</h2>
-        <% if @end_user.introduction.blank? %>
-          <p>未設定</p>
-        <% end %>
-        <p><%= @end_user.introduction%></p>
-      </div>
+      <%= render "public/end_users/profile", end_user: @end_user %>
     </div>
-      <% if @post_workouts.exists? %>
-        <%= render "public/post_workouts/index", post_workouts: @post_workouts %>
-      <% else %>
-        <p>投稿がありません</p>
-      <% end %>
+    <% if @post_workouts.exists? %>
+      <%= render "public/post_workouts/index", post_workouts: @post_workouts %>
+    <% else %>
+      <p>投稿がありません</p>
+    <% end %> 
   </div>
 </div>

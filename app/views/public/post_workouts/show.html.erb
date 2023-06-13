@@ -3,7 +3,7 @@
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
     <%= image_tag @post_workout.end_user.get_profile_image(100, 100) %>
-    <p><%= @post_workout.end_user.first_name %></p>
+    <p><%= link_to @post_workout.end_user.first_name, end_user_path(@post_workout.end_user) %></p>
   </div>
 
   <div class="workout d-flex">
