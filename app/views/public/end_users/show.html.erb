@@ -1,14 +1,28 @@
 <div class="container mt-4">
   <div class="row d-flex">
     <h1>User Page</h1>
-    <div class="d-flex">
-      <div>
+    <div>
       <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
     </div>
-    <% if @post_workouts.exists? %>
-      <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
-    <% else %>
-      <p>投稿がありません</p>
-    <% end %> 
+    <div class="post__wrapper">
+      <h2>フィットネス投稿</h2>
+      <% if @post_workouts.exists? %>
+        <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
+      <% else %>
+        <p>投稿がありません</p>
+      <% end %> 
+      <h2>食事投稿</h2>
+      <% if @post_meals.exists? %>
+        <%= render "public/post_meals/index", post_meals: @post_meals  %>
+      <% else %>
+        <p>投稿がありません</p>
+      <% end %> 
+      <h2>ブログ投稿</h2>
+      <% if @post_blogs.exists? %>
+        <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
+      <% else %>
+        <p>投稿がありません</p>
+      <% end %> 
+    </div>
   </div>
 </div>
