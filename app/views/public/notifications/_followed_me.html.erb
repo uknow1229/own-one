@@ -5,11 +5,7 @@
     <% else %>
       <%= link_to notification.subject.follower.first_name, end_user_path(notification.subject.follower) %>
     <% end %>
-    があなたを
-    <% if notification.subject.followed.present? %>
-      <%= link_to 'フォロー', end_user_path(notification.subject.followed) %>
-      しました
-    <% end %>
+    があなたをフォローしました
     <%= l notification.created_at, format: :short %>
   </div>
 <% end %>

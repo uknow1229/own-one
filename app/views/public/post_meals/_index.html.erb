@@ -8,7 +8,10 @@
           <%= image_tag 'noimage.jpg', class: "no-image" %>
         <% end %>
         <div class="meal-menu">
-          <p><%= post_meal.start_time.strftime("%Y-%m-%d") %></p>
+        <!-- バリデーションかけたら消す -->
+          <% if post_meal.start_time.present? %>
+            <p><%= post_meal.start_time.strftime("%Y-%m-%d") %></p>
+          <% end %>
           <p><%= post_meal.memo.truncate(18, omission: "...") %></p>
           <p>コメント件数:<%= post_meal.meal_comments.count %></p>
         </div>

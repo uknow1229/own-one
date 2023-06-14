@@ -60,6 +60,6 @@ class Public::PostBlogsController < ApplicationController
   private
 
   def post_blog_params
-    params.require(:post_blog).permit(:end_user_id, :image, :date, :title, :content)
+    params.require(:post_blog).permit(:end_user_id, :image, :start_time, :title, :content)
   end
 end

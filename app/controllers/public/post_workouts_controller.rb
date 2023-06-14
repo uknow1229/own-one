@@ -61,7 +61,7 @@ class Public::PostWorkoutsController < ApplicationController
   private
 
   def post_workout_params
-    params.require(:post_workout).permit(:end_user_id, :image, :date, :title, :site, :time, :memo)
+    params.require(:post_workout).permit(:end_user_id, :image, :start_time, :title, :site, :time, :memo)
   end
 
 end

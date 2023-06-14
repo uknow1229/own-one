@@ -8,6 +8,6 @@ class WorkoutLike < ApplicationRecord
 
   private
   def create_notifications
-    Notification.create(subject: self, end_user: self.post_workout.end_user, action_type: :liked_to_own_post)
+    Notification.create(subject: self, end_user: self.post_workout.end_user, action_type: :liked_to_workout_post)
   end
 end
