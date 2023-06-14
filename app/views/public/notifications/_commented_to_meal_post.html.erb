@@ -4,6 +4,6 @@
     があなたの
     <%= link_to '投稿', post_meal_path(notification.subject.post_meal) %>
     にコメントしました
-    <%= l notification.created_at, format: :short %>
+    <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
   </div>
 <% end %>

@@ -1,12 +1,13 @@
 <div class="container mt-4">
   <% if @notifications.present? %>
-    <div class="list-group">
-      <% @notifications.each do |notification| %>
+    <%= link_to "全削除",notification_path(@notifications), method: :delete,class:"btn btn-light" %></p>
+    <% @notifications.each do |notification| %>
+      <div class="list-group">
         <div class="list-group-item">
           <%= render "#{notification.action_type}", notification: notification %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% else %>
     通知はありません
   <% end %>

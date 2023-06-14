@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
     end
-      resources :notifications, only: [:index]
+      resources :notifications, only: [:index, :destroy]
 
       get  '/end_users/check' => 'end_users#check'
       patch  '/end_users/withdraw' => 'end_users#withdraw'
