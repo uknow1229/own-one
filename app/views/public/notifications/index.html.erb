@@ -1,7 +1,13 @@
-<% if @notifications.present? %>
-  <% @notifications.each do |notification| %>
-    <%= render "#{notification.action_type}", notification: notification %>
-  <% end %>
-<% else %>
+<div class="container mt-4">
+  <% if @notifications.present? %>
+    <div class="list-group">
+      <% @notifications.each do |notification| %>
+        <div class="list-group-item">
+          <%= render "#{notification.action_type}", notification: notification %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
     通知はありません
-<% end %>
+  <% end %>
+</div>

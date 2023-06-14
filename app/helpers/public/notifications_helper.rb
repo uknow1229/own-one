@@ -9,6 +9,10 @@ module Public::NotificationsHelper
       post_meal_path(notification.subject.post_meal, anchor: "comment-#{notification.subject.id}")
     when :liked_to_meal_post
       post_meal_path(notification.subject.post_meal)
+    when :commented_to_blog_post
+      post_meal_path(notification.subject.post_blog, anchor: "comment-#{notification.subject.id}")
+    when :liked_to_blog_post
+      post_meal_path(notification.subject.post_blog)
     when :followed_me
       end_user_path(notification.subject.follower)
     end
