@@ -37,6 +37,10 @@ class EndUser < ApplicationRecord
     end
   end
 
+  def guest?
+    email == 'guest@example.com'
+  end
+
   def full_name
     (self.first_name || "") + " " + (self.last_name || "")
   end
