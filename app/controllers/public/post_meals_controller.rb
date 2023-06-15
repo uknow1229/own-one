@@ -60,7 +60,7 @@ class Public::PostMealsController < ApplicationController
   private
 
   def post_meal_params
-    params.require(:post_meal).permit(:end_user_id, :image, :date, :timing, :meal_type, :memo)
+    params.require(:post_meal).permit(:end_user_id, :image, :start_time, :timing, :meal_type, :memo)
   end
 
 end

@@ -11,6 +11,8 @@ class PostWorkout < ApplicationRecord
   has_many :post_workout_tags, dependent: :destroy
   has_many :workout_tags, through: :post_workout_tags
 
+  has_one :notification, as: :subject, dependent: :destroy
+
   enum site: { shoulder: 0, arm: 1, chest: 2, back: 3, belly: 4, buttocks: 5, thigh: 6, calf: 7, the_upper_body: 8, lower_half_of_the_body: 9 }
 
   def liked_by?(end_user)

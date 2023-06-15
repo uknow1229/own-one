@@ -13,11 +13,11 @@ class EndUser < ApplicationRecord
   has_many :workout_comments, dependent: :destroy
 
   has_many :meal_likes, dependent: :destroy
-  has_many :like_post_meals, through: :blog_likes, source: :post_meal
+  # has_many :like_post_meals, through: :blog_likes, source: :post_meal
   has_many :meal_comments, dependent: :destroy
 
   has_many :blog_likes, dependent: :destroy
-  has_many :like_post_blogs, through: :blog_likes, source: :post_blog
+  # has_many :like_post_blogs, through: :blog_likes, source: :post_blog
   has_many :blog_comments, dependent: :destroy
 
   has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -26,6 +26,8 @@ class EndUser < ApplicationRecord
   has_many :following_end_users, through: :followers, source: :followed
   has_many :follower_end_users, through: :followeds, source: :follower
 
+  has_many :notifications, dependent: :destroy
+
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
   enum activelevel: { level1: 0, level2: 1, level3: 2 }
 
@@ -33,6 +35,10 @@ class EndUser < ApplicationRecord
     find_or_create_by!(email: 'guest@example.com') do |end_user|
       end_user.password = SecureRandom.urlsafe_base64
     end
+  end
+
+  def guest?
+    email == 'guest@example.com'
   end
 
   def full_name

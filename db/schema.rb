@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_13_083452) do
+ActiveRecord::Schema.define(version: 2023_06_14_134228) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -141,6 +141,20 @@ ActiveRecord::Schema.define(version: 2023_06_13_083452) do
     t.index ["name"], name: "index_meal_tags_on_name", unique: true
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "subject_type"
+    t.integer "subject_id"
+    t.integer "end_user_id"
+    t.integer "action_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "checked", default: false, null: false
+    t.integer "visitor_id"
+    t.integer "visited_id"
+    t.index ["end_user_id"], name: "index_notifications_on_end_user_id"
+    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
+  end
+
   create_table "post_blog_tags", force: :cascade do |t|
     t.integer "post_blog_id", null: false
     t.integer "blog_tag_id", null: false
@@ -267,6 +281,7 @@ ActiveRecord::Schema.define(version: 2023_06_13_083452) do
   add_foreign_key "meal_likes", "end_users"
   add_foreign_key "meal_likes", "post_meals"
   add_foreign_key "meal_menus", "post_meals"
+  add_foreign_key "notifications", "end_users"
   add_foreign_key "post_blog_tags", "blog_tags"
   add_foreign_key "post_blog_tags", "post_blogs"
   add_foreign_key "post_blogs", "end_users"

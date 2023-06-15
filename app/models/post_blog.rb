@@ -10,6 +10,8 @@ class PostBlog < ApplicationRecord
   has_many :post_blog_tags, dependent: :destroy
   has_many :blog_tags, through: :post_blog_tags
 
+  has_one :notification, as: :subject, dependent: :destroy
+
   def liked_by?(end_user)
     blog_likes.exists?(end_user_id: end_user.id)
   end

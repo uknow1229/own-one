@@ -1,0 +1,9 @@
+<%= link_to transition_path(notification) do %>
+  <div>
+    <%= link_to notification.subject.end_user.first_name, end_user_path(notification.subject.end_user) %>
+    があなたの
+    <%= link_to '投稿', post_workout_path(notification.subject.post_workout) %>
+    にコメントしました
+    <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
+  </div>
+<% end %>

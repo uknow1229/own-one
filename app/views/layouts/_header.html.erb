@@ -39,6 +39,16 @@
         ブログ
         <% end %>
       </li>
+      <li class="nav-item">
+        <%= link_to notifications_path, class: "nav-link" do %>
+          <% if current_end_user.notifications.where(checked: false).exists? %>
+            <i class="fa-sharp fa-solid fa-bell fa-beat" style="color: #f2ee7d;"></i>
+          <% else %>
+            <i class="fa-sharp fa-solid fa-bell"></i>
+          <% end %>
+          通知一覧
+        <% end %>
+      </li>
       <div>
         <li class="nav-item rounded-image" id="toggle-button">
           <%= image_tag current_end_user.get_profile_image(50, 50) %>
@@ -82,11 +92,6 @@
         <%= link_to homes_about_path, class: "nav-link" do %>
       <i class="fa-solid fa-face-smile"></i>
         About
-        <% end %>
-      <li class="nav-item">
-        <%= link_to post_workouts_path, class: "nav-link" do %>
-      <i class="fa-sharp fa-solid fa-dumbbell"></i>
-        投稿一覧
         <% end %>
       <li class="nav-item">
         <%= link_to new_end_user_registration_path, class: "nav-link" do %>

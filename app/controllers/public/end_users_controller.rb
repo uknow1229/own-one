@@ -24,7 +24,7 @@ class Public::EndUsersController < ApplicationController
   def update
     @end_user = EndUser.find(params[:id])
     @end_user.update(end_user_params)
-    redirect_to end_users_mypage_path
+    redirect_to end_user_path
     flash[:notice] = "変更が完了しました"
   end
 
