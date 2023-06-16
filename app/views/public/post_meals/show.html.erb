@@ -22,16 +22,29 @@
       <p><%= @post_meal.meal_type_i18n %></p>
       <h2>メモ</h2>
       <p><%= @post_meal.memo %></p>
+
+      <h4>メニュー</h4>
+      <% @post_meal.meal_menus.each do |menu| %>
+      <div>
+        <h2>タイトル</h2>
+        <p><%= menu.title %></p>
+        <h2>量</h2>
+        <p><%= menu.quantity %>g</p>
+        <h2>カロリー</h2>
+        <p><%= menu.calorie %>カロリー</p>
+        </div>
+      <% end %>
+
       <!-- いいね機能 -->
       <div class="workout-likes">       
         <span id="meal_likes_<%= @post_meal.id %>">
           <p><%= render "like-btn", post_meal: @post_meal %></p>
         </span>
-      <%= link_to "いいね", meal_likes_end_user_path %>
+        <%= link_to "いいね", meal_likes_end_user_path %>
       </div>
       <!-- タグリスト -->
       <% @post_meal_tags.each do |tag| %>
-      <i class="fa-sharp fa-solid fa-tag"></i>
+        <i class="fa-sharp fa-solid fa-tag"></i>
         <%= link_to tag.name,search_meal_tag_path(meal_tag_id: tag.id) %>
       <% end %>
       <!-- コメント機能 -->
@@ -42,8 +55,8 @@
         <div id="comment-form">
           <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
         </div>
-      </div>
     </div>
+  </div>
   <div class="workout-menu-link">
     <%= link_to "編集", edit_post_meal_path, :class => "btn btn-success ms-3" %>
     <%= link_to "削除", post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>

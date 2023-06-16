@@ -6,6 +6,7 @@ class Public::PostMealsController < ApplicationController
 
   def new
     @post_meal = PostMeal.new
+    5.times { @post_meal.meal_menus.build }
   end
 
   def create
@@ -46,6 +47,7 @@ class Public::PostMealsController < ApplicationController
 
   def destroy
     @post_meal = PostMeal.find(params[:id])
+    @post_meal.meal_menus.destroy_all
     @post_meal.destroy
     redirect_to post_meals_path
     flash[:notice] = "削除が完了しました"
@@ -60,7 +62,7 @@ class Public::PostMealsController < ApplicationController
   private
 
   def post_meal_params
-    params.require(:post_meal).permit(:end_user_id, :image, :start_time, :timing, :meal_type, :memo)
+    params.require(:post_meal).permit(:end_user_id, :image, :start_time, :timing, :meal_type, :memo,
+      meal_menus_attributes: [:id, :title, :quantity, :calorie, :_destroy])
   end
-
 end
