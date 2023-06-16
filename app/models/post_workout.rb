@@ -13,6 +13,8 @@ class PostWorkout < ApplicationRecord
 
   has_one :notification, as: :subject, dependent: :destroy
 
+  accepts_nested_attributes_for :workout_menus, allow_destroy: true, reject_if: :all_blank, limit: 5
+
   enum site: { shoulder: 0, arm: 1, chest: 2, back: 3, belly: 4, buttocks: 5, thigh: 6, calf: 7, the_upper_body: 8, lower_half_of_the_body: 9 }
 
   def liked_by?(end_user)
@@ -55,5 +57,4 @@ class PostWorkout < ApplicationRecord
       self.workout_tags << workout_tag
     end
   end
-
 end
