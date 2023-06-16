@@ -13,6 +13,8 @@ class PostMeal < ApplicationRecord
 
   has_one :notification, as: :subject, dependent: :destroy
 
+  accepts_nested_attributes_for :meal_menus, allow_destroy: true, reject_if: :all_blank, limit: 5
+
   enum timing: { breakfast: 0, lunch: 1, dinner: 2, snacking: 3 }
   enum meal_type: { cooking_for_oneself: 0, eating_out: 1, takeout: 2, convenience_store: 3 }
   
