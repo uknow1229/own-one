@@ -20,6 +20,7 @@ class Public::PostWorkoutsController < ApplicationController
 
   def new
     @post_workout = PostWorkout.new
+    5.times { @post_workout.workout_menus.build }
   end
 
   def create
@@ -47,9 +48,11 @@ class Public::PostWorkoutsController < ApplicationController
 
   def destroy
     @post_workout = PostWorkout.find(params[:id])
+    @post_workout.workout_menus.destroy_all
     @post_workout.destroy
-    redirect_to post_workouts_path
     flash[:notice] = "削除が完了しました"
+    redirect_to post_workouts_path
+    
   end
 
   def search_tag
@@ -61,7 +64,8 @@ class Public::PostWorkoutsController < ApplicationController
   private
 
   def post_workout_params
-    params.require(:post_workout).permit(:end_user_id, :image, :start_time, :title, :site, :time, :memo)
+    params.require(:post_workout).permit(:end_user_id, :image, :start_time, :title, :site, :time, :memo,
+      workout_menus_attributes: [:id, :title, :weight, :reptition_count, :set_count, :_destroy])
   end
 
 end

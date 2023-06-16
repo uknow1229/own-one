@@ -24,6 +24,21 @@
       <p><%= @post_workout.time %>分</p>
       <h2>メモ</h2>
       <p><%= @post_workout.memo %></p>
+
+      <h4>筋トレメニュー</h4>
+      <% @post_workout.workout_menus.each do |menu| %>
+      <div>
+        <h2>種目</h2>
+        <p><%= menu.title %></p>
+        <h2>重量</h2>
+        <p><%= menu.weight %>kg</p>
+        <h2>回数</h2>
+        <p><%= menu.reptition_count %>レップ</p>
+        <h2>セット数</h2>
+        <p><%= menu.set_count %>セット</p>
+        </div>
+      <% end %>
+
       <!-- いいね機能 -->
       <div class="workout-likes">
         <span id="workout_likes_<%= @post_workout.id %>">

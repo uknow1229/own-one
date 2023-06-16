@@ -152,8 +152,19 @@ main {
   
 }
 
+.workout-menus-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .workout-menu {
-  padding-left: 10px;
+  padding: 10px;
+  background-color: #ECF6B0;
+  border: rounded;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .workout-menu h2{
@@ -170,6 +181,12 @@ main {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.workout-menus-container {
+
+}
+
+
 
 .meal {
   background-color: #CAD2FE;
