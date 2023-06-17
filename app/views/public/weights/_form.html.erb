@@ -1,0 +1,11 @@
+<%= form_with model: weight, local: true do |f| %>
+  <div class="form-group">
+    <div>
+      <label>日付</label>
+      <%= f.date_field  :date, class: 'form-control'%>
+      <label>体重</label>
+      <%= f.number_field  :value, class: 'form-control', step: '0.1', min: '0' %>
+    </div>
+      <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
+  </div>
+<% end %>

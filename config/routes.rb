@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'weights/index'
+    get 'weights/show'
+    get 'weights/edit'
+  end
   # 管理者用
   devise_for :admin
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -39,7 +44,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
     end
       resources :notifications, only: [:index, :destroy]
-
+      resources :weights
       get  '/end_users/check' => 'end_users#check'
       patch  '/end_users/withdraw' => 'end_users#withdraw'
 

@@ -1,0 +1,10 @@
+<div class="weight-wrapper d-flex">
+  <% weights.each do |weight| %>
+    <div class="weight d-flex">
+        <div class="weight-menu">
+          <p><%= weight.date.strftime("%Y-%m-%d") %></p>
+          <p><%= weight.value %></p>
+        </div>
+      <% end %>
+    </div>
+</div>
