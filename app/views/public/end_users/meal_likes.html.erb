@@ -1,11 +1,11 @@
 <div class="container mt-4">
   <% if @post_meal.liked_end_users.present? %>
-    <h2>いいねしたユーザー</h2>
+    <h2>Liked User</h2>
     <% @post_meal.liked_end_users.each do |end_user| %>
       <%= image_tag end_user.get_profile_image(50, 50) %>
       <p><%= end_user.first_name %></p>
       <% end %>
   <% else %>
-    <h2>いいねはありません</h2>
+    <h2>There's no such thing as likes.</h2>
   <% end %>
 </div>

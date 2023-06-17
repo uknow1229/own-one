@@ -1,5 +1,5 @@
 <div class="container blog-wrapper mt-4">
-  <h2>ブログ投稿詳細</h2>
+  <h2>Blog Post Details</h2>
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
     <%= image_tag @post_blog.end_user.get_profile_image(50, 50) %>
@@ -16,9 +16,9 @@
       <% end %>
     </div>
     <div class="blog-menu">
-      <h2>タイトル</h2>
+      <h2>Title</h2>
       <p><%= @post_blog.title %></p>
-      <h2>内容</h2>
+      <h2>Contents</h2>
       <p><%= @post_blog.content %></p>
       <!-- いいね機能 -->
       <div class="workout-likes">
@@ -33,7 +33,7 @@
         <%= link_to tag.name,search_blog_tag_path(blog_tag_id: tag.id) %>
       <% end %>
       <!-- コメント機能 -->
-      <p>コメント件数:<%= @post_blog.blog_comments.count %></p>
+      <p>Number of comments:<%= @post_blog.blog_comments.count %></p>
       <div id="blog-comments">
         <%= render 'comment-index', post_blog: @post_blog %>
       </div>

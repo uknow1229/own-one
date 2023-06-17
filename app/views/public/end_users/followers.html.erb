@@ -1,15 +1,15 @@
 <div class="container mt-4">
   <% if @end_user.follower_end_users.present? %>
-    <h2>フォロー中のユーザー</h2>
+    <h2>Followed by</h2>
     <% @end_user.follower_end_users.each do |end_user| %>
       <%= image_tag end_user.get_profile_image(100, 100) %>
-      <h2>ユーザー名</h2>
+      <h2>User Name</h2>
       <p><%= link_to end_user.first_name, end_user_path(end_user) %></p>
-      <h6>フォロー中</h6>
+      <h6>Following</h6>
       <%= link_to followeds_end_user_path(end_user) do %>
         <%= end_user.followers.count %>
       <% end %>
-      <h6>フォロワー</h6>
+      <h6>Followed</h6>
       <%= link_to followers_end_user_path(end_user) do %>
         <%= end_user.followeds.count %>
       <% end %>
@@ -22,6 +22,6 @@
       <% end %>
     <% end %>
   <% else %>
-    <h2>フォロー中のユーザーはいません</h2>
+    <h2>No users are following you.</h2>
   <% end %>
 </div>

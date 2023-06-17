@@ -1,15 +1,15 @@
 <div class="form-group">
   <%= form_with model: post_blog , local: true do |f| %>
   
-    <label>画像</label>
+    <label>Image</label>
     <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
-    <label>タイトル</label>
+    <label>Title</label>
     <%= f.text_field :title, class: 'form-control' %>
-    <label>日付</label>
+    <label>Date</label>
     <%= f.date_field :start_time,  class: 'form-control' %>
-    <label>内容</label>
+    <label>Content</label>
     <%= f.text_area :content, rows: 25, cols: 10, class: 'form-control' %>
-    <label>タグ(,で区切ると複数タグ登録できます)</label>
+    <label>Tag(,で区切ると複数タグ登録できます)</label>
     <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
 
     <% if post_blog.new_record? %>

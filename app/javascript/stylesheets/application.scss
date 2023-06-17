@@ -8,7 +8,7 @@
 
 header {
   text-align: center;
-  background-color: #B0BBF6;
+  background-color: #b4b4b6;
   padding: 0px 10px;
 }
 
@@ -74,7 +74,7 @@ header .navbar {
 }
 
 body {
-  background-color: #E8F6EF;
+  background-color: #fcfaf8;
   position: relative;
 }
 
@@ -132,6 +132,10 @@ main {
   border-radius: 10px;
 }
 
+.btn {
+  background-color: rgba(26, 48, 245, 0.8);
+}
+
 .workout-wrapper a:hover {
   background: #ECF6B0;
   border-radius: 10px;
@@ -144,7 +148,7 @@ main {
 }
 
 .workout {
-  background-color: #CAD2FE;
+  background-color: rgba(26, 48, 245, 0.8);
   gap: 20px;
   margin: 10px;
   padding: 20px;
@@ -160,8 +164,8 @@ main {
 
 .workout-menu {
   padding: 10px;
-  background-color: #ECF6B0;
-  border: rounded;
+  background-color: rgba(26, 48, 245, 0.8);
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -189,7 +193,7 @@ main {
 
 
 .meal {
-  background-color: #CAD2FE;
+  background-color: rgba(26, 48, 245, 0.8);
   gap: 20px;
   margin: 10px;
   padding: 20px;
@@ -221,12 +225,12 @@ main {
   text-decoration: underline;
 }
 .table thead tr th{
-  background-color: #CAD2FE;
+  background-color: rgba(26, 48, 245, 0.8);
 }
 
 footer {
   width: 100%;
-  background-color: #B0BBF6;
+  background-color: #b4b4b6;
   /* position: absolute; */
   bottom: 0;
 }

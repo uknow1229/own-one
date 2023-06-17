@@ -3,9 +3,9 @@
     <div class="card" style="width: 18rem;">
       <%= image_tag end_user.get_profile_image(300, 300) %>
       <div class="card-body ">
-        <h5 class="card-title">ユーザー名</h5>
+        <h5 class="card-title">User Name</h5>
         <% if end_user.full_name.blank? %>
-          <p>未設定</p>
+          <p>Not configured</p>
         <% else %>
           <p><%= end_user.full_name %></p>
         <% end %>
@@ -24,19 +24,19 @@
           </p>
           <% end %>
         <% end %>
-        <h5 class="card-title">目標カロリー</h5>
+        <h5 class="card-title">Target Calorie</h5>
         <p class="card-text">
-          <%= end_user.target_calorie.blank? ? '未設定' : "#{end_user.target_calorie}kcal/日" %>
+          <%= end_user.target_calorie.blank? ? 'Not configured' : "#{end_user.target_calorie}kcal/日" %>
         </p>
-        <h5 class="card-title">自己紹介</h5>
+        <h5 class="card-title">Introduction</h5>
         <p class="card-text">
-          <%= end_user.introduction.blank? ? '未設定' : end_user.introduction %>
+          <%= end_user.introduction.blank? ? 'Not configured' : end_user.introduction %>
         </p>
       </div>
     </div>
   </div>
   <div class="col-md-8">
-  <h4 class="fw-bold">投稿カレンダー</h4>
+  <h4 class="fw-bold">Posting Calender</h4>
     <div id="calendar">
       <%= render 'public/end_users/calendar', events: events %>
     </div>

@@ -1,29 +1,29 @@
 <%= form_with model: post_meal , local: true do |f| %>
   <div class="form-group">
       <div>
-        <label>画像</label>
+        <label>Image</label>
         <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
       </div>
       <div>
-        <label>日付</label>
+        <label>Date</label>
         <%= f.date_field :start_time,  class: 'form-control' %>
       </div>
       <div>
-        <label>タイミング</label><br>
+        <label>Timing</label><br>
         <% PostMeal.timings.each do |key, value| %>
           <%= f.radio_button :timing, key %>
           <%= f.label "timing_#{key}", t("activerecord.attributes.post_meal.timings.#{key}") %>
         <% end %>
       </div>
       <div>
-        <label>食事タイプ</label><br>
+        <label>Meal Type</label><br>
         <% PostMeal.meal_types.each do |key, value| %>
           <%= f.radio_button :meal_type, key %>
           <%= f.label "meal_type_#{key}", t("activerecord.attributes.post_meal.meal_types.#{key}") %>
         <% end %>
       </div>
       <div>
-        <label>メモ</label>
+        <label>Memo</label>
         <%= f.text_field :memo, class: 'form-control' %>
       </div>
       <!-- meal_menus form -->
@@ -32,15 +32,15 @@
           <%= f.fields_for :meal_menus do |menu_form| %>
             <div class="meal-menu" style="display: <%= 'none' if post_meal.new_record? %>;">
               <div class="form-group">
-                <label>メニュー</label>
+                <label>Menu</label>
                 <%= menu_form.text_field :title, class: 'form-control' %>
               </div>
               <div class="form-group">
-                <label>量(g)</label>
+                <label>Amount(g)</label>
                 <%= menu_form.number_field :quantity, class: 'form-control', step: '1', min: '0' %>
               </div>
               <div class="form-group">
-                <label>カロリー</label>
+                <label>Calories</label>
                 <%= menu_form.number_field :calorie, class: 'form-control', step: '1', min: '0' %>
               </div>
             </div>
@@ -54,7 +54,7 @@
         <% end %>
       </div>
     </div>
-    <label>タグ(,で区切ると複数タグ登録できます)</label>
+    <label>Tag(,で区切ると複数タグ登録できます)</label>
       <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
     <div>
       <% if post_meal.new_record? %>

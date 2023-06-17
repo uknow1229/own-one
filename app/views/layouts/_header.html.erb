@@ -18,25 +18,25 @@
       <li class="nav-item">
         <%= link_to end_user_path(current_end_user) ,class: "nav-link" do %>
         <i class="fa-solid fa-user"></i>
-        マイページ
+        Mypage
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to post_workouts_path ,class: "nav-link" do %>
         <i class="fa-sharp fa-solid fa-dumbbell"></i>
-        フィットネス
+        Fitness
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to post_meals_path ,class: "nav-link" do %>
         <i class="fa-sharp fa-solid fa-utensils"></i>
-        食事
+        Meal
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to post_blogs_path ,class: "nav-link" do %>
         <i class="fa-sharp fa-solid fa-blog"></i>
-        ブログ
+        Blog
         <% end %>
       </li>
       <li class="nav-item">
@@ -46,7 +46,7 @@
           <% else %>
             <i class="fa-sharp fa-solid fa-bell"></i>
           <% end %>
-          通知一覧
+          Notice
         <% end %>
       </li>
       <div>
@@ -57,13 +57,13 @@
           <li class="nav-item">
             <%= link_to profile_end_user_path(current_end_user), class: "nav-link" do %>
             <i class="fa-sharp fa-solid fa-address-card"></i>
-            プロフィール
+            Plofile
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to destroy_end_user_session_path, method: :delete , class: "nav-link" do %>
             <i class="fa-solid fa-right-from-bracket"></i>
-            ログアウト
+            Logout
             <% end %>
           </li>
         </div>
@@ -72,19 +72,19 @@
       <li class="nav-item">
         <%= link_to admin_end_users_path ,class: "nav-link" do %>
         <i class="fa-solid fa-user-check"></i>
-        会員一覧
+        Member
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_post_workouts_path ,class: "nav-link" do %>
         <i class="fa-sharp fa-solid fa-dumbbell"></i>
-        投稿一覧
+        Post
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
       <i class="fa-solid fa-right-from-bracket"></i>
-        ログアウト
+        Logout
         <% end %>
       </li>
         <% else %>
@@ -96,19 +96,19 @@
       <li class="nav-item">
         <%= link_to new_end_user_registration_path, class: "nav-link" do %>
         <i class="fa-solid fa-user-plus"></i>
-        新規登録
+        Signup
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to new_end_user_session_path, class: "nav-link"  do %>
         <i class="fa-solid fa-right-to-bracket"></i>
-        ログイン
+        Login
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to end_users_guest_sign_in_path, class: "nav-link", method: :post  do %>
         <i class="fa-solid fa-right-to-bracket"></i>
-        ゲストログイン
+        Guest
         <% end %>
       </li>
       <% end %>

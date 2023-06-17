@@ -11,7 +11,7 @@
           <p><%= post_blog.title %></p>
           <p><%= post_blog.start_time.strftime("%Y-%m-%d") %></p>
           <p><%= post_blog.content.truncate(18, omission: "...") %></p>
-          <p>コメント件数:<%= post_blog.blog_comments.count %></p>
+          <p>Number of comments:<%= post_blog.blog_comments.count %></p>
         </div>
       </div>
     <% end %>

@@ -1,5 +1,5 @@
 <div class="container wor%kout-wrapper mt-4">
-  <h2>フィットネス投稿詳細</h2>
+  <h2>Fitness Post Details</h2>
 
   <div class="enduser-wrapper mb-4 d-flex justify-content-center">
     <%= image_tag @post_workout.end_user.get_profile_image(100, 100) %>
@@ -7,7 +7,7 @@
   </div>
 
   <div class="workout d-flex">
-    <div class="workout-menu">
+    <div class="workout-menu__show">
       <h2><%= @post_workout.start_time.strftime("%Y-%m-%d") %></h2>
       <% if @post_workout.image.attached? %>
         <%= image_tag @post_workout.image, class: "fitness-image" %>
@@ -15,27 +15,27 @@
         <%= image_tag 'noimage.jpg', class: "no-image" %>
       <% end %>
     </div>
-    <div class="workout-menu">
-      <h2>タイトル</h2>
+    <div class="workout-menu__contents">
+      <h2>Title</h2>
       <p><%= @post_workout.title %></p>
-      <h2>部位</h2>
+      <h2>Site</h2>
       <p><%= @post_workout.site_i18n %></p>
-      <h2>時間</h2>
+      <h2>Time</h2>
       <p><%= @post_workout.time %>分</p>
-      <h2>メモ</h2>
+      <h2>Memo</h2>
       <p><%= @post_workout.memo %></p>
 
-      <h4>筋トレメニュー</h4>
+      <h4>WorkoutMenu</h4>
       <% @post_workout.workout_menus.each do |menu| %>
       <div>
-        <h2>種目</h2>
+        <h2>Event</h2>
         <p><%= menu.title %></p>
-        <h2>重量</h2>
+        <h2>Weight</h2>
         <p><%= menu.weight %>kg</p>
-        <h2>回数</h2>
-        <p><%= menu.reptition_count %>レップ</p>
-        <h2>セット数</h2>
-        <p><%= menu.set_count %>セット</p>
+        <h2>Reptition Count</h2>
+        <p><%= menu.reptition_count %>rep</p>
+        <h2>Set count</h2>
+        <p><%= menu.set_count %>set</p>
         </div>
       <% end %>
 
@@ -52,7 +52,7 @@
         <%= link_to tag.name,search_workout_tag_path(workout_tag_id: tag.id) %>
       <% end %>
       <!-- コメント機能 -->
-      <p>コメント件数:<%= @post_workout.workout_comments.count %></p>
+      <p>Number of comments:<%= @post_workout.workout_comments.count %></p>
       <div id="workout-comments">
         <%= render 'comment-index', post_workout: @post_workout %>
       </div>

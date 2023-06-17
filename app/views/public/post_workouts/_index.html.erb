@@ -1,16 +1,16 @@
 <div class="workout-wrapper d-flex">
   <% post_workouts.each do |post_workout| %>
-    <div class="workout d-flex">
+    <div class="workout-menu__wrapper d-flex">
       <%= link_to post_workout_path(post_workout), class: 'no-decoration' do %>
         <% if post_workout.image.attached? %>
           <%= image_tag post_workout.image, class: "profile-image" %>
         <% else %>
           <%= image_tag 'noimage.jpg', class: "no-image" %>
         <% end %>
-        <div class="workout-menu">
+        <div class="workout-menu__link">
           <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
           <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
-          <p>コメント件数:<%= post_workout.workout_comments.count %></p>
+          <p>Number of comments:<%= post_workout.workout_comments.count %></p>
         </div>
       <% end %>
       <!-- いいね機能 -->         
