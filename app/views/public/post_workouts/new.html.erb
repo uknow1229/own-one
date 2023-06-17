@@ -1,9 +1,7 @@
 <div class="container mt-4">
-  <h2 class="text-center">New Fitness Posts</h2>
-  <div class="row justify-content-center">
-    <div class="col-sm-8">
-      <%= render "form", post_workout: @post_workout, tag_list: @tag_list %>
-    </div>
+  <h2 class="workout__tittle text-center">New Fitness Posts</h2>
+  <div class="workout__form col-sm-8">
+    <%= render "form", post_workout: @post_workout, tag_list: @tag_list %>
   </div>
 </div>
 

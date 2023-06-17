@@ -63,7 +63,7 @@ header .navbar {
 
 .toggle-item {
   display: none;
-  background: #CAD2FE;
+  background: rgba(26, 48, 245, 0.8);
   border-radius: 10%;
   height: 100px;
   position: absolute;
@@ -207,7 +207,7 @@ main {
 
 .no-decoration:hover {
   text-decoration: underline;
-  text-decoration-color: #B0BBF6;
+  text-decoration-color: rgba(26, 48, 245, 0.8);
 }
 
 .enduser-wrapper img{

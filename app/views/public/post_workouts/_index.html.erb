@@ -1,22 +1,20 @@
-<div class="workout-wrapper d-flex">
-  <% post_workouts.each do |post_workout| %>
-    <div class="workout-menu__wrapper d-flex">
-      <%= link_to post_workout_path(post_workout), class: 'no-decoration' do %>
-        <% if post_workout.image.attached? %>
-          <%= image_tag post_workout.image, class: "profile-image" %>
-        <% else %>
-          <%= image_tag 'noimage.jpg', class: "no-image" %>
-        <% end %>
-        <div class="workout-menu__link">
-          <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
-          <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
-          <p>Number of comments:<%= post_workout.workout_comments.count %></p>
-        </div>
+<% post_workouts.each do |post_workout| %>
+  <div class="workout__index d-flex">
+    <%= link_to post_workout_path(post_workout), class: 'no-decoration' do %>
+      <% if post_workout.image.attached? %>
+        <%= image_tag post_workout.image, class: "profile-image" %>
+      <% else %>
+        <%= image_tag 'noimage.jpg', class: "no-image" %>
       <% end %>
-      <!-- いいね機能 -->         
-        <span id="workout_likes_<%= post_workout.id %>">
-          <p><%= render "public/post_workouts/like-btn", post_workout: post_workout %></p>
-        </span>
-    </div>
-  <% end %>
-</div>
+      <div class="workout__index-link">
+        <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
+        <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
+        <p>Number of comments:<%= post_workout.workout_comments.count %></p>
+      </div>
+    <% end %>
+    <!-- いいね機能 -->         
+      <span id="workout_likes_<%= post_workout.id %>">
+        <p><%= render "public/post_workouts/like-btn", post_workout: post_workout %></p>
+      </span>
+  </div>
+<% end %>
