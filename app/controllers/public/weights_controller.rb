@@ -1,11 +1,12 @@
 class Public::WeightsController < ApplicationController
   def index
     @weights = Weight.all
+    @weight = Weight.new
   end
 
   def show
     @weights = Weight.all
-    @weight = Weight.find(params[:id])
+    # @weight = Weight.find(params[:id])
   end
 
   def edit
@@ -21,7 +22,7 @@ class Public::WeightsController < ApplicationController
     @weight.end_user_id = current_end_user.id
 
     if @weight.save
-      redirect_to weight_path(@weight), notice: '登録に成功しました'
+      redirect_to weights_path, notice: '登録に成功しました'
     else
       render :new
     end
