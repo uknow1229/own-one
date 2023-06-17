@@ -1,13 +1,13 @@
-<div class="container workout mt-4">
+<div class="post-workout container workout mt-4">
   <h2>Fitness Post Details</h2>
 
-  <div class="workout__enduser mb-4 d-flex justify-content-center">
+  <div class="post-workout__profile mb-4 d-flex justify-content-center">
     <%= image_tag @post_workout.end_user.get_profile_image(100, 100) %>
     <p><%= link_to @post_workout.end_user.first_name, end_user_path(@post_workout.end_user) %></p>
   </div>
 
-  <div class="workout__wrapper d-flex">
-    <div class="workout__item">
+  <div class="post-workout__content d-flex">
+    <div class="post-workout__details">
       <h2><%= @post_workout.start_time.strftime("%Y-%m-%d") %></h2>
       <% if @post_workout.image.attached? %>
         <%= image_tag @post_workout.image, class: "fitness-image" %>
@@ -15,7 +15,7 @@
         <%= image_tag 'noimage.jpg', class: "no-image" %>
       <% end %>
     </div>
-    <div class="workout__item">
+    <div class="post-workout__details">
       <h2>Title</h2>
       <p><%= @post_workout.title %></p>
       <h2>Site</h2>
@@ -27,7 +27,7 @@
 
       <h4>WorkoutMenu</h4>
       <% @post_workout.workout_menus.each do |menu| %>
-        <div class="workout__item--menu">
+        <div class="post-workout__menu">
           <h2>Event</h2>
           <p><%= menu.title %></p>
           <h2>Weight</h2>
@@ -40,7 +40,7 @@
       <% end %>
 
       <!-- いいね機能 -->
-      <div class="workout__item--like">
+      <div class="post-workout__like">
         <span id="workout__item--like_<%= @post_workout.id %>">
           <p><%= render "public/post_workouts/like-btn", post_workout: @post_workout %></p>
         </span>
@@ -53,15 +53,15 @@
       <% end %>
       <!-- コメント機能 -->
       <p>Number of comments:<%= @post_workout.workout_comments.count %></p>
-      <div id="workout__item--comment">
+      <div id="post-workout__comment">
         <%= render 'comment-index', post_workout: @post_workout %>
       </div>
-      <div id="workout__item--form">
+      <div id="post-workout__form">
         <%= render 'comment-form', post_workout: @post_workout, workout_comment: @workout_comment %>
       </div>
     </div>
   </div>
-  <div class="workout__menu--link">
+  <div class="post-workout__action-links">
     <%= link_to "編集", edit_post_workout_path, :class => "btn btn-success ms-3" %>
     <%= link_to "削除", post_workout_path, method: :delete, data: { confirm: "本当に削除しますか？" } , :class => "btn btn-danger ms-3" %>
   </div>
