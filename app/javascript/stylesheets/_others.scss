@@ -1,0 +1,66 @@
+
+.rounded-image img {
+  border-radius: 50%;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+
+.row.d-flex {
+  justify-content: center;
+}
+
+.container .workout-wrapper {
+  
+  gap: 20px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: rgba(26, 48, 245, 0.8);
+}
+
+.meal-wrapper a:hover {
+  background: #ECF6B0;
+  border-radius: 10px;
+}
+
+.meal-wrapper {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+
+.meal {
+  background-color: rgba(26, 48, 245, 0.8);
+  gap: 20px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.no-decoration {
+  text-decoration: none;
+  color: black;
+}
+
+.no-decoration:hover {
+  text-decoration: underline;
+  text-decoration-color: rgba(26, 48, 245, 0.8);
+}
+
+.enduser-wrapper img{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+
+.table thead tr th{
+  background-color: rgba(26, 48, 245, 0.8);
+}
+
