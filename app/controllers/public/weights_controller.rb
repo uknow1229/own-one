@@ -2,19 +2,42 @@ class Public::WeightsController < ApplicationController
   def index
     @weights = Weight.all
     @weight = Weight.new
-    end_of_month = Date.today.end_of_month
-    start_of_month = end_of_month.beginning_of_month
-    @new_weights = current_end_user.weights.where(date: start_of_month..end_of_month).order(date: :asc)
-    @weights_data = @new_weights.map {|w| {x: w.date.strftime("%Y-%m-%d"), y: w.value}}
+    @target_weight = current_end_user.target_weight
+
+    selected_month = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.today
+    end_of_selected_month = selected_month.end_of_month
+    start_of_selected_month = end_of_selected_month.beginning_of_month
+  
+    @monthly_weights = current_end_user.weights.where(start_time: start_of_selected_month..end_of_selected_month).order(start_time: :asc)
+    date_range = (start_of_selected_month..end_of_selected_month).map { |date| date.strftime("%Y-%m-%d") }
+  
+    weights_data = @monthly_weights.map { |w| { x: w.start_time.strftime("%Y-%m-%d"), y: w.value } }
+    @weights_data = date_range.map do |date|
+      weights_data.find { |data| data[:x] == date } || { x: date, y: 0 }
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
+
 
   def show
     @weights = Weight.all
-    # @weight = Weight.find(params[:id])
+    @weight = Weight.find(params[:id])
   end
 
   def edit
     @weight = Weight.find(params[:id])
+  end
+
+  def update
+    @weight = Weight.find(params[:id])
+    if @weight.update(weight_params) 
+      redirect_to weights_path, notice: '更新に成功しました'
+    else
+      render :edit
+    end
   end
 
   def new
@@ -40,6 +63,6 @@ class Public::WeightsController < ApplicationController
   private
 
   def weight_params
-    params.require(:weight).permit(:value, :date)
+    params.require(:weight).permit(:value, :start_time)
   end
 end
