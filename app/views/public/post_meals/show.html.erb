@@ -1,13 +1,13 @@
 <div class="container meal-wrapper mt-4">
   <h2>Meal Post Details</h2>
 
-  <div class="enduser-wrapper mb-4 d-flex justify-content-center">
+  <div class="post-meal__profile mb-4 d-flex justify-content-center">
       <%= image_tag @post_meal.end_user.get_profile_image(100, 100), class: "profile-image" %>
       <p><%= link_to @post_meal.end_user.first_name, end_user_path(@post_meal.end_user) %></p>
   </div>
 
-  <div class="meal-menu__wrapper d-flex">
-    <div class="meal-menu">
+  <div class="post-meal__content d-flex">
+    <div class="post-meal__details">
       <h2><%= @post_meal.start_time.strftime("%Y-%m-%d") %></h2>
       <% if @post_meal.image.attached? %>
         <%= image_tag @post_meal.image, class: "fitness-image" %>
@@ -15,7 +15,7 @@
         <%= image_tag 'noimage.jpg', class: "no-image" %>
       <% end %>
     </div>
-    <div class="meal-menu">
+    <div class="post-meal__details">
       <h2>Meal Timing</h2>
       <p><%= @post_meal.timing_i18n %></p>
       <h2>Meal Type</h2>
@@ -25,7 +25,7 @@
 
       <h4>Menu</h4>
       <% @post_meal.meal_menus.each do |menu| %>
-      <div>
+      <div class="post-meal__menu">
         <h2>Title</h2>
         <p><%= menu.title %></p>
         <h2>Amount</h2>
@@ -36,7 +36,7 @@
       <% end %>
 
       <!-- いいね機能 -->
-      <div class="meal-likes">       
+      <div class="post-meal__like">       
         <span id="meal_likes_<%= @post_meal.id %>">
           <p><%= render "like-btn", post_meal: @post_meal %></p>
         </span>
@@ -49,15 +49,15 @@
       <% end %>
       <!-- コメント機能 -->
       <p>Number of comments:<%= @post_meal.meal_comments.count %></p>
-        <div id="meal-comments">
+        <div id="post-meal__comment">
           <%= render 'comment-index', post_meal: @post_meal %>
         </div>
-        <div id="comment-form">
+        <div id="post-meal__form">
           <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
         </div>
     </div>
   </div>
-  <div class="meal-menu-link">
+  <div class="post-meal__action-links">
     <%= link_to "編集", edit_post_meal_path, :class => "btn btn-success ms-3" %>
     <%= link_to "削除", post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>
   </div>

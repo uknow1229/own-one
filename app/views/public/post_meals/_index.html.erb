@@ -1,25 +1,20 @@
-<div class="meal-wrapper d-flex">
-  <% post_meals.each do |post_meal| %>
-    <%= link_to post_meal_path(post_meal), class: 'no-decoration' do %>
-      <div class="meal d-flex">
-        <% if post_meal.image.attached? %>
-          <%= image_tag post_meal.image, class: "profile-image" %>
-        <% else %>
-          <%= image_tag 'noimage.jpg', class: "no-image" %>
-        <% end %>
-        <div class="meal-menu">
-        <!-- バリデーションかけたら消す -->
-          <% if post_meal.start_time.present? %>
-            <p><%= post_meal.start_time.strftime("%Y-%m-%d") %></p>
-          <% end %>
-          <p><%= post_meal.memo.truncate(18, omission: "...") %></p>
-          <p>Number of comments:<%= post_meal.meal_comments.count %></p>
-        </div>
+<% post_meals.each do |post_meal| %>
+  <%= link_to post_meal_path(post_meal), class: 'no-decoration' do %>
+    <div class="meal__item d-flex">
+      <% if post_meal.image.attached? %>
+        <%= image_tag post_meal.image, class: "profile-image" %>
+      <% else %>
+        <%= image_tag 'noimage.jpg', class: "no-image" %>
+      <% end %>
+      <div class="meal__details">
+        <p><%= post_meal.start_time.strftime("%Y-%m-%d") %></p>
+        <p><%= post_meal.memo.truncate(18, omission: "...") %></p>
+        <p>Number of comments:<%= post_meal.meal_comments.count %></p>
       </div>
-    <% end %>
-    <!-- いいね機能 -->            
-    <span id="meal_likes_<%= post_meal.id %>">
-      <p><%= render "public/post_meals/like-btn", post_meal: post_meal %></p>
-    </span>
+    </div>
   <% end %>
-</div>
+  <!-- いいね機能 -->            
+  <span id="meal_likes_<%= post_meal.id %>">
+    <p><%= render "public/post_meals/like-btn", post_meal: post_meal %></p>
+  </span>
+<% end %>

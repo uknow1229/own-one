@@ -1,13 +1,15 @@
-<div class="container mt-4">
-  <div class="d-flex">
+<div class="post-meal container mt-4">
+  <div class="post-meal__header d-flex">
     <h2>List of meal posts</h2>
     <%= link_to '投稿する', new_post_meal_path, class: 'btn btn-success ms-4' %>
   </div>
     <!--タグリスト-->
   <% @tag_list.each do |list|%>
-    <i class="fa-sharp fa-solid fa-tag"></i>
-    <%=link_to list.name,search_meal_tag_path(meal_tag_id: list.id) %>
-    <%="(#{list.post_meals.count})" %>
+    <div class="post-meal__tag">
+      <i class="fa-sharp fa-solid fa-tag"></i>
+      <%=link_to list.name,search_meal_tag_path(meal_tag_id: list.id) %>
+      <%="(#{list.post_meals.count})" %>
+    </div>
   <% end %>
   <%= render "index", post_meals: @post_meals %>
 </div>
