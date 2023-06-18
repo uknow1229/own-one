@@ -1,23 +1,21 @@
-<div class="blog-wrapper d-flex">
-    <% post_blogs.each do |post_blog| %>
-    <%= link_to post_blog_path(post_blog), class: 'no-decoration' do %>
-      <div class="blog d-flex">
-        <% if post_blog.image.attached? %>
-          <%= image_tag post_blog.image, class: "profile-image" %>
-        <% else %>
-          <%= image_tag 'noimage.jpg', class: "no-image" %>
-        <% end %>
-        <div class="blog-menu">
-          <p><%= post_blog.title %></p>
-          <p><%= post_blog.start_time.strftime("%Y-%m-%d") %></p>
-          <p><%= post_blog.content.truncate(18, omission: "...") %></p>
-          <p>Number of comments:<%= post_blog.blog_comments.count %></p>
-        </div>
+<% post_blogs.each do |post_blog| %>
+  <%= link_to post_blog_path(post_blog), class: 'no-decoration' do %>
+    <div class="blog__item d-flex">
+      <% if post_blog.image.attached? %>
+        <%= image_tag post_blog.image, class: "profile-image" %>
+      <% else %>
+        <%= image_tag 'noimage.jpg', class: "no-image" %>
+      <% end %>
+      <div class="blog__details">
+        <p><%= post_blog.title %></p>
+        <p><%= post_blog.start_time.strftime("%Y-%m-%d") %></p>
+        <p><%= post_blog.content.truncate(18, omission: "...") %></p>
+        <p>コメント数:<%= post_blog.blog_comments.count %></p>
       </div>
-    <% end %>
-    <!-- いいね機能 -->     
-    <span id="blog_likes_<%= post_blog.id %>">
-      <p><%= render "public/post_blogs/like-btn", post_blog: post_blog %></p>
-    </span>
+    </div>
   <% end %>
-</div>
+  <!-- いいね機能 -->     
+  <span id="blog_likes_<%= post_blog.id %>">
+    <p><%= render "public/post_blogs/like-btn", post_blog: post_blog %></p>
+  </span>
+<% end %>

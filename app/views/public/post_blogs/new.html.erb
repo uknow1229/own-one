@@ -1,6 +1,8 @@
-<div class="container mt-4">
-  <div class="row">
-    <h2>New Blog Posts</h2>
-    <%= render "form", post_blog: @post_blog %>
+<div class="post-blog container mt-4">
+  <h2 class="post-blog__tittle text-center">New Blog Posts</h2>
+  <div class="row justify-content-center">
+    <div class="post-blog__form col-sm-8">
+      <%= render "form", post_blog: @post_blog %>
+    </div>
   </div>
 </div>

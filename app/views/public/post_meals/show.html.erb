@@ -1,4 +1,4 @@
-<div class="container meal-wrapper mt-4">
+<div class="post-meal container mt-4">
   <h2>Meal Post Details</h2>
 
   <div class="post-meal__profile mb-4 d-flex justify-content-center">
@@ -8,7 +8,7 @@
 
   <div class="post-meal__content d-flex">
     <div class="post-meal__details">
-      <h2><%= @post_meal.start_time.strftime("%Y-%m-%d") %></h2>
+      <h4><%= @post_meal.start_time.strftime("%Y-%m-%d") %></h4>
       <% if @post_meal.image.attached? %>
         <%= image_tag @post_meal.image, class: "fitness-image" %>
       <% else %>
@@ -16,23 +16,25 @@
       <% end %>
     </div>
     <div class="post-meal__details">
-      <h2>Meal Timing</h2>
+      <h4>Meal Timing</h4>
       <p><%= @post_meal.timing_i18n %></p>
-      <h2>Meal Type</h2>
+      <h4>Meal Type</h4>
       <p><%= @post_meal.meal_type_i18n %></p>
-      <h2>Memo</h2>
+      <h4>Memo</h4>
       <p><%= @post_meal.memo %></p>
 
-      <h4>Menu</h4>
-      <% @post_meal.meal_menus.each do |menu| %>
-      <div class="post-meal__menu">
-        <h2>Title</h2>
-        <p><%= menu.title %></p>
-        <h2>Amount</h2>
-        <p><%= menu.quantity %>g</p>
-        <h2>Calories</h2>
-        <p><%= menu.calorie %>カロリー</p>
-        </div>
+      <% if @post_meal.meal_menus.any? %>
+        <h4>Menu</h4>
+        <% @post_meal.meal_menus.each do |menu| %>
+          <div class="post-meal__menu">
+            <h4>Title</h4>
+            <p><%= menu.title %></p>
+            <h4>Amount</h4>
+            <p><%= menu.quantity %>g</p>
+            <h4>Calories</h4>
+            <p><%= menu.calorie %>カロリー</p>
+          </div>
+        <% end %>
       <% end %>
 
       <!-- いいね機能 -->
@@ -48,7 +50,7 @@
         <%= link_to tag.name,search_meal_tag_path(meal_tag_id: tag.id) %>
       <% end %>
       <!-- コメント機能 -->
-      <p>Number of comments:<%= @post_meal.meal_comments.count %></p>
+      <p>コメント数:<%= @post_meal.meal_comments.count %></p>
         <div id="post-meal__comment">
           <%= render 'comment-index', post_meal: @post_meal %>
         </div>
@@ -58,7 +60,11 @@
     </div>
   </div>
   <div class="post-meal__action-links">
-    <%= link_to "編集", edit_post_meal_path, :class => "btn btn-success ms-3" %>
-    <%= link_to "削除", post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>
+    <%= link_to edit_post_meal_path, :class => "btn btn-success ms-3" do %>
+      <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+    <% end %>
+    <%= link_to post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
   </div>
 </div>

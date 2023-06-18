@@ -9,7 +9,7 @@
       <div class="meal__details">
         <p><%= post_meal.start_time.strftime("%Y-%m-%d") %></p>
         <p><%= post_meal.memo.truncate(18, omission: "...") %></p>
-        <p>Number of comments:<%= post_meal.meal_comments.count %></p>
+        <p>コメント数:<%= post_meal.meal_comments.count %></p>
       </div>
     </div>
   <% end %>

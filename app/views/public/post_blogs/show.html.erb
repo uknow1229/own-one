@@ -1,27 +1,27 @@
-<div class="container blog-wrapper mt-4">
+<div class="post-blog container blog-wrapper mt-4">
   <h2>Blog Post Details</h2>
 
-  <div class="enduser-wrapper mb-4 d-flex justify-content-center">
+  <div class="post-blog__profile mb-4 d-flex justify-content-center">
     <%= image_tag @post_blog.end_user.get_profile_image(50, 50) %>
     <p><%= link_to @post_blog.end_user.first_name, end_user_path(@post_blog.end_user) %></p>
   </div>
 
-  <div class="blog d-flex">
-    <div class="blog-menu">
-      <h2><%= @post_blog.start_time.strftime("%Y-%m-%d") %></h2>
+  <div class="post-blog__content d-flex">
+    <div class="post-blog__details">
+      <h4><%= @post_blog.start_time.strftime("%Y-%m-%d") %></h4>
       <% if @post_blog.image.attached? %>
         <%= image_tag @post_blog.image, class: "fitness-image" %>
       <% else %>
         <%= image_tag 'noimage.jpg', class: "no-image" %>
       <% end %>
     </div>
-    <div class="blog-menu">
-      <h2>Title</h2>
+    <div class="post-blog__details">
+      <h4>Title</h4>
       <p><%= @post_blog.title %></p>
-      <h2>Contents</h2>
+      <h4>Contents</h4>
       <p><%= @post_blog.content %></p>
       <!-- いいね機能 -->
-      <div class="workout-likes">
+      <div class="post-blog__like">
         <span id="blog_likes_<%= @post_blog.id %>">
           <%= render "like-btn", post_blog: @post_blog %>
         </span>
@@ -33,7 +33,7 @@
         <%= link_to tag.name,search_blog_tag_path(blog_tag_id: tag.id) %>
       <% end %>
       <!-- コメント機能 -->
-      <p>Number of comments:<%= @post_blog.blog_comments.count %></p>
+      <p>コメント数:<%= @post_blog.blog_comments.count %></p>
       <div id="blog-comments">
         <%= render 'comment-index', post_blog: @post_blog %>
       </div>
@@ -42,8 +42,12 @@
       </div>
     </div>
   </div>
-  <div class="blog-menu-link">
-    <%= link_to "編集", edit_post_blog_path, :class => "btn btn-success ms-3" %>
-    <%= link_to "削除", post_blog_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>
+  <div class="post-blog__action-links">
+    <%= link_to edit_post_blog_path, :class => "btn btn-success ms-3" do %>
+      <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+    <% end %>
+    <%= link_to post_blog_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
   </div>
 </div>

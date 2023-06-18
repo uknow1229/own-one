@@ -1,13 +1,15 @@
-<div class="container mt-4">
-  <div class="d-flex">
+<div class="post-blog container mt-4">
+  <div class="post-blog__header d-flex">
     <h2>List of blog posts</h2>
     <%= link_to '投稿する', new_post_blog_path, class: 'btn btn-success ms-4' %>
   </div>
     <!--タグリスト-->
   <% @tag_list.each do |list|%>
-    <i class="fa-sharp fa-solid fa-tag"></i>
-    <%=link_to list.name,search_blog_tag_path(blog_tag_id: list.id) %>
-    <%="(#{list.post_blogs.count})" %>
+    <div class="post-blog__tag">
+      <i class="fa-sharp fa-solid fa-tag"></i>
+      <%=link_to list.name,search_blog_tag_path(blog_tag_id: list.id) %>
+      <%="(#{list.post_blogs.count})" %>
+    </div>
   <% end %>
   <%= render "index", post_blogs: @post_blogs %>
 </div>

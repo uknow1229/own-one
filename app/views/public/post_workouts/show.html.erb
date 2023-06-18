@@ -1,4 +1,4 @@
-<div class="post-workout container workout mt-4">
+<div class="post-workout container mt-4">
   <h2>Fitness Post Details</h2>
 
   <div class="post-workout__profile mb-4 d-flex justify-content-center">
@@ -8,7 +8,7 @@
 
   <div class="post-workout__content d-flex">
     <div class="post-workout__details">
-      <h2><%= @post_workout.start_time.strftime("%Y-%m-%d") %></h2>
+      <h4><%= @post_workout.start_time.strftime("%Y-%m-%d") %></h4>
       <% if @post_workout.image.attached? %>
         <%= image_tag @post_workout.image, class: "fitness-image" %>
       <% else %>
@@ -16,27 +16,29 @@
       <% end %>
     </div>
     <div class="post-workout__details">
-      <h2>Title</h2>
+      <h4>Title</h4>
       <p><%= @post_workout.title %></p>
-      <h2>Site</h2>
+      <h4>Site</h4>
       <p><%= @post_workout.site_i18n %></p>
-      <h2>Time</h2>
+      <h4>Time</h4>
       <p><%= @post_workout.time %>分</p>
-      <h2>Memo</h2>
+      <h4>Memo</h4>
       <p><%= @post_workout.memo %></p>
 
-      <h4>WorkoutMenu</h4>
-      <% @post_workout.workout_menus.each do |menu| %>
-        <div class="post-workout__menu">
-          <h2>Event</h2>
-          <p><%= menu.title %></p>
-          <h2>Weight</h2>
-          <p><%= menu.weight %>kg</p>
-          <h2>Reptition Count</h2>
-          <p><%= menu.reptition_count %>rep</p>
-          <h2>Set count</h2>
-          <p><%= menu.set_count %>set</p>
-        </div>
+      <% if @post_workout.workout_menus.any? %>
+        <h4>WorkoutMenu</h4>
+        <% @post_workout.workout_menus.each do |menu| %>
+          <div class="post-workout__menu">
+            <h4>Event</h4>
+            <p><%= menu.title %></p>
+            <h4>Weight</h4>
+            <p><%= menu.weight %>kg</p>
+            <h4>Reptition Count</h4>
+            <p><%= menu.reptition_count %>rep</p>
+            <h4>Set count</h4>
+            <p><%= menu.set_count %>set</p>
+          </div>
+        <% end %>
       <% end %>
 
       <!-- いいね機能 -->
@@ -52,7 +54,7 @@
         <%= link_to tag.name,search_workout_tag_path(workout_tag_id: tag.id) %>
       <% end %>
       <!-- コメント機能 -->
-      <p>Number of comments:<%= @post_workout.workout_comments.count %></p>
+      <p>コメント数:<%= @post_workout.workout_comments.count %></p>
       <div id="post-workout__comment">
         <%= render 'comment-index', post_workout: @post_workout %>
       </div>
@@ -62,7 +64,11 @@
     </div>
   </div>
   <div class="post-workout__action-links">
-    <%= link_to "編集", edit_post_workout_path, :class => "btn btn-success ms-3" %>
-    <%= link_to "削除", post_workout_path, method: :delete, data: { confirm: "本当に削除しますか？" } , :class => "btn btn-danger ms-3" %>
+    <%= link_to edit_post_workout_path, :class => "btn btn-success ms-3" do %>
+      <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+    <% end %>
+    <%= link_to post_workout_path, method: :delete, data: { confirm: "本当に削除しますか？" } , :class => "btn btn-danger ms-3" do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
   </div>
 </div>
