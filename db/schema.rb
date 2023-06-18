@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_14_134228) do
+ActiveRecord::Schema.define(version: 2023_06_18_103009) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -233,6 +233,15 @@ ActiveRecord::Schema.define(version: 2023_06_14_134228) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "weights", force: :cascade do |t|
+    t.float "value"
+    t.datetime "start_time"
+    t.integer "end_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_weights_on_end_user_id"
+  end
+
   create_table "workout_comments", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.integer "post_workout_id", null: false
@@ -291,6 +300,7 @@ ActiveRecord::Schema.define(version: 2023_06_14_134228) do
   add_foreign_key "post_workout_tags", "post_workouts"
   add_foreign_key "post_workout_tags", "workout_tags"
   add_foreign_key "post_workouts", "end_users"
+  add_foreign_key "weights", "end_users"
   add_foreign_key "workout_comments", "end_users"
   add_foreign_key "workout_comments", "post_workouts"
   add_foreign_key "workout_likes", "end_users"
