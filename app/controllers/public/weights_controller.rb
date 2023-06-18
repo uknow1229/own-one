@@ -2,6 +2,10 @@ class Public::WeightsController < ApplicationController
   def index
     @weights = Weight.all
     @weight = Weight.new
+    end_of_month = Date.today.end_of_month
+    start_of_month = end_of_month.beginning_of_month
+    @new_weights = current_end_user.weights.where(date: start_of_month..end_of_month).order(date: :asc)
+    @weights_data = @new_weights.map {|w| {x: w.date.strftime("%Y-%m-%d"), y: w.value}}
   end
 
   def show

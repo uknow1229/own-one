@@ -9,3 +9,36 @@
 <%= render "public/weights/index", weights: @weights %>
 
 
+<div>
+  <canvas id="myChart"></canvas>
+  <script>
+  $(document).on('turbolinks:load', function() {
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: 'Weight',
+        data: <%= @weights_data.to_json.html_safe %>,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          type: 'time',
+          time: {
+            unit: 'day'
+          }
+        },
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  });
+  </script>
+</div>
