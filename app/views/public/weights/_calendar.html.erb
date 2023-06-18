@@ -1,0 +1,9 @@
+<%= month_calendar do |date| %>
+  <%= date.day %>
+  <% weight = weights.find { |w| w.start_time.to_date == date } %>
+  <% if weight %>
+    <%= link_to weight_path(weight) do %>
+      <p><%= weight.value %></p>
+    <% end %>
+  <% end %>
+<% end %>

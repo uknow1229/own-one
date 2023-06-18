@@ -28,6 +28,8 @@ class EndUser < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  has_many :weights, dependent: :destroy
+
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
   enum activelevel: { level1: 0, level2: 1, level3: 2 }
 

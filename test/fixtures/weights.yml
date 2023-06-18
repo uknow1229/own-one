@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 1.5
+  date: 2023-06-17
+  end_user: one
+
+two:
+  value: 1.5
+  date: 2023-06-17
+  end_user: two
