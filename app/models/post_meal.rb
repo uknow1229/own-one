@@ -22,14 +22,6 @@ class PostMeal < ApplicationRecord
     meal_likes.exists?(end_user_id: end_user.id)
   end
 
-  def get_image(width, height)
-    if image.attached?
-      image.variant(resize_to_limit: [100, 100]).processed
-    else
-      'noimage.jpg'
-    end
-  end
-
   def self.ransackable_attributes(auth_object = nil)
     [ "memo"]
   end

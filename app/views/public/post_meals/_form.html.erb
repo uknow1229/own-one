@@ -25,7 +25,7 @@
     <div class="post-meal__menu">
       <div class="post-meal__menu-list" id="post-meal-menus">
         <%= f.fields_for :meal_menus do |menu_form| %>
-          <div class="post-meal__menu-detail" style="display: <%= 'none' if post_meal.new_record? %>;">
+          <div class="post-meal__menu-detail mt-4 gap-2" style="display: <%= 'none' if post_meal.new_record? %>;">
             <label>Menu</label>
             <%= menu_form.text_field :title, class: 'form-control' %>
             <label>Amount(g)</label>

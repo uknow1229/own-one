@@ -1,20 +1,28 @@
-<% post_meals.each do |post_meal| %>
-  <div class="meal__item d-flex">
-    <%= link_to post_meal_path(post_meal), class: 'no-decoration' do %>
-      <% if post_meal.image.attached? %>
-        <%= image_tag post_meal.image, class: "profile-image" %>
-      <% else %>
-        <%= image_tag 'noimage.jpg', class: "no-image" %>
-      <% end %>
-      <div class="meal__details">
+<div class="meal-index d-flex flex-wrap justify-content-between">
+  <% post_meals.each do |post_meal| %>
+
+    <div class="meal-index__wrapper d-flex">
+      <div class="meal-index__image me-4 col">
+        <%= link_to post_meal_path(post_meal), class: 'no-decoration' do %>
+          <% if post_meal.image.attached? %>
+            <%= image_tag post_meal.image, class: "profile-image" %>
+          <% else %>
+            <%= image_tag 'noimage.jpg', class: "no-image" %>
+          <% end %>
+        <% end %>
+        <p><%= link_to post_meal.end_user.first_name, end_user_path(post_meal.end_user) %></p>
+      </div>
+
+      <div class="meal-index__details col-sm-6">
         <p><%= post_meal.start_time.strftime("%Y-%m-%d") %></p>
         <p><%= post_meal.memo.truncate(18, omission: "...") %></p>
         <p>コメント数:<%= post_meal.meal_comments.count %></p>
-      </div> 
-    <% end %>
-    <!-- いいね機能 -->            
-    <span id="meal_likes_<%= post_meal.id %>">
-      <p><%= render "public/post_meals/like-btn", post_meal: post_meal %></p>
-    </span>
-  </div>
-<% end %>
+        
+        <!-- いいね機能 -->            
+        <span id="meal_likes_<%= post_meal.id %>">
+          <p><%= render "public/post_meals/like-btn", post_meal: post_meal %></p>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>

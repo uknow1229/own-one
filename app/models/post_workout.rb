@@ -21,14 +21,6 @@ class PostWorkout < ApplicationRecord
     workout_likes.exists?(end_user_id: end_user.id)
   end
 
-  def get_image(width, height)
-    if image.attached?
-      image.variant(resize_to_limit: [100, 100]).processed
-    else
-      'noimage.jpg'
-    end
-  end
-
   def get_profile_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.jpg')

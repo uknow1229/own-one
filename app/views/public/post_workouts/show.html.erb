@@ -7,15 +7,11 @@
     </div>
 
     <div class="post-workout__content d-flex">
-      <div class="post-workout__details me-4">
+      <div class="post-workout__details me-5">
         <div class="post-workout__image">
-          <% if @post_workout.image.attached? %>
-            <%= image_tag @post_workout.image, class: "fitness-image" %>
-          <% else %>
-            <%= image_tag 'noimage.jpg', class: "no-image" %>
-          <% end %>
+          <%= image_tag get_image(@post_workout, 300, 300) %>
         </div>
-        <div class="post-workout__action-links">
+        <div class="post-workout__action-links mt-2">
           <%= link_to edit_post_workout_path, :class => "btn" do %>
             <i class="fa-sharp fa-solid fa-pen-to-square"></i>
           <% end %>
@@ -33,6 +29,7 @@
         <p><%= @post_workout.time %>分</p>
         <h4>Memo</h4>
         <p><%= @post_workout.memo %></p>
+
         <% if @post_workout.workout_menus.any? %>
           <h4>WorkoutMenu</h4>
           <table class="table text-center">

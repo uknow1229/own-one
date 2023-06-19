@@ -1,11 +1,11 @@
 <%= form_with model: post_workout , local: true do |f| %>
   <div class="post-workout">
-      <label>Image</label>
-      <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
-      <label>Date</label>
-      <%= f.date_field :start_time, class: 'form-control' %>
-      <label>Title</label>
-      <%= f.text_field :title, class: 'form-control' %>
+    <label>Image</label>
+    <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
+    <label>Date</label>
+    <%= f.date_field :start_time, class: 'form-control' %>
+    <label>Title</label>
+    <%= f.text_field :title, class: 'form-control' %>
     <div class="post-workout__site">
       <label>Site</label><br>
       <% PostWorkout.sites.each do |key, value| %>
@@ -13,11 +13,11 @@
         <%= f.label "site_#{key}", t("activerecord.attributes.post_workout.sites.#{key}") %>
       <% end %>
     </div>
-      <label>Time</label>
-      <%= f.number_field :time, class: 'form-control' %>
-      <label>Memo</label>
-      <%= f.text_field :memo, class: 'form-control' %>
-      
+    <label>Time</label>
+    <%= f.number_field :time, class: 'form-control' %>
+    <label>Memo</label>
+    <%= f.text_field :memo, class: 'form-control' %>
+
     <!-- workout_menus form -->
     <div class="post-workout__menu">
       <div class="post-workout__menu-list mt-3" id="post-workout-menus">

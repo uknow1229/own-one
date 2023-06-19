@@ -1,15 +1,19 @@
 <div class="post-blog container mt-4">
-  <div class="post-blog__header d-flex">
-    <h2>List of blog posts</h2>
-    <%= link_to '投稿する', new_post_blog_path, class: 'btn btn-success ms-4' %>
-  </div>
-    <!--タグリスト-->
-  <% @tag_list.each do |list|%>
-    <div class="post-blog__tag">
-      <i class="fa-sharp fa-solid fa-tag"></i>
-      <%=link_to list.name,search_blog_tag_path(blog_tag_id: list.id) %>
-      <%="(#{list.post_blogs.count})" %>
+  <div class="row justify-content-center">
+    <div class="post-blog__index col-sm-8">
+      <div class="post-blog__header d-flex">
+        <h2>List of blog posts</h2>
+        <p><%= link_to '投稿する', new_post_blog_path, class: 'btn btn-success ms-4' %></p>
+      </div>
+        <!--タグリスト-->
+      <div class="post-blog__tag d-flex">
+        <% @tag_list.each do |list|%>
+          <p><i class="fa-sharp fa-solid fa-tag"></i></p>
+          <%=link_to list.name,search_blog_tag_path(blog_tag_id: list.id) %>
+          <%="(#{list.post_blogs.count})" %>
+        <% end %>
+      </div>
+      <%= render "index", post_blogs: @post_blogs %>
     </div>
-  <% end %>
-  <%= render "index", post_blogs: @post_blogs %>
+  </div>
 </div>

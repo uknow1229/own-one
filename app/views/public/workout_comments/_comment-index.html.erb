@@ -1,14 +1,20 @@
-<% post_workout.workout_comments.each do |workout_comment| %>
-  <div class="post-workout__comment">
-    <%= image_tag workout_comment.end_user.get_profile_image(50,50)%>
-    <%= workout_comment.end_user.first_name %>
-    <%= workout_comment.comment %>
-    <%= workout_comment.created_at.strftime('%Y/%m/%d') %>
-    <% if workout_comment.end_user == current_end_user %>
-      <%= link_to post_workout_workout_comment_path(workout_comment.post_workout, workout_comment),
-        method: :delete, data: { confirm: "本当に削除しますか？" }, :class => "btn btn-danger ms-3" ,remote: true do %>
-        <i class="fa-sharp fa-solid fa-minus"></i>
-      <% end %>
+<table class="table table-borderless">
+  <tbody>
+    <% post_workout.workout_comments.each do |workout_comment| %>
+      <tr>
+        <td><%= image_tag workout_comment.end_user.get_profile_image(50,50)%></td>
+        <td><%= workout_comment.end_user.first_name %></td>
+        <td><%= workout_comment.comment %></td>
+        <td><%= workout_comment.created_at.strftime('%Y/%m/%d') %></td>
+        <% if workout_comment.end_user == current_end_user %>
+          <td>
+            <%= link_to post_workout_workout_comment_path(workout_comment.post_workout, workout_comment), method: :delete, data: { confirm: "本当に削除しますか？" }, :class => "btn btn-sm ms-3" ,remote: true do %>
+              <i class="fa-sharp fa-solid fa-minus"></i>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
     <% end %>
-  </div>
-<% end %>
+  </tbody>
+</table>
+

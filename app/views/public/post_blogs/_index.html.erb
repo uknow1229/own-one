@@ -1,21 +1,29 @@
-<% post_blogs.each do |post_blog| %>
-  <%= link_to post_blog_path(post_blog), class: 'no-decoration' do %>
-    <div class="blog__item d-flex">
-      <% if post_blog.image.attached? %>
-        <%= image_tag post_blog.image, class: "profile-image" %>
-      <% else %>
-        <%= image_tag 'noimage.jpg', class: "no-image" %>
+<div class="blog-index d-flex flex-wrap justify-content-between">
+  <% post_blogs.each do |post_blog| %>
+
+  <div class="blog-index__wrapper d-flex">
+    <div class="blog-index__image me-4 col">
+      <%= link_to post_blog_path(post_blog), class: 'no-decoration' do %>
+        <% if post_blog.image.attached? %>
+          <%= image_tag post_blog.image, class: "profile-image" %>
+        <% else %>
+          <%= image_tag 'noimage.jpg', class: "no-image" %>
+        <% end %>
       <% end %>
-      <div class="blog__details">
+      <p><%= link_to post_blog.end_user.first_name, end_user_path(post_blog.end_user) %></p>
+    </div>
+
+      <div class="blog-index__details col-sm-6">
         <p><%= post_blog.title %></p>
         <p><%= post_blog.start_time.strftime("%Y-%m-%d") %></p>
         <p><%= post_blog.content.truncate(18, omission: "...") %></p>
         <p>コメント数:<%= post_blog.blog_comments.count %></p>
+
+        <!-- いいね機能 -->     
+        <span id="blog_likes_<%= post_blog.id %>">
+          <p><%= render "public/post_blogs/like-btn", post_blog: post_blog %></p>
+        </span>
       </div>
     </div>
   <% end %>
-  <!-- いいね機能 -->     
-  <span id="blog_likes_<%= post_blog.id %>">
-    <p><%= render "public/post_blogs/like-btn", post_blog: post_blog %></p>
-  </span>
-<% end %>
+</div>
