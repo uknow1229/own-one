@@ -1,74 +1,86 @@
-<div class="post-workout container mt-4">
-  <h2>Fitness Post Details</h2>
+<div class="post-workout container mt-4 mb-4">
+  <h2 class="text-center">Fitness Post Details</h2>
 
-  <div class="post-workout__profile mb-4 d-flex justify-content-center">
-    <%= image_tag @post_workout.end_user.get_profile_image(100, 100) %>
-    <p><%= link_to @post_workout.end_user.first_name, end_user_path(@post_workout.end_user) %></p>
-  </div>
-
-  <div class="post-workout__content d-flex">
-    <div class="post-workout__details">
-      <h4><%= @post_workout.start_time.strftime("%Y-%m-%d") %></h4>
-      <% if @post_workout.image.attached? %>
-        <%= image_tag @post_workout.image, class: "fitness-image" %>
-      <% else %>
-        <%= image_tag 'noimage.jpg', class: "no-image" %>
-      <% end %>
+  <div class="post-workout__wrapper mx-auto col-sm-8">
+    <div class="post-workout__profile">
+      <%= render "public/post_workouts/profile", post_workout: @post_workout %>
     </div>
-    <div class="post-workout__details">
-      <h4>Title</h4>
-      <p><%= @post_workout.title %></p>
-      <h4>Site</h4>
-      <p><%= @post_workout.site_i18n %></p>
-      <h4>Time</h4>
-      <p><%= @post_workout.time %>分</p>
-      <h4>Memo</h4>
-      <p><%= @post_workout.memo %></p>
 
-      <% if @post_workout.workout_menus.any? %>
-        <h4>WorkoutMenu</h4>
-        <% @post_workout.workout_menus.each do |menu| %>
-          <div class="post-workout__menu">
-            <h4>Event</h4>
-            <p><%= menu.title %></p>
-            <h4>Weight</h4>
-            <p><%= menu.weight %>kg</p>
-            <h4>Reptition Count</h4>
-            <p><%= menu.reptition_count %>rep</p>
-            <h4>Set count</h4>
-            <p><%= menu.set_count %>set</p>
-          </div>
+    <div class="post-workout__content d-flex">
+      <div class="post-workout__details me-4">
+        <div class="post-workout__image">
+          <% if @post_workout.image.attached? %>
+            <%= image_tag @post_workout.image, class: "fitness-image" %>
+          <% else %>
+            <%= image_tag 'noimage.jpg', class: "no-image" %>
+          <% end %>
+        </div>
+        <div class="post-workout__action-links">
+          <%= link_to edit_post_workout_path, :class => "btn" do %>
+            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+          <% end %>
+          <%= link_to post_workout_path, method: :delete, data: { confirm: "本当に削除しますか？" } , :class => "btn ms-3" do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="post-workout__details">
+        <h4>Title</h4>
+        <p><%= @post_workout.title %></p>
+        <h4>Site</h4>
+        <p><%= @post_workout.site_i18n %></p>
+        <h4>Time</h4>
+        <p><%= @post_workout.time %>分</p>
+        <h4>Memo</h4>
+        <p><%= @post_workout.memo %></p>
+        <% if @post_workout.workout_menus.any? %>
+          <h4>WorkoutMenu</h4>
+          <table class="table text-center">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Weight</th>
+                <th>Reptition Count</th>
+                <th>Set Count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @post_workout.workout_menus.each do |menu| %>
+                <tr>
+                  <td><%= menu.title %></td>
+                  <td><%= menu.weight %>kg</td>
+                  <td><%= menu.reptition_count %>rep</td>
+                  <td><%= menu.set_count %>set</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         <% end %>
-      <% end %>
-
-      <!-- いいね機能 -->
-      <div class="post-workout__like">
-        <span id="workout__item--like_<%= @post_workout.id %>">
-          <p><%= render "public/post_workouts/like-btn", post_workout: @post_workout %></p>
-        </span>
-        <%= link_to "いいね", workout_likes_end_user_path %>
-      </div>
-      <!-- タグ機能 -->
-      <% @post_workout_tags.each do |tag| %>
-      <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to tag.name,search_workout_tag_path(workout_tag_id: tag.id) %>
-      <% end %>
-      <!-- コメント機能 -->
-      <p>コメント数:<%= @post_workout.workout_comments.count %></p>
-      <div id="post-workout__comment">
-        <%= render 'comment-index', post_workout: @post_workout %>
-      </div>
-      <div id="post-workout__form">
-        <%= render 'comment-form', post_workout: @post_workout, workout_comment: @workout_comment %>
+        <!-- いいね機能 -->
+        <div class="post-workout__like d-flex gap-2">
+          <span id="workout-like_<%= @post_workout.id %>">
+            <p><%= render "public/post_workouts/like-btn", post_workout: @post_workout %></p>
+          </span>
+          <p><%= link_to "いいね", workout_likes_end_user_path %></p>
+        </div>
+        <!-- タグ機能 -->
+        <div class="post-workout__tag mb-4">
+          <% @post_workout_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+            <%= link_to tag.name,search_workout_tag_path(workout_tag_id: tag.id) %>
+          <% end %>
+        </div>
+        <!-- コメント機能 -->
+        <div class="post-workout__comment-section">
+          <p>コメント数:<%= @post_workout.workout_comments.count %></p>
+          <div class="post-workout__comment-index mb-4" id="post-workout-comment">
+            <%= render 'comment-index', post_workout: @post_workout %>
+          </div>
+          <div class="post-workout__comment-form">
+            <%= render 'comment-form', post_workout: @post_workout, workout_comment: @workout_comment %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="post-workout__action-links">
-    <%= link_to edit_post_workout_path, :class => "btn btn-success ms-3" do %>
-      <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-    <% end %>
-    <%= link_to post_workout_path, method: :delete, data: { confirm: "本当に削除しますか？" } , :class => "btn btn-danger ms-3" do %>
-      <i class="fa fa-trash"></i>
-    <% end %>
   </div>
 </div>

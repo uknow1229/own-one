@@ -1,20 +1,27 @@
-<% post_workouts.each do |post_workout| %>
-  <div class="workout__item d-flex">
+<div class="workout-index">
+  <% post_workouts.each do |post_workout| %>
+  
     <%= link_to post_workout_path(post_workout), class: 'no-decoration' do %>
-      <% if post_workout.image.attached? %>
-        <%= image_tag post_workout.image, class: "profile-image" %>
-      <% else %>
-        <%= image_tag 'noimage.jpg', class: "no-image" %>
-      <% end %>
-      <div class="workout__details">
-        <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
-        <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
-        <p>コメント数:<%= post_workout.workout_comments.count %></p>
+      <div class="workout-index__wrapper d-flex">
+        <div class="workout-index__image me-4">
+          <% if post_workout.image.attached? %>
+            <%= image_tag post_workout.image, class: "profile-image" %>
+          <% else %>
+            <%= image_tag 'noimage.jpg', class: "no-image" %>
+          <% end %>
+          <p><%= link_to post_workout.end_user.first_name, end_user_path(post_workout.end_user) %></p>
+        </div>
+
+        <div class="workout-index__details">
+          <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
+          <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
+          <p>コメント数:<%= post_workout.workout_comments.count %></p>
+          <!-- いいね機能 -->  
+          <span id="workout-like_<%= post_workout.id %>">
+            <p><%= render "public/post_workouts/like-btn", post_workout: post_workout %></p>
+          </span>
+        </div>
       </div>
     <% end %>
-    <!-- いいね機能 -->         
-    <span id="workout__item--like_<%= post_workout.id %>">
-      <p><%= render "public/post_workouts/like-btn", post_workout: post_workout %></p>
-    </span>
-  </div>
 <% end %>
+</div>

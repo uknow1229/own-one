@@ -1,10 +1,10 @@
 <div class="user-page container mt-4">
   <div class="d-flex">
-    <div class="user-page__profile">
+    <div class="user-page__profile col-sm-4">
       <h1>User Page</h1>
       <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
     </div>
-    <div class="user-profile__calendar">
+    <div class="user-profile__calendar col-sm-8">
       <h2>Posting Calender</h2>
         <div id="calendar">
           <%= render 'public/end_users/calendar', events: @events %>
