@@ -1,27 +1,29 @@
-<div class="container mt-4">
+<div class="user-followers container mt-4">
   <% if @end_user.follower_end_users.present? %>
-    <h2>Followed by</h2>
-    <% @end_user.follower_end_users.each do |end_user| %>
-      <%= image_tag end_user.get_profile_image(100, 100) %>
-      <h2>User Name</h2>
-      <p><%= link_to end_user.first_name, end_user_path(end_user) %></p>
-      <h6>Following</h6>
-      <%= link_to followeds_end_user_path(end_user) do %>
-        <%= end_user.followers.count %>
-      <% end %>
-      <h6>Followed</h6>
-      <%= link_to followers_end_user_path(end_user) do %>
-        <%= end_user.followeds.count %>
-      <% end %>
-      <% if current_end_user != end_user %>
-        <% if current_end_user.following?(end_user)%>
-          <%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-danger" %>
-        <% else %>
-          <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-success" %>
+    <h2>Followers List</h2>
+    <div class="user-followers__wrapper d-flex align-items-center mt-4 gap-2">
+      <% @end_user.follower_end_users.each do |end_user| %>
+        <%= image_tag end_user.get_profile_image(50, 50) %>
+        <p>User Name</p>
+        <p><%= link_to end_user.first_name, end_user_path(end_user) %></p>
+        <p>Following</p>
+        <p><%= link_to followeds_end_user_path(end_user) do %>
+        <p><%= end_user.followers.count %></p>
+        <% end %></p>
+        <p>Followed</p>
+        <p><%= link_to followers_end_user_path(end_user) do %>
+        <p><%= end_user.followeds.count %></p>
+        <% end %></p>
+        <% if current_end_user != end_user %>
+          <% if current_end_user.following?(end_user)%>
+            <p><%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-sm" %></p>
+          <% else %>
+            <p><%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-sm" %></p>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
   <% else %>
-    <h2>No users are following you.</h2>
+    <h4>フォローされているユーザーはいません</h4>
   <% end %>
 </div>

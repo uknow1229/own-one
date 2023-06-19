@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-md-4">
+<div class="user-profile row">
+  <div class="user-profile__details col-md-4">
     <div class="card" style="width: 18rem;">
       <%= image_tag end_user.get_profile_image(300, 300) %>
       <div class="card-body ">
@@ -35,8 +35,8 @@
       </div>
     </div>
   </div>
-  <div class="col-md-8">
-  <h4 class="fw-bold">Posting Calender</h4>
+  <div class="user-profile__calendar col-md-8">
+    <h4 class="fw-bold">Posting Calender</h4>
     <div id="calendar">
       <%= render 'public/end_users/calendar', events: events %>
     </div>

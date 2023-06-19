@@ -1,49 +1,39 @@
-<div class="container mt-4">
-  <h1>Plofile Details</h1>
-  <p>※This page will not be displayed to other users</p>
-  <div>
-    <div class="row">
-      <div>
-        <div>
-          <%= image_tag current_end_user.get_profile_image(100,100) %>
-        </div>
-        <div>
-          <h2>User Name</h2>
-          <p><%= @end_user.full_name unless @end_user.target_calorie.blank? %></p>
-        </div>
-        <div>
-          <h2>E-Mail</h2>
-          <p><%= @end_user.email%></p>
-        </div>
-        <div>
-          <h2>Target Calorie</h2>
-          <p><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
-        </div>
-        <div>
-          <h2>Introduction</h2>
-          <p><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
-        </div>
-      </div>
+<div class="user-profile container mt-4">
+  <h2>Plofile Details</h2>
+  <p>※このページは他ユーザーには表示されません</p>
+  <div class="user-profile__details">
+    <div class="user-profile__info row">
+      <span><%= image_tag current_end_user.get_profile_image(100,100) %></span>
+      <h4>User Name</h4>
+      <p><%= @end_user.full_name unless @end_user.target_calorie.blank? %></p>
+      <h4>E-Mail</h4>
+      <p><%= @end_user.email%></p>
+      <h4>Target Calorie</h4>
+      <p><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
+      <h4>Introduction</h4>
+      <p><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
     </div>
-    <div class="row">
-      <div>
-        <h2>Height</h2>
-        <p><%= @end_user.height %></p>
-        <h2>Weight</h2>
-        <p><%= @end_user.body_weight %></p>
-        <h2>Age</h2>
-        <p><%= @end_user.age %></p>
-        <h2>Sex</h2>
-        <p><%= @end_user.sex_i18n %></p>
-        <h2>Target Weight</h2>
-        <p><%= @end_user.target_weight %></p>
-        <h2>Active Level</h2>
-        <p><%= @end_user.activelevel_i18n %></p>
-      </div>
+    <div class="user-profile__additional row">
+      <h4>Height</h4>
+      <p><%= @end_user.height %></p>
+      <h4>Weight</h4>
+      <p><%= @end_user.body_weight %></p>
+      <h4>Age</h4>
+      <p><%= @end_user.age %></p>
+      <h4>Sex</h4>
+      <p><%= @end_user.sex_i18n %></p>
+      <h4>Target Weight</h4>
+      <p><%= @end_user.target_weight %></p>
+      <h4>Active Level</h4>
+      <p><%= @end_user.activelevel_i18n %></p>
     </div>
   </div>
-  <div class="row">
-    <%= link_to "Edit", edit_end_user_path, :class => "btn btn-success ms-3" %>
-    <%= link_to "Withdrawal", end_users_check_path, :class => "btn btn-danger ms-3" %>
+  <div class="user-profile__actions row">
+    <%= link_to edit_end_user_path, :class => "btn btn-success" do %>
+      <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+    <% end %>
+    <%= link_to end_users_check_path, :class => "btn btn-danger" do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
   </div>
 </div>

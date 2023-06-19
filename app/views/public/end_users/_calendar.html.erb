@@ -1,7 +1,7 @@
 <%= month_calendar events: events do |date, events| %>
   <%= date.day %>
   <% events.each do |event| %>
-    <div>
+    <div class="user-calendar">
       <% if event.is_a?(PostWorkout) %>
         <%= link_to '🏋️',post_workout_path(event) %>
       <% elsif event.is_a?(PostMeal) %>
