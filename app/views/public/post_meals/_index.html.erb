@@ -1,6 +1,6 @@
 <% post_meals.each do |post_meal| %>
-  <%= link_to post_meal_path(post_meal), class: 'no-decoration' do %>
-    <div class="meal__item d-flex">
+  <div class="meal__item d-flex">
+    <%= link_to post_meal_path(post_meal), class: 'no-decoration' do %>
       <% if post_meal.image.attached? %>
         <%= image_tag post_meal.image, class: "profile-image" %>
       <% else %>
@@ -10,11 +10,11 @@
         <p><%= post_meal.start_time.strftime("%Y-%m-%d") %></p>
         <p><%= post_meal.memo.truncate(18, omission: "...") %></p>
         <p>コメント数:<%= post_meal.meal_comments.count %></p>
-      </div>
-    </div>
-  <% end %>
-  <!-- いいね機能 -->            
-  <span id="meal_likes_<%= post_meal.id %>">
-    <p><%= render "public/post_meals/like-btn", post_meal: post_meal %></p>
-  </span>
+      </div> 
+    <% end %>
+    <!-- いいね機能 -->            
+    <span id="meal_likes_<%= post_meal.id %>">
+      <p><%= render "public/post_meals/like-btn", post_meal: post_meal %></p>
+    </span>
+  </div>
 <% end %>

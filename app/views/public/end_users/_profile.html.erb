@@ -1,44 +1,35 @@
-<div class="user-profile row">
-  <div class="user-profile__details col-md-4">
-    <div class="card" style="width: 18rem;">
-      <%= image_tag end_user.get_profile_image(300, 300) %>
-      <div class="card-body ">
-        <h5 class="card-title">User Name</h5>
-        <% if end_user.full_name.blank? %>
-          <p>Not configured</p>
-        <% else %>
-          <p><%= end_user.full_name %></p>
-        <% end %>
-        <div class="card-text d-flex justify-content-between">
-          <p><%= link_to end_user.followers.count, followeds_end_user_path(end_user), class: 'card-link' %>フォロー中</p>
-          <p><%= link_to end_user.followeds.count, followers_end_user_path(end_user), class: 'card-link' %>フォロワー</p>
-        </div>
-        <% if current_end_user != end_user %>
-          <% if current_end_user.following?(end_user)%>
-          <p class="card-text">
-            <%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-danger" %>
-          </p>
-          <% else %>
-          <p class="card-text">
-            <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-success" %>
-          </p>
-          <% end %>
-        <% end %>
-        <h5 class="card-title">Target Calorie</h5>
-        <p class="card-text">
-          <%= end_user.target_calorie.blank? ? 'Not configured' : "#{end_user.target_calorie}kcal/日" %>
-        </p>
-        <h5 class="card-title">Introduction</h5>
-        <p class="card-text">
-          <%= end_user.introduction.blank? ? 'Not configured' : end_user.introduction %>
-        </p>
-      </div>
+<div class="card" style="width: 18rem;">
+  <%= image_tag end_user.get_profile_image(300, 300) %>
+  <div class="card-body ">
+    <h5 class="card-title">User Name</h5>
+    <% if end_user.full_name.blank? %>
+      <p>Not configured</p>
+    <% else %>
+      <p><%= end_user.full_name %></p>
+    <% end %>
+    <div class="card-text d-flex justify-content-between">
+      <p><%= link_to end_user.followers.count, followeds_end_user_path(end_user), class: 'card-link' %>フォロー中</p>
+      <p><%= link_to end_user.followeds.count, followers_end_user_path(end_user), class: 'card-link' %>フォロワー</p>
     </div>
-  </div>
-  <div class="user-profile__calendar col-md-8">
-    <h4 class="fw-bold">Posting Calender</h4>
-    <div id="calendar">
-      <%= render 'public/end_users/calendar', events: events %>
-    </div>
+    <% if current_end_user != end_user %>
+      <% if current_end_user.following?(end_user)%>
+      <p class="card-text">
+        <%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-danger" %>
+      </p>
+      <% else %>
+      <p class="card-text">
+        <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-success" %>
+      </p>
+      <% end %>
+    <% end %>
+    <h5 class="card-title">Target Calorie</h5>
+    <p class="card-text">
+      <%= end_user.target_calorie.blank? ? 'Not configured' : "#{end_user.target_calorie}kcal/日" %>
+    </p>
+    <h5 class="card-title">Introduction</h5>
+    <p class="card-text">
+      <%= end_user.introduction.blank? ? 'Not configured' : end_user.introduction %>
+    </p>
   </div>
 </div>
+

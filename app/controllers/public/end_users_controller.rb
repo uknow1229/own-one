@@ -1,6 +1,5 @@
 class Public::EndUsersController < ApplicationController
 
-  
   def show
     @end_user = EndUser.find(params[:id])
     @post_workouts = @end_user.post_workouts
