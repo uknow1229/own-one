@@ -1,40 +1,42 @@
 <div class="user-page container mt-4">
-  <div class="d-flex">
+  <div class="row d-flex">
     <div class="user-page__profile col-sm-4">
-      <h1>User Page</h1>
+      <h2>User Page</h2>
       <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
     </div>
     <div class="user-profile__calendar col-sm-8">
       <h2>Posting Calender</h2>
-        <div id="calendar">
-          <%= render 'public/end_users/calendar', events: @events %>
-        </div>
+      <div id="calendar">
+        <%= render 'public/end_users/calendar', events: @events %>
+      </div>
     </div>
   </div>
-  <div class="user-page__posts">
-    <h2>Post Fitness</h2>
-    <div class="posts__fitness d-flex">
-      <% if @post_workouts.exists? %>
-        <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
-      <% else %>
-        <p>There are no posts.</p>
-      <% end %> 
-    </div>
-    <h2>Post Meal</h2>
-    <div class="posts__meal d-flex">
-      <% if @post_meals.exists? %>
-        <%= render "public/post_meals/index", post_meals: @post_meals  %>
-      <% else %>
-        <p>There are no posts.</p>
-      <% end %> 
-    </div>
-    <h2>Post Blog</h2>
-    <div class="posts__blog d-flex">
-      <% if @post_blogs.exists? %>
-        <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
-      <% else %>
-        <p>There are no posts.</p>
-      <% end %>
+  <div class="">
+    <div class="user-page__posts">
+      <h2>Post Fitness</h2>
+      <div class="posts__fitness d-flex">
+        <% if @post_workouts.exists? %>
+          <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
+        <% else %>
+          <p>There are no posts.</p>
+        <% end %> 
+      </div>
+      <h2>Post Meal</h2>
+      <div class="posts__meal d-flex">
+        <% if @post_meals.exists? %>
+          <%= render "public/post_meals/index", post_meals: @post_meals  %>
+        <% else %>
+          <p>There are no posts.</p>
+        <% end %> 
+      </div>
+      <h2>Post Blog</h2>
+      <div class="posts__blog d-flex">
+        <% if @post_blogs.exists? %>
+          <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
+        <% else %>
+          <p>There are no posts.</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

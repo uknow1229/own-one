@@ -12,11 +12,11 @@ class Public::EndUsersController < ApplicationController
   end
 
   def edit
-    @end_user = EndUser.find(params[:id])
+    @end_user = EndUser.find(current_end_user.id)
   end
 
   def profile
-    @end_user = EndUser.find(params[:id])
+    @end_user = EndUser.find(current_end_user.id)
     @post_workouts = @end_user.post_workouts
   end
 

@@ -1,4 +1,4 @@
-<div class="workout-index d-flex flex-wrap justify-content-between">
+<div class="workout-index d-flex flex-wrap justify-content-between gap-4">
   <% post_workouts.each do |post_workout| %>
   
     <div class="workout-index__wrapper d-flex">
@@ -13,7 +13,7 @@
         <p><%= link_to post_workout.end_user.first_name, end_user_path(post_workout.end_user) %></p>
       </div>
 
-      <div class="workout-index__details col-sm-6">
+      <div class="workout-index__details">
         <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
         <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
         <p>コメント数:<%= post_workout.workout_comments.count %></p>
