@@ -14,6 +14,9 @@
         <% end %>
       </div>
       <%= render "index", post_meals: @post_meals %>
+      <div class="post-meal__paginate d-flex justify-content-center mt-4">
+        <%= paginate @post_meals , theme: 'bootstrap-5' %>
+      </div>
     </div>
   </div>
 </div>

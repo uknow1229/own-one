@@ -78,3 +78,5 @@ gem 'rails_admin'
 gem 'cancancan'
 
 gem 'simple_calendar'
+
+gem 'bootstrap5-kaminari-views'

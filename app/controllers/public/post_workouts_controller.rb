@@ -1,6 +1,6 @@
 class Public::PostWorkoutsController < ApplicationController
   def index
-    @post_workouts = PostWorkout.all
+    @post_workouts = PostWorkout.all.page(params[:page]).per(9)
     @tag_list = WorkoutTag.all
   end
 

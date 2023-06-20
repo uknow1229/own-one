@@ -2,9 +2,9 @@ class Public::EndUsersController < ApplicationController
 
   def show
     @end_user = EndUser.find(params[:id])
-    @post_workouts = @end_user.post_workouts
-    @post_blogs = @end_user.post_blogs
-    @post_meals = @end_user.post_meals
+    @post_workouts = @end_user.post_workouts.page(params[:page]).per(3)
+    @post_blogs = @end_user.post_blogs.page(params[:page]).per(3)
+    @post_meals = @end_user.post_meals.page(params[:page]).per(3)
     @events = @post_workouts + @post_meals + @post_blogs
     
     @following_end_users = @end_user.following_end_users
