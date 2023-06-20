@@ -1,13 +1,13 @@
 <div class="post-workout container mt-4 mb-4">
   <h2 class="text-center">Fitness Post Details</h2>
 
-  <div class="post-workout__wrapper mx-auto col-sm-8">
+  <div class="post-workout__wrapper mx-auto col-sm-10">
     <div class="post-workout__profile">
       <%= render "public/post_workouts/profile", post_workout: @post_workout %>
     </div>
 
-    <div class="post-workout__content d-flex">
-      <div class="post-workout__details me-5">
+    <div class="post-workout__content row">
+      <div class="post-workout__details me-5 col-sm-5">
         <div class="post-workout__image">
           <%= image_tag get_image(@post_workout, 300, 300) %>
         </div>
@@ -20,7 +20,7 @@
           <% end %>
         </div>
       </div>
-      <div class="post-workout__details">
+      <div class="post-workout__details col-sm-5">
         <h4>Title</h4>
         <p><%= @post_workout.title %></p>
         <h4>Site</h4>
@@ -32,13 +32,13 @@
 
         <% if @post_workout.workout_menus.any? %>
           <h4>WorkoutMenu</h4>
-          <table class="table text-center">
+          <table class="table table-hover text-center">
             <thead>
               <tr>
-                <th>Event</th>
-                <th>Weight</th>
-                <th>Reptition Count</th>
-                <th>Set Count</th>
+                <th scope="col">Event</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Reptition Count</th>
+                <th scope="col">Set Count</th>
               </tr>
             </thead>
             <tbody>

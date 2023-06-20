@@ -1,13 +1,13 @@
 <div class="post-meal container mt-4 mb-4">
   <h2 class="text-center">Meal Post Details</h2>
 
-  <div class="post-meal__wrapper mx-auto col-sm-8">
+  <div class="post-meal__wrapper mx-auto col-sm-10">
     <div class="post-meal__profile">
       <%= render "public/post_meals/profile", post_meal: @post_meal %>
     </div>
 
-  <div class="post-meal__content d-flex">
-    <div class="post-meal__details me-5">
+  <div class="post-meal__content row">
+    <div class="post-meal__details me-5 col-sm-5">
       <div class="post-meal__image">
         <%= image_tag get_image(@post_meal, 300, 300) %>
       </div>
@@ -20,7 +20,7 @@
         <% end %>
       </div>
     </div>
-    <div class="post-meal__details">
+    <div class="post-meal__details col-sm-5">
       <h4>Meal Timing</h4>
       <p><%= @post_meal.timing_i18n %></p>
       <h4>Meal Type</h4>

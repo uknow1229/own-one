@@ -1,8 +1,8 @@
-<div class="blog-index d-flex flex-wrap justify-content-between">
+<div class="blog-index d-flex flex-wrap justify-content-between gap-4">
   <% post_blogs.each do |post_blog| %>
 
   <div class="blog-index__wrapper d-flex">
-    <div class="blog-index__image me-4 col">
+    <div class="blog-index__image me-4">
       <%= link_to post_blog_path(post_blog), class: 'no-decoration' do %>
         <% if post_blog.image.attached? %>
           <%= image_tag post_blog.image, class: "profile-image" %>
@@ -13,7 +13,7 @@
       <p><%= link_to post_blog.end_user.first_name, end_user_path(post_blog.end_user) %></p>
     </div>
 
-      <div class="blog-index__details col-sm-6">
+      <div class="blog-index__details">
         <p><%= post_blog.title %></p>
         <p><%= post_blog.start_time.strftime("%Y-%m-%d") %></p>
         <p><%= post_blog.content.truncate(18, omission: "...") %></p>

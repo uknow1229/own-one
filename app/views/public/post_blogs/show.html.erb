@@ -1,13 +1,13 @@
 <div class="post-blog container mt-4 mb-4">
   <h2 class="text-center">Blog Post Details</h2>
 
-  <div class="post-blog__wrapper mx-auto col-sm-8">
+  <div class="post-blog__wrapper mx-auto col-sm-10">
     <div class="post-meal__profile">
       <%= render "public/post_blogs/profile", post_blog: @post_blog %>
     </div>
 
-    <div class="post-blog__content d-flex">
-      <div class="post-blog__details me-5">
+    <div class="post-blog__content row">
+      <div class="post-blog__details col-sm-5">
         <div class="post-blog__image">
           <%= image_tag get_image(@post_blog, 300, 300) %>
         </div>
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="post-blog__details">
+      <div class="post-blog__details col-sm-5">
         <h4>Title</h4>
         <p><%= @post_blog.title %></p>
         <h4>Contents</h4>

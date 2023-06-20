@@ -8,8 +8,16 @@
 body {
   // background-color: color(primary);
   position: relative;
+  
+  a {
+    color: black;
+  }
 }
 
 main {
   min-height: 100vh;
+
+  a {
+    color: black;
+  }
 }

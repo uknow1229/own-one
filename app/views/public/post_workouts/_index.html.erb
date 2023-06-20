@@ -17,6 +17,7 @@
         <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
         <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
         <p>コメント数:<%= post_workout.workout_comments.count %></p>
+        
         <!-- いいね機能 -->  
         <span id="workout-like_<%= post_workout.id %>">
           <p><%= render "public/post_workouts/like-btn", post_workout: post_workout %></p>
