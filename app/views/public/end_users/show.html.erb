@@ -1,38 +1,51 @@
-<div class="container mt-4">
+<div class="user-page container mt-4 mb-4">
   <div class="row d-flex">
-    <h1>My Page</h1>
-    <div class=" d-flex">
-      <div>
-        <% if @end_user.image.attached? %>
-          <%= image_tag @end_user.image, class: "profile-image" %>
-        <% else %>
-          <%= image_tag 'noimage.jpg', class: "no-image" %>
-        <% end %>
-        <h2>ユーザー名</h2>
-        <% if @end_user.full_name.blank? %>
-          <p>未設定</p>
-        <% else %>
-          <p><%= @end_user.full_name %></p>
-        <% end %>
-      </div>
-      <div>
-        <h2>目標カロリー</h2>
-        <% if @end_user.target_calorie.blank? %>
-          <p>未設定</p>
-        <% else %>
-        <p><%= @end_user.target_calorie%>kcal/日</p>
-        <% end %>
-        <h2>自己紹介</h2>
-        <% if @end_user.introduction.blank? %>
-          <p>未設定</p>
-        <% end %>
-        <p><%= @end_user.introduction%></p>
+    <div class="user-page__profile col-sm-4">
+      <h2>User Page</h2>
+      <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
+    </div>
+    <div class="user-profile__calendar col-sm-8">
+      <h2>Posting Calender</h2>
+      <div id="calendar">
+        <%= render 'public/end_users/calendar', events: @events %>
       </div>
     </div>
-      <% if @post_workouts.exists? %>
-        <%= render "public/post_workouts/index", post_workouts: @post_workouts %>
-      <% else %>
-        <p>投稿がありません</p>
-      <% end %>
+  </div>
+  <div class="user-page__wrapper mt-4 d-flex justify-content-center w-100">
+    <div class="user-page__posts">
+      <h2>Post Fitness</h2>
+      <div class="user-page__fitness d-flex mt-2 mb-4">
+        <% if @post_workouts.exists? %>
+          <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
+          <div class="user-page__paginate mt-4">
+            <%= paginate @post_workouts , theme: 'bootstrap-5' %>
+          </div>
+        <% else %>
+          <p>There are no posts.</p>
+        <% end %> 
+      </div>
+      <h2>Post Meal</h2>
+      <div class="posts__meal d-flex mt-2 mb-4">
+        <% if @post_meals.exists? %>
+          <%= render "public/post_meals/index", post_meals: @post_meals  %>
+          <div class="user-page__paginate mt-4">
+            <%= paginate @post_meals , theme: 'bootstrap-5' %>
+          </div>
+        <% else %>
+          <p>There are no posts.</p>
+        <% end %> 
+      </div>
+      <h2>Post Blog</h2>
+      <div class="posts__blog d-flex mt-2 mb-4">
+        <% if @post_blogs.exists? %>
+          <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
+          <div class="user-page__paginate mt-4">
+            <%= paginate @post_blogs , theme: 'bootstrap-5' %>
+          </div>
+        <% else %>
+          <p>There are no posts.</p>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

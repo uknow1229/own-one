@@ -1,2 +1,81 @@
-<h1>Public::PostMeals#show</h1>
-<p>Find me in app/views/public/post_meals/show.html.erb</p>
+<div class="post-meal container mt-4 mb-4">
+  <h2 class="text-center">Meal Post Details</h2>
+
+  <div class="post-meal__wrapper mx-auto col-sm-10">
+    <div class="post-meal__profile">
+      <%= render "public/post_meals/profile", post_meal: @post_meal %>
+    </div>
+
+  <div class="post-meal__content row">
+    <div class="post-meal__details me-5 col-sm-5">
+      <div class="post-meal__image">
+        <%= image_tag get_image(@post_meal, 300, 300) %>
+      </div>
+      <div class="post-meal__action-links mt-2">
+        <%= link_to edit_post_meal_path, :class => "btn" do %>
+          <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+        <% end %>
+        <%= link_to post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn ms-3" do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="post-meal__details col-sm-5">
+      <h4>Meal Timing</h4>
+      <p><%= @post_meal.timing_i18n %></p>
+      <h4>Meal Type</h4>
+      <p><%= @post_meal.meal_type_i18n %></p>
+      <h4>Memo</h4>
+      <p><%= @post_meal.memo %></p>
+
+      <% if @post_meal.meal_menus.any? %>
+        <h4>Menu</h4>
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Amount</th>
+              <th>Calories</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @post_meal.meal_menus.each do |menu| %>
+              <div class="post-meal__menu">
+                <tr>
+                  <td><%= menu.title %></td>
+                  <td><%= menu.quantity %>g</td>
+                  <td><%= menu.calorie %>カロリー</td>
+                </tr>
+              </div>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+
+      <!-- いいね機能 -->
+      <div class="post-meal__like d-flex gap-2">       
+        <span id="meal_likes_<%= @post_meal.id %>">
+          <p><%= render "like-btn", post_meal: @post_meal %></p>
+        </span>
+        <%= link_to "いいね", meal_likes_end_user_path %>
+      </div>
+      <!-- タグリスト -->
+      <div class="post-meal__tag mb-4">
+        <% @post_meal_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%= link_to tag.name,search_meal_tag_path(meal_tag_id: tag.id) %>
+        <% end %>
+      </div>
+      <!-- コメント機能 -->
+      <div class="post-meal__comment-section">
+        <p>コメント数:<%= @post_meal.meal_comments.count %></p>
+          <div class="post-meal__comment-index mb-4" id="post-meal-comment">
+            <%= render 'comment-index', post_meal: @post_meal %>
+          </div>
+          <div class="post-meal__comment-form">
+            <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

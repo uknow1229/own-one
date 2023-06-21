@@ -1,0 +1,9 @@
+<%= month_calendar table_class: 'custom-calendar' do |date| %>
+  <%= date.day %>
+  <% weight = current_end_user.weights.find { |w| w.start_time.to_date == date } %>
+  <% if weight %>
+    <%= link_to edit_weight_path(weight) do %>
+      <p><%= weight.value %></p>
+    <% end %>
+  <% end %>
+<% end %>

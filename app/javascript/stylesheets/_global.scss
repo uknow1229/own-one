@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
+}
+
+body {
+  // background-color: color(primary);
+  position: relative;
+  
+
+  a {
+    color: black;
+  }
+
+  // ページネーション自体のデザイン
+  .pagination>li>a {          
+    border: none;
+    color: black;
+  }
+
+  // 表示しているページ番号のデザイン
+  .pagination>.active>a {     
+    background-color: rgba(26, 48, 245, 0.8);
+    border-radius: 15px;
+  }
+
+  // ホバー時のデザイン
+  .pagination>li>a:hover {        
+    border-radius: 15px;
+  }
+
+
+}
+
+main {
+  min-height: 100vh;
+
+  a {
+    color: black;
+  }
+}

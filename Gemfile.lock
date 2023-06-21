@@ -44,6 +44,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (6.1.7.3)
       activesupport (= 6.1.7.3)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (6.1.7.3)
       activemodel (= 6.1.7.3)
       activesupport (= 6.1.7.3)
@@ -66,8 +70,12 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    bootstrap5-kaminari-views (0.0.1)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.4)
     byebug (11.1.3)
+    cancancan (3.5.0)
     capybara (3.39.1)
       addressable
       matrix
@@ -87,6 +95,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.12.0)
@@ -137,6 +149,8 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.7.1)
+    mysql2 (0.5.5)
+    nested_form (0.3.2)
     net-imap (0.3.4)
       date
       net-protocol
@@ -149,6 +163,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.2-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.15.2-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -157,8 +173,7 @@ GEM
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
     public_suffix (5.0.1)
-    puma (5.6.5)
-      nio4r (~> 2.0)
+    puma (3.12.6)
     racc (1.6.2)
     rack (2.2.7)
     rack-mini-profiler (2.3.4)
@@ -191,6 +206,12 @@ GEM
     rails-i18n (7.0.7)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
+    rails_admin (3.1.2)
+      activemodel-serializers-xml (>= 1.0)
+      kaminari (>= 0.14, < 2.0)
+      nested_form (~> 0.3)
+      rails (>= 6.0, < 8)
+      turbo-rails (~> 1.0)
     railties (6.1.7.3)
       actionpack (= 6.1.7.3)
       activesupport (= 6.1.7.3)
@@ -228,6 +249,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    simple_calendar (2.4.3)
+      rails (>= 3.0)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -237,9 +260,14 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.3-arm64-darwin)
+    sqlite3 (1.6.3-x86_64-linux)
     thor (1.2.2)
     tilt (2.1.0)
     timeout (0.3.2)
+    turbo-rails (1.4.0)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -271,12 +299,16 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
+  bootstrap5-kaminari-views
   byebug
+  cancancan
   capybara (>= 3.26)
   devise
+  dotenv-rails
   enum_help
   faker
   image_processing (~> 1.2)
@@ -284,14 +316,20 @@ DEPENDENCIES
   jquery-rails
   kaminari (~> 1.2.1)
   listen (~> 3.3)
+  mysql2
+  net-imap
+  net-pop
+  net-smtp
   pry-byebug
-  puma (~> 5.0)
+  puma (~> 3.11)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.3)
   rails-i18n
+  rails_admin
   ransack
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
+  simple_calendar
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)

@@ -1,0 +1,26 @@
+
+.navbar-nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.navbar.navbar-brand {
+  margin-right: 0;
+}
+
+.navbar-nav li:hover {
+  color: black;
+
+  border-bottom: 3px solid #ECF6B0;
+
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-item {
+  list-style: none;
+}

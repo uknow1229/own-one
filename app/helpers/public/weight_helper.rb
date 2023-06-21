@@ -1,0 +1,2 @@
+module Public::WeightHelper
+end

@@ -1,0 +1,21 @@
+<%= form_with model: post_blog , local: true do |f| %>
+  <div class="post-blog">
+    <label>Image</label>
+    <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
+    <label>Title</label>
+    <%= f.text_field :title, class: 'form-control' %>
+    <label>Date</label>
+    <%= f.date_field :start_time,  class: 'form-control' %>
+    <label>Content</label>
+    <%= f.text_area :content, rows: 25, cols: 10, class: 'form-control' %>
+    <label>Tag(,で区切ると複数タグ登録できます)</label>
+    <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
+
+    <div class="post-blog__submit-field text-center">
+      <% if post_blog.new_record? %>
+        <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
+      <% else %>
+        <%= f.submit '更新する', class: "btn btn-success mt-4" %>
+      <% end %>
+  </div>
+<% end %>

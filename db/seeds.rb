@@ -30,32 +30,16 @@ EndUser.create!(
   password: "testtest"
 )
 
-# PostWorkouts Data
-EndUser.all.each do |end_user|
-  PostWorkout.create!(
-    date: Date.today,
-    title: "今日の筋トレ",
-    site: 0,
-    time: "60",
-    memo: "スクワットは股関節をロックしないようにし、しっかり降ろして行う。"
-  )
-end
+# Workout Tags Data
+WorkoutTag.create([
+  { name: '筋トレ' },
+  { name: '家トレ' },
+  { name: '宅トレ' },
+  { name: '筋トレ仲間と繋がりたい' },
+])
 
-# PostMeals Data
-EndUser.all.each do |end_user|
-  PostMeal.create!(
-    date: Date.today,
-    timing: 1,
-    meal_type: 1,
-    memo: "トレーナーさんに教わったプロテインを1回30g、1日3回ずつ飲んで、タンパク質を摂取する。"
-  )
-end
-
-# PostBlogs Data
-EndUser.all.each do |end_user|
-  PostBlog.create!(
-    title: "トレーニングの頻度",
-    content: "あまりに頻繁にトレーニングを繰り返していると回数や重量がかえって低下してしまうことがあります。
-    十分に回復し、身体が充実したタイミングを見計らってトレーニングに挑むのが理想的です。",
-  )
-end
+# Meal Tags Data
+MealTag.create([
+  { name: 'PFCバランス' },
+  { name: 'プロテイン' }
+])

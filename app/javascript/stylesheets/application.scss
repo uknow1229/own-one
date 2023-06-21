@@ -1,1 +1,32 @@
-@use '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
+
+// utils
+@import './utils/variables';
+@import './utils/mixins';
+
+// global
+@import './global';
+
+// layouts
+@import './layouts/header';
+@import './layouts/nav';
+@import './layouts/footer';
+
+// components
+@import './components/calendar';
+@import './components/image';
+@import './components/toggle';
+
+// pages
+@import './pages/workout_index';
+@import './pages/workout_show';
+@import './pages/workout_comment';
+@import './pages/meal_index';
+@import './pages/meal_show';
+@import './pages/meal_comment';
+@import './pages/blog_index';
+@import './pages/blog_show';
+@import './pages/blog_comment';
+
+// others
+@import './others';

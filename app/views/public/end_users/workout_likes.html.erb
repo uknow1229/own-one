@@ -1,0 +1,28 @@
+<div class="liked-users container mt-4">
+  <% if @post_workout.liked_end_users.present? %>
+    <h2>Liked User</h2>
+    <% @post_workout.liked_end_users.each do |end_user| %>
+      <div class="liked-users__profile d-flex align-items-center gap-2">
+        <%= image_tag end_user.get_profile_image(50, 50) %>
+        <p><%= end_user.first_name %></p>
+        <p>フォロー中</p>
+        <p><%= link_to  followeds_end_user_path(end_user) do %>
+          <p><%= end_user.followers.count %></p>
+        <% end %></p>
+        <p>フォロワー</p>
+        <p><%= link_to followers_end_user_path(end_user) do %>
+          <p><%= end_user.followeds.count %></p>
+        <% end %></p>
+        <% if current_end_user != end_user %>
+          <% if current_end_user.following?(end_user)%>
+            <p><%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-sm btn-danger" %></p>
+          <% else %>
+            <p><%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-sm btn-success" %></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <h2>いいねはありません</h2>
+  <% end %>
+</div>

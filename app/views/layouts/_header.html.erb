@@ -3,52 +3,73 @@
       <%= link_to root_path do %>
         <%= image_tag 'logo.png', alt: "ロゴ", width: "70" %>
       <% end %>
+      <!-- 検索機能 -->
+      <div class="serch_form">
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+          <%= f.text_field :q, class:"form-control d-inline-block" %>
+          <button class="btn btn-outline-success" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        <% end %>
+      </div>
     </div>
     <ul class="navbar-nav justify-content-around" style="flex-direction:row;">
       <% if end_user_signed_in? %>
       <li class="nav-item">
-        <%= link_to end_users_mypage_path ,class: "nav-link" do %>
+        <%= link_to end_user_path(current_end_user) ,class: "nav-link" do %>
         <i class="fa-solid fa-user"></i>
-        マイページ
+        Mypage
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to weights_path, class: "nav-link" do %>
+        <i class="fa-sharp fa-solid fa-dumbbell"></i>
+        Weight
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to post_workouts_path ,class: "nav-link" do %>
         <i class="fa-sharp fa-solid fa-dumbbell"></i>
-        フィットネス
+        Fitness
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to post_meals_path ,class: "nav-link" do %>
         <i class="fa-sharp fa-solid fa-utensils"></i>
-        食事
+        Meal
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to post_blogs_path ,class: "nav-link" do %>
         <i class="fa-sharp fa-solid fa-blog"></i>
-        ブログ
+        Blog
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to notifications_path, class: "nav-link" do %>
+          <% if current_end_user.notifications.where(checked: false).exists? %>
+            <i class="fa-sharp fa-solid fa-bell fa-beat" style="color: #f2ee7d;"></i>
+          <% else %>
+            <i class="fa-sharp fa-solid fa-bell"></i>
+          <% end %>
+          Notice
         <% end %>
       </li>
       <div>
         <li class="nav-item rounded-image" id="toggle-button">
-          <% if current_end_user.image.attached? %>
-            <%= image_tag current_end_user.image.variant(resize: "50x50") %>
-          <% else %>
-            <%= image_tag('noimage.jpg', size: "50x50") %>
-          <% end %>
+          <%= image_tag current_end_user.get_profile_image(50, 50) %>
         </li>
         <div class="toggle-item">
           <li class="nav-item">
-            <%= link_to end_users_profile_path, class: "nav-link" do %>
+            <%= link_to profile_end_user_path(current_end_user), class: "nav-link" do %>
             <i class="fa-sharp fa-solid fa-address-card"></i>
-            プロフィール
+            Plofile
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to destroy_end_user_session_path, method: :delete , class: "nav-link" do %>
             <i class="fa-solid fa-right-from-bracket"></i>
-            ログアウト
+            Logout
             <% end %>
           </li>
         </div>
@@ -57,19 +78,19 @@
       <li class="nav-item">
         <%= link_to admin_end_users_path ,class: "nav-link" do %>
         <i class="fa-solid fa-user-check"></i>
-        会員一覧
+        Member
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to admin_post_workouts_path ,class: "nav-link" do %>
         <i class="fa-sharp fa-solid fa-dumbbell"></i>
-        投稿一覧
+        Post
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
       <i class="fa-solid fa-right-from-bracket"></i>
-        ログアウト
+        Logout
         <% end %>
       </li>
         <% else %>
@@ -79,26 +100,21 @@
         About
         <% end %>
       <li class="nav-item">
-        <%= link_to post_workouts_path, class: "nav-link" do %>
-      <i class="fa-sharp fa-solid fa-dumbbell"></i>
-        投稿一覧
-        <% end %>
-      <li class="nav-item">
         <%= link_to new_end_user_registration_path, class: "nav-link" do %>
         <i class="fa-solid fa-user-plus"></i>
-        新規登録
+        Signup
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to new_end_user_session_path, class: "nav-link"  do %>
         <i class="fa-solid fa-right-to-bracket"></i>
-        ログイン
+        Login
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to end_users_guest_sign_in_path, class: "nav-link", method: :post  do %>
         <i class="fa-solid fa-right-to-bracket"></i>
-        ゲストログイン
+        Guest
         <% end %>
       </li>
       <% end %>

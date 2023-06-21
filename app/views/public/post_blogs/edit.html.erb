@@ -1,2 +1,8 @@
-<h1>Public::PostBlogs#edit</h1>
-<p>Find me in app/views/public/post_blogs/edit.html.erb</p>
+<div class="post-blog container mt-4">
+  <h2 class="post-blog__tittle text-center">Edit Blog Posts</h2>
+  <div class="row justify-content-center">
+    <div class="post-blog__form col-sm-8">
+      <%= render "form", post_blog: @post_blog %>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,14 @@
-<h1>本当に退会しますか？</h1>
-  <p>
-    退会すると、会員登録情報や<br>
-    これまでの投稿が閲覧できなくなります。<br>
-    退会する場合は、「退会する」をクリックしてください。
-  </p>
-
-  <%= link_to "退会しない", end_users_mypage_path, :class => "btn btn-primary ms-3" %>
-  <%= link_to "退会する", end_users_withdraw_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？" }  %>
+<div class="end-user container mt-4">
+  <h2 class="end-user__tittle text-center">本当に退会しますか？</h2>
+  <div class="row justify-content-center">
+    <div class="post-blog__form col-sm-8 text-center">
+      <p>
+        退会すると、会員登録情報や<br>
+        これまでの投稿が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </p>
+      <%= link_to "退会しない", end_user_path, :class => "btn btn-primary ms-3" %>
+      <%= link_to "退会する", end_users_withdraw_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？" }  %>
+    </div>
+  </div>
+</div>

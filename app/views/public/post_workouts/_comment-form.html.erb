@@ -1,0 +1,10 @@
+<%= form_with model: [post_workout, workout_comment] , local: false do |f| %>
+  <div class="workout-tag form-group d-flex">
+    <%= f.text_area :comment, rows: 5, placeholder: "コメントをここに", class: 'form-control' %>
+    <div class="workout-tag__submit">
+      <%= button_tag type: "submit", class: "btn btn-success" do %>
+        <i class="fas fa-paper-plane"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

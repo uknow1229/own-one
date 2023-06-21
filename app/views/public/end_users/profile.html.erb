@@ -1,53 +1,74 @@
-<div class="container mt-4">
-  <h1>プロフィール詳細</h1>
+<div class="user-profile container mt-4">
+<div class="row">
+  <div class="user-profile__wrapper mx-auto col-sm-8">
+  <h2>Plofile Details</h2>
   <p>※このページは他ユーザーには表示されません</p>
-  <div>
-    <div class="row">
-      <div>
-        <div>
-          <% if @end_user.image.attached? %>
-            <%= image_tag @end_user.image, class: "profile-image" %>
-          <% else %>
-            <%= image_tag 'noimage.jpg', class: "no-image" %>
-          <% end %>
+  
+    <!-- User Information -->
+    <div class="d-flex">
+      
+        <div class="card w-100">
+          <div class="card-body">
+            <h4 class="card-title">User Information</h4>
+            <span><%= image_tag current_end_user.get_profile_image(100,100) %></span>
+            <div class="mb-3">
+              <label class="form-label">User Name</label>
+              <p class="form-control-plaintext"><%= @end_user.full_name unless @end_user.target_calorie.blank? %></p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">E-Mail</label>
+              <p class="form-control-plaintext"><%= @end_user.email%></p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Target Calorie</label>
+              <p class="form-control-plaintext"><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Introduction</label>
+              <p class="form-control-plaintext"><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2>ユーザー名</h2>
-          <p><%= @end_user.full_name unless @end_user.target_calorie.blank? %></p>
+      
+      <!-- Additional Information -->
+        <div class="card w-100">
+          <div class="card-body">
+            <h4 class="card-title">Additional Information</h4>
+            <div class="mb-3">
+              <label class="form-label">Height</label>
+              <p class="form-control-plaintext"><%= @end_user.height %>cm</p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Weight</label>
+              <p class="form-control-plaintext"><%= @end_user.body_weight %>kg</p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Age</label>
+              <p class="form-control-plaintext"><%= @end_user.age %>years old</p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Sex</label>
+              <p class="form-control-plaintext"><%= @end_user.sex_i18n %></p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Target Weight</label>
+              <p class="form-control-plaintext"><%= @end_user.target_weight %></p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Active Level</label>
+              <p class="form-control-plaintext"><%= @end_user.activelevel_i18n %></p>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2>メールアドレス</h2>
-          <p><%= @end_user.email%></p>
-        </div>
-        <div>
-          <h2>目標カロリー</h2>
-          <p><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
-        </div>
-        <div>
-          <h2>自己紹介</h2>
-          <p><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div>
-        <h2>身長</h2>
-        <p><%= @end_user.height %></p>
-        <h2>体重</h2>
-        <p><%= @end_user.body_weight %></p>
-        <h2>年齢</h2>
-        <p><%= @end_user.age %></p>
-        <h2>性別</h2>
-        <p><%= @end_user.sex_i18n %></p>
-        <h2>目標体重</h2>
-        <p><%= @end_user.target_weight %></p>
-        <h2>活動レベル</h2>
-        <p><%= @end_user.activelevel_i18n %></p>
       </div>
     </div>
   </div>
-  <div class="row">
-    <%= link_to "編集", end_users_information_edit_path, :class => "btn btn-success ms-3" %>
-    <%= link_to "退会", end_users_check_path, :class => "btn btn-danger ms-3" %>
+
+  <div class="user-profile__actions">
+    <%= link_to edit_end_user_path, :class => "btn btn-success" do %>
+      <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+    <% end %>
+    <%= link_to "退会する", check_end_user_path(current_end_user.id), method: :get, :class => "btn" %>
+
   </div>
 </div>

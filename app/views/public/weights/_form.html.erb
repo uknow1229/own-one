@@ -1,0 +1,13 @@
+<%= form_with(model: @weight, local: true) do |f| %>
+  <div class="form-group">
+    <div>
+      <label>日付</label>
+      <%= f.date_field  :start_time, class: 'form-control'%>
+      <label>体重</label>
+      <%= f.number_field  :value, class: 'form-control', step: '0.1', min: '0' %>
+    </div>
+    <div class="weight__submit text-center">
+      <%= f.submit @weight.new_record? ? '新規作成' : '更新', class: "btn mt-4 mb-4" %>
+    </div>
+  </div>
+<% end %>

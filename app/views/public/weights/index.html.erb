@@ -1,0 +1,68 @@
+<div class="container mt-4 mb-4">
+  <h2 class="text-center">New Weight Registration</h2>
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <%= render "form", weight: @weight %>
+    </div>
+  </div>
+  <%= render "index", weights: @weights %>
+
+  <div class="col-sm-8 mx-auto">
+    <%= form_with url: weights_path, method: :get, class: 'd-flex gap-2' do |form| %>
+      <p><%= form.date_field :month, value: params[:month] || Date.today.strftime('%Y-%m'), type: 'month', class: 'form-control' %></p>
+      <p><%= form.submit 'Select Month', class: 'btn' %></p>
+    <% end %>
+
+    <canvas id="myChart"></canvas>
+    <script>
+      $(document).on('turbolinks:load', function() {
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var targetWeight = <%= @target_weight.to_json.html_safe %>; // 目標体重をJavascriptに渡す
+      var weight = <%= @weights_data.to_json.html_safe %>
+
+      var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          datasets: [
+            {
+            label: 'Weight',
+            data: weight,
+            fill: false,
+            borderColor: 'rgba(26, 48, 245, 0.8)',
+            tension: 0.1
+          }
+          ]
+        },
+        options: {
+          scales: {
+            x: {
+              type: 'time',
+              time: {
+                unit: 'day'
+              }
+            },
+            y: {
+              beginAtZero: true
+            }
+            
+          },
+          annotation: {
+            annotations: [{
+              type: 'line',
+              mode: 'horizontal',
+              scaleID: 'y-axis-0',
+              value: targetWeight,
+              borderColor: 'rgb(255, 0, 0)',
+              borderWidth: 2,
+              label: {
+                enabled: true,
+                content: 'Target weight'
+              }
+            }]
+          }
+        }
+      });
+    });
+    </script>
+  </div>
+</div>

@@ -1,2 +1,22 @@
-<h1>Public::PostBlogs#index</h1>
-<p>Find me in app/views/public/post_blogs/index.html.erb</p>
+<div class="post-blog container mt-4">
+  <div class="row justify-content-center">
+    <div class="post-blog__index col-sm-10">
+      <div class="post-blog__header d-flex">
+        <h2>List of blog posts</h2>
+        <p><%= link_to '投稿する', new_post_blog_path, class: 'btn btn-success ms-4' %></p>
+      </div>
+        <!--タグリスト-->
+      <div class="post-blog__tag d-flex">
+        <% @tag_list.each do |list|%>
+          <p><i class="fa-sharp fa-solid fa-tag"></i></p>
+          <%=link_to list.name,search_blog_tag_path(blog_tag_id: list.id) %>
+          <%="(#{list.post_blogs.count})" %>
+        <% end %>
+      </div>
+      <%= render "index", post_blogs: @post_blogs %>
+      <div class="post-blog__paginate d-flex justify-content-center mt-4">
+        <%= paginate @post_blogs , theme: 'bootstrap-5' %>
+      </div>
+    </div>
+  </div>
+</div>

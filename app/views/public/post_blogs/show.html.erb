@@ -1,2 +1,60 @@
-<h1>Public::PostBlogs#show</h1>
-<p>Find me in app/views/public/post_blogs/show.html.erb</p>
+<div class="post-blog container mt-4 mb-4">
+  <h2 class="text-center">Blog Post Details</h2>
+
+  <div class="post-blog__wrapper mx-auto col-sm-10">
+    <div class="post-meal__profile">
+      <%= render "public/post_blogs/profile", post_blog: @post_blog %>
+    </div>
+
+    <div class="post-blog__content row">
+      <div class="post-blog__details col-sm-5">
+        <div class="post-blog__image">
+          <%= image_tag get_image(@post_blog, 300, 300) %>
+        </div>
+
+        <div class="post-blog__action-links mt-2">
+          <%= link_to edit_post_blog_path, :class => "btn" do %>
+            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+          <% end %>
+          <%= link_to post_blog_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn" do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="post-blog__details col-sm-5">
+        <h4>Title</h4>
+        <p><%= @post_blog.title %></p>
+        <h4>Contents</h4>
+        <p><%= @post_blog.content %></p>
+
+        <!-- いいね機能 -->
+        <div class="post-blog__like d-flex gap-2">
+          <span id="blog_likes_<%= @post_blog.id %>">
+            <%= render "like-btn", post_blog: @post_blog %>
+          </span>
+          <%= link_to "いいね", blog_likes_end_user_path %>
+        </div>
+
+        <!-- タグリスト -->
+        <div class="post-blog__tag mb-4">
+          <% @post_blog_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+            <%= link_to tag.name,search_blog_tag_path(blog_tag_id: tag.id) %>
+          <% end %>
+        </div>
+
+        <!-- コメント機能 -->
+        <div class="post-blog__comment-section">
+          <p>コメント数:<%= @post_blog.blog_comments.count %></p>
+          <div id="blog-comments">
+            <%= render 'comment-index', post_blog: @post_blog %>
+          </div>
+          <div id="comment-form">
+            <%= render 'comment-form', post_blog: @post_blog, blog_comment: @blog_comment %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

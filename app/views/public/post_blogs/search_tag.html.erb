@@ -1,0 +1,12 @@
+<div class="tag container mt-4">
+  <h2>タグが<%=@tag.name%>の投稿一覧</h2>
+
+  <!--タグリスト-->
+  <% @tag_list.each do |list|%>
+    <i class="fa-sharp fa-solid fa-tag"></i>
+    <%=link_to list.name,search_blog_tag_path(blog_tag_id: list.id) %>
+    <%="(#{list.post_blogs.count})" %>
+  <% end %>
+
+  <%= render "index", post_blogs: @post_blogs %>
+</div>
