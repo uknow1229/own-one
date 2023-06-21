@@ -1,52 +1,41 @@
 <%= form_with model: post_meal , local: true do |f| %>
-  <div class="form-group">
-      <div>
-        <label>画像</label>
-        <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
-      </div>
-      <div>
-        <label>日付</label>
-        <%= f.date_field :start_time,  class: 'form-control' %>
-      </div>
-      <div>
-        <label>タイミング</label><br>
-        <% PostMeal.timings.each do |key, value| %>
-          <%= f.radio_button :timing, key %>
-          <%= f.label "timing_#{key}", t("activerecord.attributes.post_meal.timings.#{key}") %>
+  <div class="post-meal">
+    <label>Image</label>
+    <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
+    <label>Date</label>
+    <%= f.date_field :start_time,  class: 'form-control' %>
+    <label>Timing</label><br>
+    <div class="post-meal__timing">
+      <% PostMeal.timings.each do |key, value| %>
+        <%= f.radio_button :timing, key %>
+        <%= f.label "timing_#{key}", t("activerecord.attributes.post_meal.timings.#{key}") %>
+      <% end %>
+    </div>
+    <div class="post-meal__type">
+      <label>Meal Type</label><br>
+      <% PostMeal.meal_types.each do |key, value| %>
+        <%= f.radio_button :meal_type, key %>
+        <%= f.label "meal_type_#{key}", t("activerecord.attributes.post_meal.meal_types.#{key}") %>
+      <% end %>
+    </div>
+    <label>Memo</label>
+    <%= f.text_field :memo, class: 'form-control' %>
+
+    <!-- meal_menus form -->
+    <div class="post-meal__menu">
+      <div class="post-meal__menu-list" id="post-meal-menus">
+        <%= f.fields_for :meal_menus do |menu_form| %>
+          <div class="post-meal__menu-detail mt-4 gap-2" style="display: <%= 'none' if post_meal.new_record? %>;">
+            <label>Menu</label>
+            <%= menu_form.text_field :title, class: 'form-control' %>
+            <label>Amount(g)</label>
+            <%= menu_form.number_field :quantity, class: 'form-control', step: '1', min: '0' %>
+            <label>Calories</label>
+            <%= menu_form.number_field :calorie, class: 'form-control', step: '1', min: '0' %>
+          </div>
         <% end %>
       </div>
-      <div>
-        <label>食事タイプ</label><br>
-        <% PostMeal.meal_types.each do |key, value| %>
-          <%= f.radio_button :meal_type, key %>
-          <%= f.label "meal_type_#{key}", t("activerecord.attributes.post_meal.meal_types.#{key}") %>
-        <% end %>
-      </div>
-      <div>
-        <label>メモ</label>
-        <%= f.text_field :memo, class: 'form-control' %>
-      </div>
-      <!-- meal_menus form -->
-      <div class="post-meal-menus">
-        <div class="meal-menus-container" id="meal-menus">
-          <%= f.fields_for :meal_menus do |menu_form| %>
-            <div class="meal-menu" style="display: <%= 'none' if post_meal.new_record? %>;">
-              <div class="form-group">
-                <label>メニュー</label>
-                <%= menu_form.text_field :title, class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <label>量(g)</label>
-                <%= menu_form.number_field :quantity, class: 'form-control', step: '1', min: '0' %>
-              </div>
-              <div class="form-group">
-                <label>カロリー</label>
-                <%= menu_form.number_field :calorie, class: 'form-control', step: '1', min: '0' %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <div class="mt-3 mb-3">
+      <div class="post-meal__menu-button mt-3 mb-3">
         <% if post_meal.new_record? %>
         <button id="add-menu-button" type="button" class="btn btn-light">メニュー追加はこちらから</button>
         メニューは5つまで追加可能
@@ -54,13 +43,16 @@
         <% end %>
       </div>
     </div>
-    <label>タグ(,で区切ると複数タグ登録できます)</label>
+
+    <div class="post-meal__field">
+      <label>Tag(,で区切ると複数タグ登録できます)</label>
       <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
-    <div>
+    </div>
+    <div class="post-meal__submit-field text-center">
       <% if post_meal.new_record? %>
-        <%= f.submit '新規作成', class: "btn btn-success mt-4" %>
+        <%= f.submit '新規作成', class: "btn mt-4" %>
       <% else %>
-        <%= f.submit '更新する', class: "btn btn-success mt-4" %>
+        <%= f.submit '更新する', class: "btn mt-4" %>
       <% end %>
     </div>
   </div>
@@ -69,8 +61,8 @@
 
 <script>
   document.getElementById("add-menu-button").addEventListener("click", function() {
-    var container = document.getElementById("meal-menus");
-    var mealMenus = container.getElementsByClassName("meal-menu");
+    var container = document.getElementById("post-meal-menus");
+    var mealMenus = container.getElementsByClassName("post-meal__menu-detail");
     
     // 非表示のフォームを検索し、最初の非表示フォームを表示する
     for (var i = 0; i < mealMenus.length; i++) {
@@ -81,8 +73,8 @@
     }
   });
   document.getElementById("hide-menu-button").addEventListener("click", function() {
-    var container = document.getElementById("meal-menus");
-    var mealMenus = container.getElementsByClassName("meal-menu");
+    var container = document.getElementById("post-meal-menus");
+    var mealMenus = container.getElementsByClassName("post-meal__menu-detail");
     
     // 非表示のフォームを検索し、最初の表示されているフォームを非表示にする
     for (var i = 0; i < mealMenus.length; i++) {

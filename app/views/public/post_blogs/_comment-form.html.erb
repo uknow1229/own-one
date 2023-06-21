@@ -1,4 +1,10 @@
 <%= form_with model: [post_blog, blog_comment] do |f| %>
-  <%= f.text_area :comment, rows: 5, placeholder: "コメントをここに" %>
-  <%= f.submit "送信する", :class => "btn btn-success ms-3" %>
+  <div class="blog-tag form-group d-flex">
+    <%= f.text_area :comment, rows: 5, placeholder: "コメントをここに", class: 'form-control' %>
+    <div class="blog-tag__submit">
+      <%= button_tag type: "submit", class: "btn btn-success ms-3" do %>
+        <i class="fas fa-paper-plane"></i>
+      <% end %>
+    </div>
+  </div>
 <% end %>

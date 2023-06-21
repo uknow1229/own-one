@@ -6,6 +6,8 @@
       <label>体重</label>
       <%= f.number_field  :value, class: 'form-control', step: '0.1', min: '0' %>
     </div>
-      <%= f.submit @weight.new_record? ? '新規作成' : '更新', class: "btn btn-success mt-4" %>
+    <div class="weight__submit text-center">
+      <%= f.submit @weight.new_record? ? '新規作成' : '更新', class: "btn mt-4 mb-4" %>
+    </div>
   </div>
 <% end %>

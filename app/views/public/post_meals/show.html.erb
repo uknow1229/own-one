@@ -1,64 +1,81 @@
-<div class="container workout-wrapper mt-4">
-  <h2>食事投稿詳細</h2>
+<div class="post-meal container mt-4 mb-4">
+  <h2 class="text-center">Meal Post Details</h2>
 
-  <div class="enduser-wrapper mb-4 d-flex justify-content-center">
-      <%= image_tag @post_meal.end_user.get_profile_image(100, 100), class: "profile-image" %>
-      <p><%= link_to @post_meal.end_user.first_name, end_user_path(@post_meal.end_user) %></p>
-  </div>
-
-  <div class="workout d-flex">
-    <div class="workout-menu">
-      <h2><%= @post_meal.start_time.strftime("%Y-%m-%d") %></h2>
-      <% if @post_meal.image.attached? %>
-        <%= image_tag @post_meal.image, class: "fitness-image" %>
-      <% else %>
-        <%= image_tag 'noimage.jpg', class: "no-image" %>
-      <% end %>
+  <div class="post-meal__wrapper mx-auto col-sm-10">
+    <div class="post-meal__profile">
+      <%= render "public/post_meals/profile", post_meal: @post_meal %>
     </div>
-    <div class="workout-menu">
-      <h2>食事タイミング</h2>
+
+  <div class="post-meal__content row">
+    <div class="post-meal__details me-5 col-sm-5">
+      <div class="post-meal__image">
+        <%= image_tag get_image(@post_meal, 300, 300) %>
+      </div>
+      <div class="post-meal__action-links mt-2">
+        <%= link_to edit_post_meal_path, :class => "btn" do %>
+          <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+        <% end %>
+        <%= link_to post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn ms-3" do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="post-meal__details col-sm-5">
+      <h4>Meal Timing</h4>
       <p><%= @post_meal.timing_i18n %></p>
-      <h2>食事タイプ</h2>
+      <h4>Meal Type</h4>
       <p><%= @post_meal.meal_type_i18n %></p>
-      <h2>メモ</h2>
+      <h4>Memo</h4>
       <p><%= @post_meal.memo %></p>
 
-      <h4>メニュー</h4>
-      <% @post_meal.meal_menus.each do |menu| %>
-      <div>
-        <h2>タイトル</h2>
-        <p><%= menu.title %></p>
-        <h2>量</h2>
-        <p><%= menu.quantity %>g</p>
-        <h2>カロリー</h2>
-        <p><%= menu.calorie %>カロリー</p>
-        </div>
+      <% if @post_meal.meal_menus.any? %>
+        <h4>Menu</h4>
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Amount</th>
+              <th>Calories</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @post_meal.meal_menus.each do |menu| %>
+              <div class="post-meal__menu">
+                <tr>
+                  <td><%= menu.title %></td>
+                  <td><%= menu.quantity %>g</td>
+                  <td><%= menu.calorie %>カロリー</td>
+                </tr>
+              </div>
+            <% end %>
+          </tbody>
+        </table>
       <% end %>
 
       <!-- いいね機能 -->
-      <div class="workout-likes">       
+      <div class="post-meal__like d-flex gap-2">       
         <span id="meal_likes_<%= @post_meal.id %>">
           <p><%= render "like-btn", post_meal: @post_meal %></p>
         </span>
         <%= link_to "いいね", meal_likes_end_user_path %>
       </div>
       <!-- タグリスト -->
-      <% @post_meal_tags.each do |tag| %>
-        <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to tag.name,search_meal_tag_path(meal_tag_id: tag.id) %>
-      <% end %>
+      <div class="post-meal__tag mb-4">
+        <% @post_meal_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%= link_to tag.name,search_meal_tag_path(meal_tag_id: tag.id) %>
+        <% end %>
+      </div>
       <!-- コメント機能 -->
-      <p>コメント件数:<%= @post_meal.meal_comments.count %></p>
-        <div id="meal-comments">
-          <%= render 'comment-index', post_meal: @post_meal %>
-        </div>
-        <div id="comment-form">
-          <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
-        </div>
+      <div class="post-meal__comment-section">
+        <p>コメント数:<%= @post_meal.meal_comments.count %></p>
+          <div class="post-meal__comment-index mb-4" id="post-meal-comment">
+            <%= render 'comment-index', post_meal: @post_meal %>
+          </div>
+          <div class="post-meal__comment-form">
+            <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>
+          </div>
+      </div>
     </div>
-  </div>
-  <div class="workout-menu-link">
-    <%= link_to "編集", edit_post_meal_path, :class => "btn btn-success ms-3" %>
-    <%= link_to "削除", post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>
   </div>
 </div>

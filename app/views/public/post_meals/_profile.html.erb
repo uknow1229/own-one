@@ -1,0 +1,9 @@
+<div class="meal-profile d-flex mb-4 gap-2">
+  <div class="meal-profile__image">
+    <%= image_tag post_meal.end_user.get_profile_image(50, 50) %>
+  </div>
+  <div class="meal-profile__details mb-0">
+    <p class="mb-0"><%= link_to post_meal.end_user.first_name, end_user_path(post_meal.end_user) %></p>
+    <p class="mb-0"><%= post_meal.start_time.strftime("%Y-%m-%d") %></p>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.workout-comment {
+
+  &__image {
+    img {
+      border-radius: 50%;
+    }
+
+  }
+  &__details {
+    p {
+      font-size: small;
+      overflow-wrap: break-word;
+    }
+  }
+  &__text {
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 5px;
+  }
+
+}

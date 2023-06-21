@@ -1,6 +1,6 @@
 class Public::PostBlogsController < ApplicationController
   def index
-    @post_blogs = PostBlog.all
+    @post_blogs = PostBlog.all.page(params[:page]).per(9)
     @tag_list = BlogTag.all
   end
 

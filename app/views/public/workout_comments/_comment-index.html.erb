@@ -1,10 +1,23 @@
 <% post_workout.workout_comments.each do |workout_comment| %>
-<div>
-  <%= image_tag workout_comment.end_user.get_profile_image(100,100)%>
-  <%= workout_comment.end_user.first_name %>
-  <%= workout_comment.created_at.strftime('%Y/%m/%d') %><%= workout_comment.comment %>
-  <% if workout_comment.end_user == current_end_user %>
-    <%= link_to "削除", post_workout_workout_comment_path(workout_comment.post_workout, workout_comment), method: :delete, data: { confirm: "本当に削除しますか？" }, :class => "btn btn-danger ms-3", remote: true %>
-  <% end %>
+  <div class="workout-comment d-flex align-items-center mb-2 gap-2">
+    <div class="workout-comment__image">
+      <%= image_tag workout_comment.end_user.get_profile_image(30,30) %>
+    </div>
+    <div class="workout-comment__details mb-0">
+      <p class="mb-0"><%= link_to workout_comment.end_user.first_name, end_user_path(post_workout.end_user)  %></p>
+      <p class="mb-0"><%= workout_comment.created_at.strftime('%Y/%m/%d') %></p>
+    </div>
+  </div>
+  <div class="workout-comment d-flex justify-content-between">
+    <p class="workout-comment__text"><%= workout_comment.comment %></p>
+    <div class="workout-comment__action">
+      <% if workout_comment.end_user == current_end_user %>
+        <%= link_to post_workout_workout_comment_path(workout_comment.post_workout, workout_comment), method: :delete, remote: true,
+          data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger ms-3" do %>
+          <i class="fa-sharp fa-solid fa-trash" style="color: #fbfadb;"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-</div>
+

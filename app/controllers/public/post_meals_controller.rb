@@ -1,6 +1,6 @@
 class Public::PostMealsController < ApplicationController
   def index
-    @post_meals = PostMeal.all
+    @post_meals = PostMeal.all.page(params[:page]).per(9)
     @tag_list = MealTag.all
   end
 

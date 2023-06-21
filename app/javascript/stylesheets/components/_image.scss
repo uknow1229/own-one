@@ -1,0 +1,37 @@
+.backimage {
+  justify-content: center;
+}
+
+.top-image {
+  height: 600px;
+  overflow: hidden;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
+  -o-object-position: 100% 40%;
+  object-position: 100% 40%;
+  z-index: 1;
+}
+
+.logo-image {
+  position: relative;
+  overflow: hidden;
+  -o-object-fit: cover;
+  object-fit: cover;
+  z-index: 2;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+}
+
+.fitness-image {
+  width: 200px;
+  height: 200px;
+}
+
+.no-image {
+  width: 150px;
+  height: 150px;
+}

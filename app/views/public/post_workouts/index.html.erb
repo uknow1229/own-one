@@ -1,13 +1,22 @@
-<div class="container mt-4">
-  <div class="d-flex">
-    <h2>フィットネス投稿一覧</h2>
-    <%= link_to '投稿する', new_post_workout_path, class: 'btn btn-success ms-4' %>
+<div class="post-workout container mt-4">
+  <div class="row justify-content-center">
+    <div class="post-workout__index col-sm-10">
+      <div class="post-workout__header d-flex">
+        <h2>List of fitness posts</h2>
+        <p><%= link_to '投稿する', new_post_workout_path, class: 'btn ms-4' %></p>
+      </div>
+      <!--タグリスト-->
+      <div class="post-workout__tag d-flex">
+        <% @tag_list.each do |list|%>
+          <p><i class="fa-sharp fa-solid fa-tag"></i>
+          <%=link_to list.name,search_workout_tag_path(workout_tag_id: list.id) %></p>
+          <p><%="(#{list.post_workouts.count})" %></p>
+        <% end %>
+      </div>
+      <%= render "index", post_workouts: @post_workouts %>
+      <div class="post-workout__paginate d-flex justify-content-center mt-4">
+        <%= paginate @post_workouts , theme: 'bootstrap-5' %>
+      </div>
+    </div>
   </div>
-  <!--タグリスト-->
-  <% @tag_list.each do |list|%>
-    <i class="fa-sharp fa-solid fa-tag"></i>
-    <%=link_to list.name,search_workout_tag_path(workout_tag_id: list.id) %>
-    <%="(#{list.post_workouts.count})" %>
-  <% end %>
-  <%= render "index", post_workouts: @post_workouts %>
 </div>

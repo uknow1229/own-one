@@ -1,5 +1,5 @@
-<div class="container mt-4">
-  <h2 class="text-center">体重新規登録</h2>
+<div class="container mt-4 mb-4">
+  <h2 class="text-center">New Weight Registration</h2>
   <div class="row justify-content-center">
     <div class="col-sm-8">
       <%= render "form", weight: @weight %>
@@ -7,14 +7,13 @@
   </div>
   <%= render "index", weights: @weights %>
 
-  <%= form_with url: weights_path, method: :get do |form| %>
-    <%= form.date_field :month, value: params[:month] || Date.today.strftime('%Y-%m'), type: 'month' %>
-    <%= form.submit 'Select Month' %>
-  <% end %>
+  <div class="col-sm-8 mx-auto">
+    <%= form_with url: weights_path, method: :get, class: 'd-flex gap-2' do |form| %>
+      <p><%= form.date_field :month, value: params[:month] || Date.today.strftime('%Y-%m'), type: 'month', class: 'form-control' %></p>
+      <p><%= form.submit 'Select Month', class: 'btn' %></p>
+    <% end %>
 
-  <div>
-    <canvas id="myChart" style="width:800px; height:400px;"></canvas>
-
+    <canvas id="myChart"></canvas>
     <script>
       $(document).on('turbolinks:load', function() {
       var ctx = document.getElementById('myChart').getContext('2d');
@@ -29,10 +28,9 @@
             label: 'Weight',
             data: weight,
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgba(26, 48, 245, 0.8)',
             tension: 0.1
           }
-          
           ]
         },
         options: {

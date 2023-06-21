@@ -1,49 +1,60 @@
-<div class="container blog-wrapper mt-4">
-  <h2>ブログ投稿詳細</h2>
+<div class="post-blog container mt-4 mb-4">
+  <h2 class="text-center">Blog Post Details</h2>
 
-  <div class="enduser-wrapper mb-4 d-flex justify-content-center">
-    <%= image_tag @post_blog.end_user.get_profile_image(50, 50) %>
-    <p><%= link_to @post_blog.end_user.first_name, end_user_path(@post_blog.end_user) %></p>
-  </div>
+  <div class="post-blog__wrapper mx-auto col-sm-10">
+    <div class="post-meal__profile">
+      <%= render "public/post_blogs/profile", post_blog: @post_blog %>
+    </div>
 
-  <div class="blog d-flex">
-    <div class="blog-menu">
-      <h2><%= @post_blog.start_time.strftime("%Y-%m-%d") %></h2>
-      <% if @post_blog.image.attached? %>
-        <%= image_tag @post_blog.image, class: "fitness-image" %>
-      <% else %>
-        <%= image_tag 'noimage.jpg', class: "no-image" %>
-      <% end %>
+    <div class="post-blog__content row">
+      <div class="post-blog__details col-sm-5">
+        <div class="post-blog__image">
+          <%= image_tag get_image(@post_blog, 300, 300) %>
+        </div>
+
+        <div class="post-blog__action-links mt-2">
+          <%= link_to edit_post_blog_path, :class => "btn" do %>
+            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+          <% end %>
+          <%= link_to post_blog_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn" do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="post-blog__details col-sm-5">
+        <h4>Title</h4>
+        <p><%= @post_blog.title %></p>
+        <h4>Contents</h4>
+        <p><%= @post_blog.content %></p>
+
+        <!-- いいね機能 -->
+        <div class="post-blog__like d-flex gap-2">
+          <span id="blog_likes_<%= @post_blog.id %>">
+            <%= render "like-btn", post_blog: @post_blog %>
+          </span>
+          <%= link_to "いいね", blog_likes_end_user_path %>
+        </div>
+
+        <!-- タグリスト -->
+        <div class="post-blog__tag mb-4">
+          <% @post_blog_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+            <%= link_to tag.name,search_blog_tag_path(blog_tag_id: tag.id) %>
+          <% end %>
+        </div>
+
+        <!-- コメント機能 -->
+        <div class="post-blog__comment-section">
+          <p>コメント数:<%= @post_blog.blog_comments.count %></p>
+          <div id="blog-comments">
+            <%= render 'comment-index', post_blog: @post_blog %>
+          </div>
+          <div id="comment-form">
+            <%= render 'comment-form', post_blog: @post_blog, blog_comment: @blog_comment %>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="blog-menu">
-      <h2>タイトル</h2>
-      <p><%= @post_blog.title %></p>
-      <h2>内容</h2>
-      <p><%= @post_blog.content %></p>
-      <!-- いいね機能 -->
-      <div class="workout-likes">
-        <span id="blog_likes_<%= @post_blog.id %>">
-          <%= render "like-btn", post_blog: @post_blog %>
-        </span>
-        <%= link_to "いいね", blog_likes_end_user_path %>
-      </div>
-      <!-- タグリスト -->
-      <% @post_blog_tags.each do |tag| %>
-      <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to tag.name,search_blog_tag_path(blog_tag_id: tag.id) %>
-      <% end %>
-      <!-- コメント機能 -->
-      <p>コメント件数:<%= @post_blog.blog_comments.count %></p>
-      <div id="blog-comments">
-        <%= render 'comment-index', post_blog: @post_blog %>
-      </div>
-      <div id="comment-form">
-        <%= render 'comment-form', post_blog: @post_blog, blog_comment: @blog_comment %>
-      </div>
-    </div>
-  </div>
-  <div class="blog-menu-link">
-    <%= link_to "編集", edit_post_blog_path, :class => "btn btn-success ms-3" %>
-    <%= link_to "削除", post_blog_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" %>
   </div>
 </div>

@@ -5,7 +5,7 @@
     <%= link_to t('simple_calendar.next', default: '>'), calendar.url_for_next_view, remote: true %>
   </div>
 
-  <table class="table">
+  <table class="table text-center">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>

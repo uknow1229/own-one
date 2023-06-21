@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h4>通知</h4>
+  <h4>Notice</h4>
   <% if @notifications.present? %>
     <%= link_to "全削除",notification_path(@notifications), method: :delete,class:"btn btn-light" %>
     <% @notifications.each do |notification| %>
@@ -10,6 +10,6 @@
       </div>
     <% end %>
   <% else %>
-    通知はありません
+    There is no notification.
   <% end %>
 </div>

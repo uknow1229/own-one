@@ -1,13 +1,22 @@
-<div class="container mt-4">
-  <div class="d-flex">
-    <h2>食事投稿一覧</h2>
-    <%= link_to '投稿する', new_post_meal_path, class: 'btn btn-success ms-4' %>
+<div class="post-meal container mt-4">
+  <div class="row justify-content-center">
+    <div class="post-meal__index col-sm-10">
+      <div class="post-meal__header d-flex">
+        <h2>List of meal posts</h2>
+        <p><%= link_to '投稿する', new_post_meal_path, class: 'btn ms-4' %></p>
+      </div>
+        <!--タグリスト-->
+      <div class="post-meal__tag d-flex">
+        <% @tag_list.each do |list|%>
+          <p><i class="fa-sharp fa-solid fa-tag"></i></p>
+          <%=link_to list.name,search_meal_tag_path(meal_tag_id: list.id) %>
+          <%="(#{list.post_meals.count})" %>
+        <% end %>
+      </div>
+      <%= render "index", post_meals: @post_meals %>
+      <div class="post-meal__paginate d-flex justify-content-center mt-4">
+        <%= paginate @post_meals , theme: 'bootstrap-5' %>
+      </div>
+    </div>
   </div>
-    <!--タグリスト-->
-  <% @tag_list.each do |list|%>
-    <i class="fa-sharp fa-solid fa-tag"></i>
-    <%=link_to list.name,search_meal_tag_path(meal_tag_id: list.id) %>
-    <%="(#{list.post_meals.count})" %>
-  <% end %>
-  <%= render "index", post_meals: @post_meals %>
 </div>

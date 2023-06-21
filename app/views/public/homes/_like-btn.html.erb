@@ -1,3 +1,4 @@
+
 <% if post_workout.liked_by?(current_end_user) %>
   <%= link_to post_workout_workout_likes_path(post_workout), method: :delete do %>
     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>

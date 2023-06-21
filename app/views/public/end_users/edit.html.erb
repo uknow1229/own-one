@@ -1,82 +1,75 @@
-<div class="container mt-4">
-  <div class="row">
-    <h1>プロフィール編集</h1>
-    
-    <%= form_with model: @end_user, url:end_user_path do |f| %>
-    <div class="form-group">
-        <div>
-          <label>画像</label>
+<div class="user-profile-edit container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <h1 class="text-center">Edit Profile</h1>
+
+      <%= form_with model: @end_user, url:end_user_path do |f| %>
+        <div class="user-profile-edit__details form-group mb-4">
+          <label>Image</label>
           <%= f.file_field :profile_image, accept: "image/*", class: 'form-control' %>
-        </div>
-        <div>
-          <label>性</label>
+
+          <label>First Name</label>
           <%= f.text_field :first_name, class: 'form-control' %>
-        </div>
-        <div>
-          <label>名</label>
+
+          <label>Last Name</label>
           <%= f.text_field :last_name, class: 'form-control' %>
-        </div>
-        <div>
-          <label>身長</label>
+
+          <label>Height</label>
           <%= f.number_field :height, class: 'form-control', in: 1..250 %>
-        </div>
-        <div>
-          <label>体重</label>
+
+          <label>Body Weight</label>
           <%= f.number_field :body_weight, class: 'form-control', step: "0.1", in: 1..150 %>
-        </div>
-        <div>
-          <label>年齢</label>
+
+          <label>Age</label>
           <%= f.number_field :age, class: 'form-control', in: 1..150 %>
-        </div>
-        <div>
-          <label>性別</label>
-          <%= f.select :sex, options_for_select(EndUser.sexes.map { |k, _v| [t("activerecord.attributes.end_user.sexes.#{k}"), k] }), { class: 'form-control', style: 'margin-bottom: 15px;', data: {} } ,class: 'form-control' %>
-        </div>
-        <div>
-          <label>目標体重</label>
+
+          <label>Sex</label>
+          <%= f.select :sex, options_for_select(EndUser.sexes.map { |k, _v| [t("activerecord.attributes.end_user.sexes.#{k}"), k] }),
+          { class: 'form-control', style: 'margin-bottom: 15px;', data: {} } ,class: 'form-control' %>
+
+          <label>Target Weight</label>
           <%= f.number_field :target_weight, class: 'form-control', step: "0.1", in: 1..150 %>
-        </div>
-        <div>
-          <label>目標カロリー</label>
+
+          <label>Target Calorie</label>
           <%= f.number_field :target_calorie, class: 'form-control', in: 1..10000 %>
-        </div>
-        <div>
-          <label>活動レベル</label>
-          <%= f.select :activelevel, options_for_select(EndUser.activelevels.map { |k, _v| [t("activerecord.attributes.end_user.activelevels.#{k}"), k] }), { data: {} } ,class: 'form-control' %>
-        </div>
-        <table class="table">
-          <p>※活動レベルは以下の表を目安に設定してください</p>
-          <thead>
-            <tr>
-              <th>活動レベル</th>
-              <th>目安</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>レベル1</th>
-              <td>運動はしない：生活の大部分が座位で、静的な活動が中心の場合</td>
-            </tr>
-            <tr>
-              <th>レベル2</th>
-              <td>軽く運動する：職場内での移動や立位での作業や、軽いスポーツ、家事等のいずれかを含む場合</td>
-            </tr>
-            <tr>
-              <th>レベル3</th>
-              <td>活発に活動：移動や立位の多い仕事への従事者、あるいは、活発な運動習慣をもっている場合</td>
-            </tr>
-          </tbody>
-        </table>
-        <div>
-          <label>自己紹介</label>
+
+          <label>Active Level</label>
+          <%= f.select :activelevel, options_for_select(EndUser.activelevels.map { |k, _v| [t("activerecord.attributes.end_user.activelevels.#{k}"), k] }),
+          { data: {} } ,class: 'form-control' %>
+
+          <table class="table">
+            <p>※活動レベルは以下の表を目安に設定してください</p>
+            <thead>
+              <tr>
+                <th>Active Level</th>
+                <th>目安</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Level 1</th>
+                <td>運動はしない：生活の大部分が座位で、静的な活動が中心の場合</td>
+              </tr>
+              <tr>
+                <th>Level 2</th>
+                <td>軽く運動する：職場内での移動や立位での作業や、軽いスポーツ、家事等のいずれかを含む場合</td>
+              </tr>
+              <tr>
+                <th>Level 3</th>
+                <td>活発に活動：移動や立位の多い仕事への従事者、あるいは、活発な運動習慣をもっている場合</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <label>introduction</label>
           <%= f.text_field :introduction, class: 'form-control' %>
-        </div>
-        <div>
-          <label>メールアドレス</label>
+
+          <label>E-Mail</label>
           <%= f.text_field :email, class: 'form-control' %>
-        </div>
-        <div>
-          <%= f.submit '更新する', :class => "btn btn-success mt-4" %>
+
+          <div class="user-profile-edit__btn text-center">
+            <%= f.submit '更新する', :class => "btn mt-4" %>
+          </div>
         </div>
       <% end %>
     </div>

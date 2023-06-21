@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :end_users, only: [:show, :edit, :update] do
       member do
         get :profile
+        get :check
         get :blog_likes
         get :meal_likes
         get :workout_likes
@@ -45,7 +46,8 @@ Rails.application.routes.draw do
     end
       resources :notifications, only: [:index, :destroy]
       resources :weights
-      get  '/end_users/check' => 'end_users#check'
+
+      # get  '/end_users/check' => 'end_users#check'
       patch  '/end_users/withdraw' => 'end_users#withdraw'
 
       get "search" => "searches#search"

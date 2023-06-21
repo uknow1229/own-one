@@ -1,4 +1,4 @@
-<div class="container">
+<div class="search container">
   <div class='row'>
     <% search_word = @q %>
     <% if @post_workout.present? || @post_meal.present? || @post_blog.present? %>
@@ -15,7 +15,7 @@
           <% if @post_workout.present? %>
             <% @post_workout.each do |f| %>
               <tr>
-                <td><%= image_tag f.get_image(50, 50), class: "image" %></td>
+                <td><%= image_tag get_image(f, 50, 50), class: "image" %></td>
                 <td><%= link_to f.title, post_workout_path(f.id) %></td>
               </tr>
             <% end %>
@@ -23,7 +23,7 @@
           <% if @post_meal.present? %>
             <% @post_meal.each do |f| %>
               <tr>
-                <td><%= image_tag f.get_image(50, 50), class: "image" %></td>
+                <td><%= image_tag get_image(f, 50, 50), class: "image" %></td>
                 <td><%= link_to f.memo, post_meal_path(f.id) %></td>
               </tr>
             <% end %>
@@ -31,7 +31,7 @@
           <% if @post_blog.present? %>
             <% @post_blog.each do |f| %>
               <tr>
-                <td><%= image_tag f.get_image(50, 50), class: "image" %></td>
+                <td><%= image_tag get_image(f, 50, 50), class: "image" %></td>
                 <td><%= link_to f.title, post_blog_path(f.id) %></td>
               </tr>
             <% end %>
