@@ -3,7 +3,7 @@ class CreateWeights < ActiveRecord::Migration[6.1]
     create_table :weights do |t|
       t.float :value
       t.date :date
-      t.references :end_user, type: :integer, null: false, foreign_key: true
+      t.references :end_user, type: :bigint, null: false, foreign_key: true
 
       t.timestamps
     end
