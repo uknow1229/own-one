@@ -1,10 +1,12 @@
 class CreateWorkoutLikes < ActiveRecord::Migration[6.1]
   def change
     create_table :workout_likes do |t|
-      t.references :end_user, type: :bigint, foreign_key: true, null: false
+      t.bigint :end_user, null: false
       t.references :post_workout, type: :integer, foreign_key: true, null: false
 
       t.timestamps
+
+      add_foreign_key :workout_likes, :end_users
     end
   end
 end
