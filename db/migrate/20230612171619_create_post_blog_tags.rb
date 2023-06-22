@@ -1,8 +1,8 @@
 class CreatePostBlogTags < ActiveRecord::Migration[6.1]
   def change
     create_table :post_blog_tags do |t|
-      t.references :post_blog, type: :integer, null: false, foreign_key: true
-      t.references :blog_tag, type: :integer, null: false, foreign_key: true
+      t.references :post_blog, type: :bigint, null: false, foreign_key: true
+      t.references :blog_tag, type: :bigint, null: false, foreign_key: true
 
       t.timestamps
     end
