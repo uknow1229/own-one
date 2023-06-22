@@ -1,7 +1,7 @@
 class CreatePostWorkouts < ActiveRecord::Migration[6.1]
   def change
     create_table :post_workouts do |t|
-      t.references :end_user, type: :integer, foreign_key: true, null: false
+      t.references :end_user, type: :bigint, foreign_key: true, null: false
       t.datetime :date
       t.string :title
       t.integer :site, default: 0
