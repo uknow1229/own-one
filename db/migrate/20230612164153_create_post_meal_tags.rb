@@ -1,8 +1,8 @@
 class CreatePostMealTags < ActiveRecord::Migration[6.1]
   def change
     create_table :post_meal_tags do |t|
-      t.references :post_meal, null: false, foreign_key: true
-      t.references :meal_tag, null: false, foreign_key: true
+      t.references :post_meal, type: :bigint, null: false, foreign_key: true
+      t.references :meal_tag, type: :bigint, null: false, foreign_key: true
 
       t.timestamps
     end
