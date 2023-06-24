@@ -1,9 +1,7 @@
 <div class="user-profile-edit container mt-4">
   <div class="row justify-content-center">
     <div class="col-sm-8">
-      <% if @end_user.email == 'guest@example.com'%>
-        <h2>ゲストユーザーはユーザー情報の編集ができません</h2>
-      <% else %>
+
         <h1 class="text-center">Edit Profile</h1>
         <%= render 'layouts/error_messages', model: @end_user %>
 
