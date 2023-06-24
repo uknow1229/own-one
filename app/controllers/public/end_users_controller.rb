@@ -22,9 +22,13 @@ class Public::EndUsersController < ApplicationController
 
   def update
     @end_user = EndUser.find(params[:id])
-    @end_user.update(end_user_params)
+    if @end_user.update(end_user_params)
     redirect_to end_user_path
-    flash[:notice] = "変更が完了しました"
+    flash[:notice] = "更新が完了しました"
+    else
+      flash[:notice] = "ユーザー情報を更新できませんでした"
+      render :edit
+    end
   end
 
   def check
