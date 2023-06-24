@@ -6,6 +6,8 @@ class BlogComment < ApplicationRecord
 
   after_create_commit :create_notifications
 
+  validates :comment, presence: true
+
   private
   def create_notifications
     Notification.create(subject: self, end_user: post_blog.end_user, action_type: :commented_to_blog_post)

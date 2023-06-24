@@ -6,6 +6,8 @@ class WorkoutComment < ApplicationRecord
 
   after_create_commit :create_notifications
 
+  validates :comment, presence: true
+
   private
   def create_notifications
     Notification.create(subject: self, end_user: post_workout.end_user, action_type: :commented_to_workout_post)

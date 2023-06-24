@@ -12,6 +12,10 @@ class PostBlog < ApplicationRecord
 
   has_one :notification, as: :subject, dependent: :destroy
 
+  validates :start_time, presence: true
+  validates :title, length: { maximum: 40 } , presence: true
+  validates :content, length: { maximum: 2800 } , presence: true
+
   def liked_by?(end_user)
     blog_likes.exists?(end_user_id: end_user.id)
   end
