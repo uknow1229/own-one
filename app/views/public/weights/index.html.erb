@@ -1,6 +1,8 @@
 <div class="container mt-4 mb-4">
   <h2 class="text-center">New Weight Registration</h2>
   <div class="row justify-content-center">
+    <%= render 'layouts/error_messages', model: @weight %>
+    
     <div class="col-sm-8">
       <%= render "form", weight: @weight %>
     </div>

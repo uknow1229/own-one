@@ -50,7 +50,7 @@ class Public::WeightsController < ApplicationController
     if @weight.save
       redirect_to weights_path, notice: '登録に成功しました'
     else
-      render :new
+      render :index
     end
 
   end

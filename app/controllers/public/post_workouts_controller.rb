@@ -31,6 +31,7 @@ class Public::PostWorkoutsController < ApplicationController
       @post_workout.save_workout_tags(tag_list)
       redirect_to post_workouts_path, notice:'投稿が完了しました'
     else
+      flash[:notice] = "投稿を作成できませんでした"
       render :new
     end
   end
@@ -41,7 +42,9 @@ class Public::PostWorkoutsController < ApplicationController
     if @post_workout.update(post_workout_params)
       @post_workout.save_workout_tags(tag_list)
       redirect_to post_workouts_path
+      flash[:notice] = "更新が完了しました"
     else
+      flash[:notice] = "フィットネス投稿を更新できませんでした"
       render :edit
     end
   end
@@ -52,7 +55,6 @@ class Public::PostWorkoutsController < ApplicationController
     @post_workout.destroy
     flash[:notice] = "削除が完了しました"
     redirect_to post_workouts_path
-    
   end
 
   def search_tag
