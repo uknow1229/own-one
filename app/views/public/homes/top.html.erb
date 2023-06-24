@@ -1,6 +1,28 @@
 <div class="top container mt-4">
-  <%= link_to homes_about_path do %>
-    <%= image_tag 'logo3.png', class: 'logo-image' %>
-  <% end %>
+  <div class="d-flex">
+    <div>
+      <%= image_tag 'logo3.png', class: 'logo-image' %>
+      <h4>フィットネスを愛する全ての人へ</h4>
+      <h5>フィットネス・食事メニュー・体重記録＆共有サービス</h5>
+      <p><%= link_to '使ってみる', new_end_user_registration_path, class: 'btn btn-success ms-4' %></p>
+      <p><%= link_to 'ログイン', end_users_guest_sign_in_path, class: 'btn btn-success ms-4' %></p>
+    </div>
+    <div>
+      <%= image_tag 'top4.jpg', class: 'top-image' %>
+    </div>
+  </div>
 
-</div>
+
+
+  <h4>投稿してみる</h4>
+
+
+
+  <h2>How to Use</h2>
+
+  <h2>1. まずはユーザー登録　一日の目標カロリーなどを記録しましょう！</h2>
+  <h2>2. 新規登録から「フィットネス」「食事」「ブログ」「体重」を選んで記録しましょう！</h2>
+  <h2>3. マイページで日々の記録を確認しましょう！</h2>
+  <h2>4. 投稿一覧で他のユーザーのアイディアを取り入れましょう！</h2>
+
+  </div>
