@@ -1,7 +1,7 @@
 class Public::EndUsersController < ApplicationController
 
   def show
-    @end_user = EndUser.find(params[:id])
+    @end_user = EndUser.find(current_end_user.id)
     @post_workouts = @end_user.post_workouts.page(params[:page]).per(3)
     @post_blogs = @end_user.post_blogs.page(params[:page]).per(3)
     @post_meals = @end_user.post_meals.page(params[:page]).per(3)
@@ -35,11 +35,16 @@ class Public::EndUsersController < ApplicationController
   end
 
   def withdraw
-    @end_user = EndUser.find(current_end_user.id)
-    @end_user.update(is_deleted: true)
-    reset_session
-    flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path
+    @end_user = current_end_user
+    if @end_user.email == 'guest@example.com'
+      redirect_to root_path
+      flash[:notice] = "ゲストユーザーは退会できません"
+    else
+      @end_user.update(is_deleted: true)
+      reset_session
+      flash[:notice] = "退会処理を実行いたしました"
+      redirect_to root_path
+    end
   end
 
   def blog_likes

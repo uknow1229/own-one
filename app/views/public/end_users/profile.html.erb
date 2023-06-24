@@ -68,7 +68,6 @@
     <%= link_to edit_end_user_path, :class => "btn btn-success" do %>
       <i class="fa-sharp fa-solid fa-pen-to-square"></i>
     <% end %>
-    <%= link_to "退会する", check_end_user_path(current_end_user.id), method: :get, :class => "btn" %>
-
+    <%= link_to "退会する", check_end_user_path, method: :get, :class => "btn" %>
   </div>
 </div>
