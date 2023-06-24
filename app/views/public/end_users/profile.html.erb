@@ -13,7 +13,7 @@
             <span><%= image_tag current_end_user.get_profile_image(100,100) %></span>
             <div class="mb-3">
               <label class="form-label">User Name</label>
-              <p class="form-control-plaintext"><%= @end_user.full_name unless @end_user.target_calorie.blank? %></p>
+              <p class="form-control-plaintext"><%= @end_user.user_name %></p>
             </div>
             <div class="mb-3">
               <label class="form-label">E-Mail</label>

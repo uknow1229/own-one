@@ -8,16 +8,14 @@
 
 # Admin User Data
 Admin.create!(
-  last_name: "中山" ,
-  first_name: "きんに君" ,
+  user_name: "きんに君" ,
   email: "test3@test.com" ,
   password: "testtest"
 )
 
 # EndUser Data
 EndUser.create!(
-  last_name: "中山" ,
-  first_name: "きんに君" ,
+  user_name: "きんに君" ,
   height: 160,
   body_weight: 50,
   age: 25,

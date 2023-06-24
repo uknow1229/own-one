@@ -33,6 +33,8 @@ class EndUser < ApplicationRecord
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
   enum activelevel: { level1: 0, level2: 1, level3: 2 }
 
+  # validates :start_time, :site, :time, presence: true
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |end_user|
       end_user.password = SecureRandom.urlsafe_base64
@@ -41,10 +43,6 @@ class EndUser < ApplicationRecord
 
   def guest?
     email == 'guest@example.com'
-  end
-
-  def full_name
-    (self.first_name || "") + " " + (self.last_name || "")
   end
 
   def active_for_authentication?

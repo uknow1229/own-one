@@ -5,7 +5,7 @@
       <% @end_user.follower_end_users.each do |end_user| %>
         <%= image_tag end_user.get_profile_image(50, 50) %>
         <p>User Name</p>
-        <p><%= link_to end_user.first_name, end_user_path(end_user) %></p>
+        <p><%= link_to end_user.user_name, end_user_path(end_user) %></p>
         <p>Following</p>
         <p><%= link_to followeds_end_user_path(end_user) do %>
         <p><%= end_user.followers.count %></p>
