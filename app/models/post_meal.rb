@@ -17,6 +17,8 @@ class PostMeal < ApplicationRecord
 
   enum timing: { breakfast: 0, lunch: 1, dinner: 2, snacking: 3 }
   enum meal_type: { cooking_for_oneself: 0, eating_out: 1, takeout: 2, convenience_store: 3 }
+
+  validates :start_time, :timing, :meal_type, :memo, presence: true
   
   def liked_by?(end_user)
     meal_likes.exists?(end_user_id: end_user.id)

@@ -2,10 +2,10 @@
   <%= image_tag end_user.get_profile_image(300, 300) %>
   <div class="card-body ">
     <h5 class="card-title">User Name</h5>
-    <% if end_user.full_name.blank? %>
+    <% if end_user.user_name.blank? %>
       <p>Not configured</p>
     <% else %>
-      <p><%= end_user.full_name %></p>
+      <p><%= end_user.user_name %></p>
     <% end %>
     <div class="card-text d-flex justify-content-between">
       <p><%= link_to end_user.followers.count, followeds_end_user_path(end_user), class: 'card-link' %>フォロー中</p>

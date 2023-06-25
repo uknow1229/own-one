@@ -1,7 +1,8 @@
 <nav class="navbar text-center">
+  <% if end_user_signed_in? %>
     <div class="navbar navbar-brand">
       <%= link_to root_path do %>
-        <%= image_tag 'logo.png', alt: "ロゴ", width: "70" %>
+        <%= image_tag 'logo5.png', alt: "ロゴ", width: "70px" %>
       <% end %>
       <!-- 検索機能 -->
       <div class="serch_form">
@@ -14,7 +15,6 @@
       </div>
     </div>
     <ul class="navbar-nav justify-content-around" style="flex-direction:row;">
-      <% if end_user_signed_in? %>
       <li class="nav-item">
         <%= link_to end_user_path(current_end_user) ,class: "nav-link" do %>
         <i class="fa-solid fa-user"></i>
@@ -74,49 +74,35 @@
           </li>
         </div>
       </div>
-      <% elsif admin_signed_in? %>
-      <li class="nav-item">
-        <%= link_to admin_end_users_path ,class: "nav-link" do %>
-        <i class="fa-solid fa-user-check"></i>
-        Member
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to admin_post_workouts_path ,class: "nav-link" do %>
-        <i class="fa-sharp fa-solid fa-dumbbell"></i>
-        Post
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
-      <i class="fa-solid fa-right-from-bracket"></i>
-        Logout
-        <% end %>
-      </li>
         <% else %>
-      <li class="nav-item">
-        <%= link_to homes_about_path, class: "nav-link" do %>
-      <i class="fa-solid fa-face-smile"></i>
-        About
+      <div class="navbar navbar-brand">
+        <%= link_to root_path do %>
+          <%= image_tag 'logo.png', alt: "ロゴ", width: "70" %>
         <% end %>
-      <li class="nav-item">
-        <%= link_to new_end_user_registration_path, class: "nav-link" do %>
-        <i class="fa-solid fa-user-plus"></i>
-        Signup
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to new_end_user_session_path, class: "nav-link"  do %>
-        <i class="fa-solid fa-right-to-bracket"></i>
-        Login
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to end_users_guest_sign_in_path, class: "nav-link", method: :post  do %>
-        <i class="fa-solid fa-right-to-bracket"></i>
-        Guest
-        <% end %>
-      </li>
+        <li class="nav-item">
+          <%= link_to homes_about_path, class: "nav-link" do %>
+        <i class="fa-solid fa-face-smile"></i>
+          About
+          <% end %>
+        <li class="nav-item">
+          <%= link_to new_end_user_registration_path, class: "nav-link" do %>
+          <i class="fa-solid fa-user-plus"></i>
+          Signup
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_end_user_session_path, class: "nav-link"  do %>
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Login
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to end_users_guest_sign_in_path, class: "nav-link", method: :post  do %>
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Guest
+          <% end %>
+        </li>
+      </div>
       <% end %>
     </ul>
 </nav>

@@ -1,19 +1,18 @@
 <div class="user-profile container mt-4">
-<div class="row">
-  <div class="user-profile__wrapper mx-auto col-sm-8">
-  <h2>Plofile Details</h2>
-  <p>※このページは他ユーザーには表示されません</p>
+  <div class="row">
+    <div class="user-profile__wrapper mx-auto col-sm-8">
+      <h2>Plofile Details</h2>
+      <p>※このページは他ユーザーには表示されません</p>
   
     <!-- User Information -->
     <div class="d-flex">
-      
         <div class="card w-100">
           <div class="card-body">
             <h4 class="card-title">User Information</h4>
             <span><%= image_tag current_end_user.get_profile_image(100,100) %></span>
             <div class="mb-3">
               <label class="form-label">User Name</label>
-              <p class="form-control-plaintext"><%= @end_user.full_name unless @end_user.target_calorie.blank? %></p>
+              <p class="form-control-plaintext"><%= @end_user.user_name %></p>
             </div>
             <div class="mb-3">
               <label class="form-label">E-Mail</label>
@@ -63,12 +62,12 @@
       </div>
     </div>
   </div>
-
-  <div class="user-profile__actions">
-    <%= link_to edit_end_user_path, :class => "btn btn-success" do %>
-      <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-    <% end %>
-    <%= link_to "退会する", check_end_user_path(current_end_user.id), method: :get, :class => "btn" %>
-
-  </div>
+  <% unless @end_user.guest_user? %>
+    <div class="user-profile__actions">
+      <%= link_to edit_end_user_path(current_end_user), :class => "btn btn-success" do %>
+        <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "退会する", check_end_user_path, method: :get, :class => "btn" %>
 </div>

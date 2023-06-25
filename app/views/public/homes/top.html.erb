@@ -1,6 +1,64 @@
-<div class="top container mt-4">
-  <%= link_to homes_about_path do %>
-    <%= image_tag 'logo3.png', class: 'logo-image' %>
-  <% end %>
+<div class="top mt-4 mb-4">
+  <div class="top__wrapper row align-items-center justify-content-around">
+    <div class="top__details col-sm-5 text-center">
+      <h3>フィットネスを愛する全ての人へ</h3>
+      <h5>フィットネス・食事・体重記録＆共有サービス</h5>
+      <div class="top__actions d-flex justify-content-center mt-4">
+        <% if current_end_user %>
+          <p><%= link_to 'フィットネス', post_workouts_path, class: 'btn btn-success ms-4' %></p>
+          <p><%= link_to '食事記録', post_meals_path, class: 'btn btn-success ms-4' %></p>
+        <% else %>
+          <p><%= link_to '使ってみる', new_end_user_registration_path, class: 'btn btn-success ms-4' %></p>
+          <p><%= link_to 'ログイン', end_users_guest_sign_in_path, class: 'btn btn-success ms-4' %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="top__image col-sm-5 d-flex justify-content-center">
+      <%= image_tag 'logo3.png', class: 'logo-image' %>
+    </div>
+  </div>
 
+  <div class="top__introduction d-flex align-items-center justify-content-center text-center">
+    <h4>OWN ONEは、<br>
+    日々のフィットネスや食事を記録したり、<br>
+    他のユーザーの投稿を見たり共有することで、<br>
+    モチベーションの維持に繋げ<br>
+    毎日のフィットネスをさらに楽しくするサービスです
+    </h4>
+  </div>
+
+  <div class="top__content mt-4">
+    <h1 class="text-center">How to Use</h1>
+    <div class="row d-flex align-items-center text-center mb-4">
+      <div class="col-sm-5"><%= image_tag 'undraw_Personal_trainer_re_cnua.png', class: 'top-image img-fluid' %></div>
+      <div class="col-sm-5"><h4>1. まずはユーザー登録<br>
+      新規登録を行いましょう！</h4></div>
+    </div>
+    <div class="row d-flex align-items-center text-center  mb-4">
+      <div class="col-sm-5"><h4>2. 記録を共有<br>
+      「フィットネス」「食事」「ブログ」<br>
+      「体重」を選んで記録しましょう！</h4></div>
+      <div class="col-sm-5 "><%= image_tag 'undraw_Post_online_re_1b82.png', class: 'top-image img-fluid' %></div>
+    </div>
+    <div class="row d-flex align-items-center text-center mb-4">
+      <div class="col-sm-5"><%= image_tag 'undraw_Report_re_f5n5.png', class: 'top-image img-fluid' %></div>
+      <div class="col-sm-5"><h4>3. 記録を確認<br>
+      マイページで日々の記録を確認しましょう！</h4></div>
+    </div>
+    <div class="row d-flex align-items-center text-center mb-4">
+      <div class="col-sm-5"><h4>4. コミュニケーションをとろう<br>
+      他のユーザーの投稿にいいねや<br>
+      コメントをしたり、日々のフィットネスにアイディアを取り入れましょう！</h4></div>
+      <div class="col-sm-5"><%= image_tag 'undraw_Social_life_re_x7t5.png', class: 'top-image img-fluid' %></div>
+    </div>
+    <div class="d-flex mt-4 justify-content-center">
+      <% if current_end_user %>
+        <p><%= link_to 'フィットネス', post_workouts_path, class: 'btn btn-success ms-4' %></p>
+        <p><%= link_to '食事記録', post_meals_path, class: 'btn btn-success ms-4' %></p>
+      <% else %>
+        <p><%= link_to '使ってみる', new_end_user_registration_path, class: 'btn btn-success ms-4' %></p>
+        <p><%= link_to 'ログイン', end_users_guest_sign_in_path, class: 'btn btn-success ms-4' %></p>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -7,7 +7,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   def ensure_nomal_end_user
     if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの更新・削除できません。'
+      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
     end
   end
 
@@ -49,7 +49,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :height, :body_weight, :age, :sex, :target_weight, :target_calorie, :activelevel, :introduction])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_name, :height, :body_weight, :age, :sex, :target_weight, :target_calorie, :activelevel, :introduction])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
