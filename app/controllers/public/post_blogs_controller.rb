@@ -1,4 +1,6 @@
 class Public::PostBlogsController < ApplicationController
+  before_action :ensure_user, only: [:edit, :update, :destroy]
+
   def index
     @post_blogs = PostBlog.all.page(params[:page]).per(9)
     @tag_list = BlogTag.all
@@ -10,6 +12,7 @@ class Public::PostBlogsController < ApplicationController
     @blog_comment = BlogComment.new
     @tag_list = @post_blog.blog_tags.pluck(:name).join(',')
     @post_blog_tags = @post_blog.blog_tags
+    @end_user = @post_blog.end_user
   end
 
   def edit
@@ -65,4 +68,11 @@ class Public::PostBlogsController < ApplicationController
   def post_blog_params
     params.require(:post_blog).permit(:end_user_id, :image, :start_time, :title, :content)
   end
+
+  def ensure_user
+    @post_blogs = current_end_user.post_blogs
+    @post_blog = @post_blogs.find_by(id: params[:id])
+    redirect_to new_post_blog_path unless @post_blog
+  end
+
 end

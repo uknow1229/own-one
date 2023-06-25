@@ -3,7 +3,7 @@
     <div class="col-sm-8">
 
         <h1 class="text-center">Edit Profile</h1>
-        <%= render 'layouts/error_messages', model: @end_user %>
+        <%= render "public/shared/error_messages", resource: @end_user %>
 
         <%= form_with model: @end_user, url:end_user_path do |f| %>
           <div class="user-profile-edit__details form-group mb-4">
@@ -71,7 +71,7 @@
             </div>
           </div>
         <% end %>
-      <% end %>
+
     </div>
   </div>
 </div>

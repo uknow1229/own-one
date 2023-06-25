@@ -1,4 +1,6 @@
 class Public::PostWorkoutsController < ApplicationController
+  before_action :ensure_user, only: [:edit, :update, :destroy]
+
   def index
     @post_workouts = PostWorkout.all.page(params[:page]).per(9)
     @tag_list = WorkoutTag.all
@@ -68,6 +70,12 @@ class Public::PostWorkoutsController < ApplicationController
   def post_workout_params
     params.require(:post_workout).permit(:end_user_id, :image, :start_time, :title, :site, :time, :memo,
       workout_menus_attributes: [:id, :title, :weight, :reptition_count, :set_count, :_destroy])
+  end
+
+  def ensure_user
+    @post_workouts = current_end_user.post_workouts
+    @post_workout = @post_workouts.find_by(id: params[:id])
+    redirect_to new_post_workout_path unless @post_workout
   end
 
 end

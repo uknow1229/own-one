@@ -1,9 +1,10 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :is_matching_login_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit]
 
   def show
-    @end_user = EndUser.find(current_end_user.id)
+    @end_user = EndUser.find(params[:id])
     @post_workouts = @end_user.post_workouts.page(params[:page]).per(3)
     @post_blogs = @end_user.post_blogs.page(params[:page]).per(3)
     @post_meals = @end_user.post_meals.page(params[:page]).per(3)
@@ -19,7 +20,6 @@ class Public::EndUsersController < ApplicationController
 
   def profile
     @end_user = EndUser.find(current_end_user.id)
-    @post_workouts = @end_user.post_workouts
   end
 
   def update
@@ -82,5 +82,13 @@ class Public::EndUsersController < ApplicationController
     if @end_user.guest_user?
       redirect_to end_user_path(current_end_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません"
     end
-  end  
+  end
+
+  def is_matching_login_user
+    end_user = EndUser.find(params[:id])
+    unless end_user.id == current_end_user.id
+      redirect_to root_path
+    end
+  end
+
 end

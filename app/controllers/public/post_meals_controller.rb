@@ -1,4 +1,6 @@
 class Public::PostMealsController < ApplicationController
+  before_action :ensure_user, only: [:edit, :update, :destroy]
+
   def index
     @post_meals = PostMeal.all.page(params[:page]).per(9)
     @tag_list = MealTag.all
@@ -28,6 +30,7 @@ class Public::PostMealsController < ApplicationController
     @meal_comment = MealComment.new
     @tag_list = @post_meal.meal_tags.pluck(:name).join(',')
     @post_meal_tags = @post_meal.meal_tags
+    @end_user = @post_meal.end_user
   end
 
   def edit
@@ -68,4 +71,11 @@ class Public::PostMealsController < ApplicationController
     params.require(:post_meal).permit(:end_user_id, :image, :start_time, :timing, :meal_type, :memo,
       meal_menus_attributes: [:id, :title, :quantity, :calorie, :_destroy])
   end
+
+  def ensure_user
+    @post_meals = current_end_user.post_meals
+    @post_meal = @post_meals.find_by(id: params[:id])
+    redirect_to new_post_meal_path unless @post_meal
+  end
+
 end
