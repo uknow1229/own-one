@@ -33,18 +33,17 @@ class EndUser < ApplicationRecord
   enum sex: { woman: 0, man: 1, neither: 2, no_answer: 3 }
   enum activelevel: { level1: 0, level2: 1, level3: 2 }
 
+  validates :user_name, :email, presence: true
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |end_user|
+      end_user.user_name = 'Guest User'
       end_user.password = SecureRandom.urlsafe_base64
     end
   end
 
-  def guest?
+  def guest_user?
     email == 'guest@example.com'
-  end
-
-  def full_name
-    (self.first_name || "") + " " + (self.last_name || "")
   end
 
   def active_for_authentication?

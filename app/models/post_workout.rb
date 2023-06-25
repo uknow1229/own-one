@@ -17,6 +17,10 @@ class PostWorkout < ApplicationRecord
 
   enum site: { shoulder: 0, arm: 1, chest: 2, back: 3, belly: 4, buttocks: 5, thigh: 6, calf: 7, the_upper_body: 8, lower_half_of_the_body: 9 }
 
+  validates :start_time, :site, :time, presence: true
+  validates :title, length: { maximum: 40 } , presence: true
+  validates :memo, length: { maximum: 800 } , presence: true
+
   def liked_by?(end_user)
     workout_likes.exists?(end_user_id: end_user.id)
   end

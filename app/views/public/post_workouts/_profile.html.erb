@@ -3,7 +3,7 @@
     <%= image_tag post_workout.end_user.get_profile_image(50, 50) %>
   </div>
   <div class="workout-profile__details mb-0">
-    <p class="mb-0"><%= link_to post_workout.end_user.first_name, end_user_path(post_workout.end_user) %></p>
+    <p class="mb-0"><%= link_to post_workout.end_user.user_name, end_user_path(post_workout.end_user) %></p>
     <p class="mb-0"><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
   </div>
 </div>

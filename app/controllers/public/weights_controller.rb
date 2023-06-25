@@ -47,11 +47,10 @@ class Public::WeightsController < ApplicationController
   def create
     @weight = Weight.new(weight_params)
     @weight.end_user_id = current_end_user.id
-
     if @weight.save
       redirect_to weights_path, notice: '登録に成功しました'
     else
-      render :new
+      render :index
     end
 
   end

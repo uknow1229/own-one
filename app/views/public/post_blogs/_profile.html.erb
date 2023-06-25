@@ -3,7 +3,7 @@
     <%= image_tag post_blog.end_user.get_profile_image(50, 50) %>
   </div>
   <div class="blog-profile__details mb-0">
-    <p class="mb-0"><%= link_to post_blog.end_user.first_name, end_user_path(post_blog.end_user) %></p>
+    <p class="mb-0"><%= link_to post_blog.end_user.user_name, end_user_path(post_blog.end_user) %></p>
     <p class="mb-0"><%= post_blog.start_time.strftime("%Y-%m-%d") %></p>
   </div>
 </div>
