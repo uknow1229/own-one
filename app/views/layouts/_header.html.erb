@@ -5,14 +5,15 @@
         <%= image_tag 'logo5.png', alt: "ロゴ", width: "70px" %>
       <% end %>
       <!-- 検索機能 -->
-      <div class="serch_form">
+      <div class="search_form ms-4">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
-          <%= f.text_field :q, class:"form-control d-inline-block" %>
+          <%= f.text_field :q, class: "form-control d-inline-block", type: "search", placeholder: "検索", aria_label: "検索" %>
           <button class="btn btn-outline-success" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         <% end %>
       </div>
+      
     </div>
     <ul class="navbar-nav justify-content-around" style="flex-direction:row;">
       <li class="nav-item">
