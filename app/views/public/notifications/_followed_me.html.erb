@@ -3,7 +3,7 @@
     <% if notification.subject.follower.guest? %>
       ゲストユーザー
     <% else %>
-      <%= link_to notification.subject.follower.first_name, end_user_path(notification.subject.follower) %>
+      <%= link_to notification.subject.follower.user_name, end_user_path(notification.subject.follower) %>
     <% end %>
     があなたをフォローしました
     <%= " (#{time_ago_in_words(notification.created_at)}前)" %>

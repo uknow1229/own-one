@@ -2,25 +2,14 @@
   justify-content: center;
 }
 
-.top-image {
-  height: 600px;
-  overflow: hidden;
-  -o-object-fit: cover;
-  object-fit: cover;
-  position: absolute;
-  -o-object-position: 100% 40%;
-  object-position: 100% 40%;
-
-}
-
 .logo-image {
-  // position: relative;
-  // overflow: hidden;
-  // -o-object-fit: cover;
-  // object-fit: cover;
   width: 300px;
   height: 300px;
+}
 
+.top-image {
+  width: 600px;
+  height: 500px;
 }
 
 .profile-image {

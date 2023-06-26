@@ -20,8 +20,6 @@ ja:
     attributes:
       end_user:
         user_name: ユーザー名
-        last_name: 性
-        first_name: 名
         height: 身長
         body_weight: 体重
         age: 年齢
@@ -33,8 +31,7 @@ ja:
         email: メールアドレス
         password: パスワード
       admin:
-        last_name: 姓
-        first_name: 名
+        user_name: ユーザー名
         email: メールアドレス
         password: パスワード
       post_blog:

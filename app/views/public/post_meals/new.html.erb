@@ -2,6 +2,7 @@
   <h2 class="post-meal__tittle text-center">New Meal Posts</h2>
   <div class="row justify-content-center">
     <div class="post-meal__form col-sm-8">
+      <%= render "public/shared/error_messages", resource: @post_meal %>
       <%= render "form", post_meal: @post_meal %>
     </div>
   </div>

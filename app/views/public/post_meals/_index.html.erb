@@ -10,7 +10,7 @@
             <%= image_tag 'noimage.jpg', class: "no-image" %>
           <% end %>
         <% end %>
-        <p><%= link_to post_meal.end_user.first_name, end_user_path(post_meal.end_user) %></p>
+        <p><%= link_to post_meal.end_user.user_name, end_user_path(post_meal.end_user) %></p>
       </div>
 
       <div class="meal-index__details">

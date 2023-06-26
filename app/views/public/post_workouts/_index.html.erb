@@ -10,12 +10,12 @@
             <%= image_tag 'noimage.jpg', class: "no-image" %>
           <% end %>
         <% end %>
-        <p><%= link_to post_workout.end_user.first_name, end_user_path(post_workout.end_user) %></p>
+        <p><%= link_to post_workout.end_user.user_name, end_user_path(post_workout.end_user) %></p>
       </div>
 
       <div class="workout-index__details">
         <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
-        <p><%= post_workout.memo.truncate(18, omission: "...") %></p>
+        <p><%= post_workout.title.truncate(18, omission: "...") %></p>
         <p>コメント数:<%= post_workout.workout_comments.count %></p>
 
         <!-- いいね機能 -->  

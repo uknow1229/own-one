@@ -1,4 +1,7 @@
 class Public::EndUsersController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :ensure_guest_user, only: [:edit]
 
   def show
     @end_user = EndUser.find(params[:id])
@@ -17,25 +20,33 @@ class Public::EndUsersController < ApplicationController
 
   def profile
     @end_user = EndUser.find(current_end_user.id)
-    @post_workouts = @end_user.post_workouts
   end
 
   def update
     @end_user = EndUser.find(params[:id])
-    @end_user.update(end_user_params)
-    redirect_to end_user_path
-    flash[:notice] = "変更が完了しました"
+    if @end_user.update(end_user_params)
+      redirect_to end_user_path
+      flash[:notice] = "更新が完了しました"
+    else
+      flash[:notice] = "ユーザー情報を更新できませんでした"
+      render :edit
+    end
   end
 
   def check
   end
 
   def withdraw
-    @end_user = EndUser.find(current_end_user.id)
-    @end_user.update(is_deleted: true)
-    reset_session
-    flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path
+    @end_user = current_end_user
+    if @end_user.email == 'guest@example.com'
+      redirect_to root_path
+      flash[:notice] = "ゲストユーザーは退会できません"
+    else
+      @end_user.update(is_deleted: true)
+      reset_session
+      flash[:notice] = "退会処理を実行いたしました"
+      redirect_to root_path
+    end
   end
 
   def blog_likes
@@ -63,6 +74,21 @@ class Public::EndUsersController < ApplicationController
   private
 
   def end_user_params
-    params.require(:end_user).permit(:last_name, :first_name, :height, :body_weight, :age, :sex, :target_weight, :target_calorie, :activelevel, :introduction, :email, :profile_image)
+    params.require(:end_user).permit(:user_name, :height, :body_weight, :age, :sex, :target_weight, :target_calorie, :activelevel, :introduction, :email, :profile_image)
   end
+
+  def ensure_guest_user
+    @end_user = EndUser.find(params[:id])
+    if @end_user.guest_user?
+      redirect_to end_user_path(current_end_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません"
+    end
+  end
+
+  def is_matching_login_user
+    end_user = EndUser.find(params[:id])
+    unless end_user.id == current_end_user.id
+      redirect_to root_path
+    end
+  end
+
 end
