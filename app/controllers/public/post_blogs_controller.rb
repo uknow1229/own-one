@@ -4,6 +4,11 @@ class Public::PostBlogsController < ApplicationController
   def index
     @post_blogs = PostBlog.all.page(params[:page]).per(9)
     @tag_list = BlogTag.all
+    @end_user = current_end_user
+    # フォロー中のユーザーを取得するための関連名を適用
+    @followed_end_users = @end_user.following_end_users
+    # フォロー中のユーザーの投稿を取得
+    @followed_post_blogs = PostBlog.where(end_user_id: @followed_end_users.pluck(:id))
   end
 
   def show

@@ -1,22 +1,48 @@
-<div class="post-blog container mt-4">
-  <div class="row justify-content-center">
-    <div class="post-blog__index col-sm-10">
-      <div class="post-blog__header d-flex">
-        <h2>List of blog posts</h2>
-        <p><%= link_to '投稿する', new_post_blog_path, class: 'btn btn-success ms-4' %></p>
-      </div>
-        <!--タグリスト-->
-      <div class="post-blog__tag d-flex">
-        <% @tag_list.each do |list|%>
-          <p><i class="fa-sharp fa-solid fa-tag"></i></p>
-          <%=link_to list.name,search_blog_tag_path(blog_tag_id: list.id) %>
-          <%="(#{list.post_blogs.count})" %>
-        <% end %>
-      </div>
-      <%= render "index", post_blogs: @post_blogs %>
-      <div class="post-blog__paginate d-flex justify-content-center mt-4">
-        <%= paginate @post_blogs , theme: 'bootstrap-5' %>
-      </div>
+<div class="post-blog pt-4">
+  <div class="post-blog__index">
+    <div class="post-blog__header col-sm-8 d-flex justify-content-center">
+      <h2>List of blog posts</h2>
+      <p><%= link_to '投稿する', new_post_blog_path, class: 'btn btn-success ms-4' %></p>
+    </div>
+      <!--タグリスト-->
+    <div class="post-blog__tag col-sm-8 d-flex justify-content-center">
+      <% @tag_list.each do |list|%>
+        <p><i class="fa-sharp fa-solid fa-tag"></i></p>
+        <%=link_to list.name,search_blog_tag_path(blog_tag_id: list.id) %>
+        <%="(#{list.post_blogs.count})" %>
+      <% end %>
+    </div>
+    <ul class="nav nav-tabs col-sm-8 d-flex justify-content-center mt-4">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#all">全ユーザー</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#followed">フォロー中のユーザー</a>
+    </li>
+  </ul>
+  <div class="tab-content  d-flex justify-content-center pb-4">
+    <div class="tab-pane fade col-sm-8" id="all">
+      <% if @post_blogs.exists? %>
+        <!-- 全ユーザーの投稿を表示 -->
+        <%= render "index", post_blogs: @post_blogs %>
+      <% else %>
+        <div class="post-blog__empty-posts">
+          <p class="text-center">投稿はありません</p>
+        </div>
+      <% end %> 
+    </div>
+    <div class="tab-pane fade show active col-sm-8" id="followed">
+      <% if @followed_post_blogs.exists? %>
+        <!-- フォロー中のユーザーの投稿を表示 -->
+        <%= render "index", post_blogs: @followed_post_blogs %>
+      <% else %>
+        <div class="post-blog__empty-posts">
+          <p class="text-center">投稿はありません</p>
+        </div>
+      <% end %> 
+    </div>
+    <div class="post-blog__paginate d-flex justify-content-center mt-4">
+      <%= paginate @post_blogs , theme: 'bootstrap-5' %>
     </div>
   </div>
 </div>

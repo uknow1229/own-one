@@ -4,6 +4,11 @@ class Public::PostWorkoutsController < ApplicationController
   def index
     @post_workouts = PostWorkout.all.page(params[:page]).per(9)
     @tag_list = WorkoutTag.all
+    @end_user = current_end_user
+    # フォロー中のユーザーを取得するための関連名を適用
+    @followed_end_users = @end_user.following_end_users
+    # フォロー中のユーザーの投稿を取得
+    @followed_post_workouts = PostWorkout.where(end_user_id: @followed_end_users.pluck(:id))
   end
 
   def show

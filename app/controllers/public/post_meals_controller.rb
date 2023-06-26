@@ -4,6 +4,11 @@ class Public::PostMealsController < ApplicationController
   def index
     @post_meals = PostMeal.all.page(params[:page]).per(9)
     @tag_list = MealTag.all
+    @end_user = current_end_user
+    # フォロー中のユーザーを取得するための関連名を適用
+    @followed_end_users = @end_user.following_end_users
+    # フォロー中のユーザーの投稿を取得
+    @followed_post_meals = PostMeal.where(end_user_id: @followed_end_users.pluck(:id))
   end
 
   def new
