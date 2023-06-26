@@ -1,12 +1,7 @@
 <div class="card" style="width: 18rem;">
   <%= image_tag end_user.get_profile_image(300, 300) %>
   <div class="card-body ">
-    <h5 class="card-title">User Name</h5>
-    <% if end_user.user_name.blank? %>
-      <p>Not configured</p>
-    <% else %>
-      <p><%= end_user.user_name %></p>
-    <% end %>
+    <h5><%= end_user.user_name %></h5>
     <div class="card-text d-flex justify-content-between">
       <p><%= link_to end_user.followers.count, followeds_end_user_path(end_user), class: 'card-link' %>フォロー中</p>
       <p><%= link_to end_user.followeds.count, followers_end_user_path(end_user), class: 'card-link' %>フォロワー</p>
@@ -22,13 +17,13 @@
       </p>
       <% end %>
     <% end %>
-    <h5 class="card-title">Target Calorie</h5>
+    <h5 class="card-title">目標カロリー</h5>
     <p class="card-text">
-      <%= end_user.target_calorie.blank? ? 'Not configured' : "#{end_user.target_calorie}kcal/日" %>
+      <%= end_user.target_calorie.blank? ? '未設定' : "#{end_user.target_calorie}kcal/日" %>
     </p>
     <h5 class="card-title">Introduction</h5>
     <p class="card-text">
-      <%= end_user.introduction.blank? ? 'Not configured' : end_user.introduction %>
+      <%= end_user.introduction.blank? ? '未設定' : end_user.introduction %>
     </p>
   </div>
 </div>
