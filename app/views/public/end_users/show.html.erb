@@ -1,50 +1,69 @@
 <div class="user-page container mt-4 mb-4">
-  <div class="row d-flex">
-    <div class="user-page__profile col-sm-4">
-      <h2>User Page</h2>
-      <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
-    </div>
-    <div class="user-profile__calendar col-sm-8">
-      <h2>Posting Calender</h2>
-      <div id="calendar">
-        <%= render 'public/end_users/calendar', events: @events %>
-      </div>
-    </div>
-  </div>
-  <div class="user-page__wrapper mt-4 d-flex justify-content-center w-100">
-    <div class="user-page__posts">
-      <h2>Post Fitness</h2>
-      <div class="user-page__fitness d-flex mt-2 mb-4">
-        <% if @post_workouts.exists? %>
-          <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
-          <div class="user-page__paginate mt-4">
-            <%= paginate @post_workouts , theme: 'bootstrap-5' %>
+  <div class="row justify-content-center">
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="user-page__profile col-sm-6">
+          <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
+        </div>
+        <div class="user-profile__calendar col-sm-4">
+          <h2>Posting Calender</h2>
+          <div id="calendar">
+            <%= render 'public/end_users/calendar', events: @events %>
           </div>
-        <% else %>
-          <p>There are no posts.</p>
-        <% end %> 
+        </div>
       </div>
-      <h2>Post Meal</h2>
-      <div class="posts__meal d-flex mt-2 mb-4">
-        <% if @post_meals.exists? %>
-          <%= render "public/post_meals/index", post_meals: @post_meals  %>
-          <div class="user-page__paginate mt-4">
-            <%= paginate @post_meals , theme: 'bootstrap-5' %>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#fitness">Post Fitness</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " data-bs-toggle="tab" href="#meal">Post Meal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#blog">Post Blog</a>
+        </li>
+      </ul>
+      
+      <div class="tab-content user-page__wrapper mt-4 justify-content-center w-100">
+        <div class="user-page__posts tab-pane fade show active" id="fitness">
+          <h2>Post Fitness</h2>
+          <div class="user-page__fitness d-flex mt-2 mb-4">
+            <% if @post_workouts.exists? %>
+              <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
+              <div class="user-page__paginate mt-4">
+                <%= paginate @post_workouts , theme: 'bootstrap-5' %>
+              </div>
+            <% else %>
+              <p>There are no posts.</p>
+            <% end %> 
           </div>
-        <% else %>
-          <p>There are no posts.</p>
-        <% end %> 
-      </div>
-      <h2>Post Blog</h2>
-      <div class="posts__blog d-flex mt-2 mb-4">
-        <% if @post_blogs.exists? %>
-          <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
-          <div class="user-page__paginate mt-4">
-            <%= paginate @post_blogs , theme: 'bootstrap-5' %>
+          <div class="tab-pane fade" id="meal">
+            <h2>Post Meal</h2>
+            <div class="posts__meal d-flex mt-2 mb-4">
+              <% if @post_meals.exists? %>
+                <%= render "public/post_meals/index", post_meals: @post_meals  %>
+                <div class="user-page__paginate mt-4">
+                  <%= paginate @post_meals , theme: 'bootstrap-5' %>
+                </div>
+              <% else %>
+                <p>There are no posts.</p>
+              <% end %> 
+            </div>
           </div>
-        <% else %>
-          <p>There are no posts.</p>
-        <% end %>
+          <div class="tab-pane fade" id="blog">
+            <h2>Post Blog</h2>
+            <div class="posts__blog d-flex mt-2 mb-4">
+              <% if @post_blogs.exists? %>
+                <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
+                <div class="user-page__paginate mt-4">
+                  <%= paginate @post_blogs , theme: 'bootstrap-5' %>
+                </div>
+              <% else %>
+                <p>There are no posts.</p>
+              <% end %>
+          </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
