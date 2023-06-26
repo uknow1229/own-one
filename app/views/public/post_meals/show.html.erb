@@ -41,7 +41,9 @@
             </tr>
           </thead>
           <tbody>
+            <% total_calorie = 0 %>
             <% @post_meal.meal_menus.each do |menu| %>
+            <% total_calorie += menu.calorie %>
               <div class="post-meal__menu">
                 <tr>
                   <td><%= menu.title %></td>
@@ -50,6 +52,7 @@
                 </tr>
               </div>
             <% end %>
+            <p>合計カロリー: <%= total_calorie %>カロリー</p>
           </tbody>
         </table>
       <% end %>

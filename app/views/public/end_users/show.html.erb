@@ -1,9 +1,9 @@
 <div class="user-page container mt-4 mb-4">
   <div class="row justify-content-center">
     <div class="col-sm-10">
-      <div class="row">
-        <div class="user-page__profile col-sm-6">
-          <%= render "public/end_users/profile", end_user: @end_user, events: @events %>
+      <div class="row mb-4">
+        <div class="user-page__profile col-sm-6 d-flex align-items-center">
+          <%= render "public/end_users/profile", end_user: @end_user, events: @events, post_meals: @post_meals %>
         </div>
         <div class="user-profile__calendar col-sm-4">
           <h2>Posting Calender</h2>
@@ -17,51 +17,60 @@
           <a class="nav-link active" data-bs-toggle="tab" href="#fitness">Post Fitness</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " data-bs-toggle="tab" href="#meal">Post Meal</a>
+          <a class="nav-link" data-bs-toggle="tab" href="#meal">Post Meal</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="tab" href="#blog">Post Blog</a>
         </li>
       </ul>
       
-      <div class="tab-content user-page__wrapper mt-4 justify-content-center w-100">
+      <div class="user-page__wrapper tab-content mt-4 justify-content-center">
         <div class="user-page__posts tab-pane fade show active" id="fitness">
           <h2>Post Fitness</h2>
-          <div class="user-page__fitness d-flex mt-2 mb-4">
+          <div class="post_workout d-flex justify-content-center mt-2 mb-4">
             <% if @post_workouts.exists? %>
               <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
               <div class="user-page__paginate mt-4">
                 <%= paginate @post_workouts , theme: 'bootstrap-5' %>
               </div>
             <% else %>
-              <p>There are no posts.</p>
+              <div class="user-page__empty-posts">
+                <p class="text-center">投稿はありません</p>
+                <%= image_tag 'undraw_Post_re_mtr4.png', class: 'yet-image img-fluid' %>
+              </div>
             <% end %> 
           </div>
-          <div class="tab-pane fade" id="meal">
-            <h2>Post Meal</h2>
-            <div class="posts__meal d-flex mt-2 mb-4">
-              <% if @post_meals.exists? %>
-                <%= render "public/post_meals/index", post_meals: @post_meals  %>
-                <div class="user-page__paginate mt-4">
-                  <%= paginate @post_meals , theme: 'bootstrap-5' %>
-                </div>
-              <% else %>
-                <p>There are no posts.</p>
-              <% end %> 
-            </div>
+        </div>
+        <div class="tab-pane fade" id="meal">
+          <h2>Post Meal</h2>
+          <div class="posts__meal d-flex justify-content-center mt-2 mb-4">
+            <% if @post_meals.exists? %>
+              <%= render "public/post_meals/index", post_meals: @post_meals  %>
+              <div class="user-page__paginate mt-4">
+                <%= paginate @post_meals , theme: 'bootstrap-5' %>
+              </div>
+            <% else %>
+              <div class="user-page__empty-posts">
+                <p class="text-center">投稿はありません</p>
+                <%= image_tag 'undraw_Post_re_mtr4.png', class: 'yet-image img-fluid' %>
+              </div>
+            <% end %> 
           </div>
-          <div class="tab-pane fade" id="blog">
-            <h2>Post Blog</h2>
-            <div class="posts__blog d-flex mt-2 mb-4">
-              <% if @post_blogs.exists? %>
-                <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
-                <div class="user-page__paginate mt-4">
-                  <%= paginate @post_blogs , theme: 'bootstrap-5' %>
-                </div>
-              <% else %>
-                <p>There are no posts.</p>
-              <% end %>
-          </div>
+        </div>
+        <div class="tab-pane fade" id="blog">
+          <h2>Post Blog</h2>
+          <div class="posts__blog d-flex justify-content-center mt-2 mb-4">
+            <% if @post_blogs.exists? %>
+              <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
+              <div class="user-page__paginate mt-4">
+                <%= paginate @post_blogs , theme: 'bootstrap-5' %>
+              </div>
+            <% else %>
+              <div class="user-page__empty-posts">
+                <p class="text-center">投稿はありません</p>
+                <%= image_tag 'undraw_Post_re_mtr4.png', class: 'yet-image img-fluid' %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
