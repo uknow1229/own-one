@@ -37,14 +37,14 @@ ja:
       post_blog:
         end_user: ユーザーID
         title: タイトル
-        date: 日付
+        start_time: 日付
         content: 内容
         is_closed: 公開
         created_at: 作成日
         updated_at: 更新日
       post_meal:
         end_user: ユーザーID
-        date: 日付
+        start_time: 日付
         timing: 食事タイミング
         meal_type: 食事タイプ
         memo: メモ
@@ -52,7 +52,7 @@ ja:
         updated_at: 更新日
       post_workout:
         end_user: ユーザーID
-        date: 日付
+        start_time: 日付
         title: タイトル
         site: 部位
         time: 時間
