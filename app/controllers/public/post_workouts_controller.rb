@@ -2,7 +2,7 @@ class Public::PostWorkoutsController < ApplicationController
   before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
-    @post_workouts = PostWorkout.all.page(params[:page]).per(9)
+    @post_workouts = PostWorkout.all
     @tag_list = WorkoutTag.all
     @end_user = current_end_user
     # フォロー中のユーザーを取得するための関連名を適用

@@ -23,27 +23,26 @@
 
     <div class="tab-content  d-flex justify-content-center pt-4">
       <div class="tab-pane fade show active col-sm-8" id="all">
+        <!-- 全ユーザーの投稿を表示 -->
         <% if @post_workouts.exists? %>
-          <!-- 全ユーザーの投稿を表示 -->
           <%= render "index", post_workouts: @post_workouts %>
         <% else %>
-          <div class="post-workout__empty-posts">
-            <p class="text-center">投稿はありません</p>
+          <div class="post-workout__empty-posts pb-4">
+            <h4 class="text-center pb-4">投稿はありません</h4>
+            <%= image_tag 'j285_5_1.png', class: 'yet-image rounded-3 img-fluid mx-auto d-block' %>
           </div>
         <% end %>
       </div>
       <div class="tab-pane fade col-sm-8" id="followed">
+        <!-- フォロー中のユーザーの投稿を表示 -->
         <% if @followed_post_workouts.exists? %>
-          <!-- フォロー中のユーザーの投稿を表示 -->
           <%= render "index", post_workouts: @followed_post_workouts %>
         <% else %>
-          <div class="post-workout__empty-posts">
-            <p class="text-center">投稿はありません</p>
+          <div class="post-workout__empty-posts pb-4">
+            <h4 class="text-center pb-4">投稿はありません</h4>
+            <%= image_tag 'j285_5_1.png', class: 'yet-image rounded-3 img-fluid mx-auto d-block' %>
           </div>
         <% end %> 
-      </div>
-      <div class="post-workout__paginate d-flex justify-content-center pt-4">
-        <%= paginate @post_workouts , theme: 'bootstrap-5' %>
       </div>
     </div>
   </div>

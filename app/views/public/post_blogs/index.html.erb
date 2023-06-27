@@ -20,24 +20,26 @@
       <a class="nav-link" data-bs-toggle="tab" href="#followed">フォロー中のユーザー</a>
     </li>
   </ul>
-  <div class="tab-content  d-flex justify-content-center pb-4">
-    <div class="tab-pane fade col-sm-8" id="all">
+  <div class="tab-content d-flex justify-content-center pt-4">
+    <div class="tab-pane fade show active col-sm-8" id="all">
       <% if @post_blogs.exists? %>
         <!-- 全ユーザーの投稿を表示 -->
         <%= render "index", post_blogs: @post_blogs %>
       <% else %>
-        <div class="post-blog__empty-posts">
-          <p class="text-center">投稿はありません</p>
+        <div class="post-blog__empty-posts pb-4">
+          <h4 class="text-center pb-4">投稿はありません</h4>
+          <%= image_tag 'j285_5_1.png', class: 'yet-image rounded-3 img-fluid mx-auto d-block' %>
         </div>
       <% end %> 
     </div>
-    <div class="tab-pane fade show active col-sm-8" id="followed">
+    <div class="tab-pane fade col-sm-8" id="followed">
       <% if @followed_post_blogs.exists? %>
         <!-- フォロー中のユーザーの投稿を表示 -->
         <%= render "index", post_blogs: @followed_post_blogs %>
       <% else %>
-        <div class="post-blog__empty-posts">
-          <p class="text-center">投稿はありません</p>
+        <div class="post-blog__empty-posts pb-4">
+          <h4 class="text-center pb-4">投稿はありません</h4>
+          <%= image_tag 'j285_5_1.png', class: 'yet-image rounded-3 img-fluid mx-auto d-block' %>
         </div>
       <% end %> 
     </div>

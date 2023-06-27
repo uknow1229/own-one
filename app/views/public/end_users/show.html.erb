@@ -21,16 +21,17 @@
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="tab" href="#blog">Post Blog</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#liked">Liked Posts</a>
+      </li>
     </ul>
     
     <div class="user-page__wrapper tab-content pt-4 pb-4">
-      <div class="user-page__posts justify-content-center tab-pane fade show active" id="fitness">
+      <div class="user-page__posts tab-pane fade show active mx-auto col-sm-8" id="fitness">
         <h2 class="text-center">Post Fitness</h2>
         <div class="post_workout d-flex justify-content-center mt-2 pb-4">
           <% if @post_workouts.exists? %>
             <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
-            <div class="user-page__paginate mt-4">
-            </div>
           <% else %>
             <div class="user-page__empty-posts">
               <p class="text-center">投稿はありません</p>
@@ -39,7 +40,7 @@
           <% end %> 
         </div>
       </div>
-      <div class="tab-pane fade justify-content-center" id="meal">
+      <div class="tab-pane fade mx-auto col-sm-8" id="meal">
         <h2 class="text-center">Post Meal</h2>
         <div class="posts__meal d-flex justify-content-center mt-2 mb-4">
           <% if @post_meals.exists? %>
@@ -52,17 +53,30 @@
           <% end %> 
         </div>
       </div>
-      <div class="tab-pane fade justify-content-center" id="blog">
+      <div class="tab-pane fade mx-auto col-sm-8" id="blog">
         <h2 class="text-center">Post Blog</h2>
         <div class="posts__blog d-flex justify-content-center mt-2 mb-4">
           <% if @post_blogs.exists? %>
             <%= render "public/post_blogs/index", post_blogs: @post_blogs  %>
-            <div class="user-page__paginate mt-4">
-            </div>
           <% else %>
             <div class="user-page__empty-posts">
               <p class="text-center">投稿はありません</p>
               <%= image_tag 'undraw_Post_re_mtr4.png', class: 'yet-image rounded-3 img-fluid' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade mx-auto col-sm-8" id="liked">
+        <h2 class="text-center">Liked Posts</h2>
+          <div class="liked_posts  justify-content-center mt-2 mb-4">
+            <% if @liked_post_workouts.present? %>
+              <div><p class="badge bg-primary">Fitness</p><%= render "public/post_workouts/index", post_workouts: @liked_post_workouts %></div>
+              <div><p class="badge bg-success">Meal<%= render "public/post_meals/index", post_meals: @liked_post_meals %></div>
+              <div><p class="badge bg-warning">Blog<%= render "public/post_blogs/index", post_blogs: @liked_post_blogs %></div>
+          <% else %>
+            <div class="user-page__empty-posts mx-auto">
+              <p class="text-center">いいねした投稿はありません</p>
+              <%= image_tag 'undraw_Post_re_mtr4.png', class: 'yet-image rounded-3 img-fluid mx-auto' %>
             </div>
           <% end %>
         </div>
