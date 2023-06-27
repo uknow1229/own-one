@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <header>
+    <header id="header">
       <%= render 'layouts/header' %>
     </header>
     <main>
@@ -31,3 +31,21 @@
     </footer>
   </body>
 </html>
+
+<script>
+  $(function () {
+    var $header = $("#header");
+    // スクロール位置の閾値を設定
+    var scrollPosition = 200; 
+
+    $(window).on("scroll", function () {
+      var value = $(this).scrollTop();
+      // スクロール位置が閾値を超えたら.scroll付与
+      if (value > scrollPosition) { 
+        $header.addClass("scroll");
+      } else {
+        $header.removeClass("scroll");
+      }
+    });
+  });
+</script>

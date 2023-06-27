@@ -1,8 +1,17 @@
 header {
   text-align: center;
-  background-color: #E8E7E6;
-  padding: 0px 10px;
+  padding: 0 20px 0 20px;
 }
+
+header.scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #eee;
+  transition: padding .3s;
+}
+
 
 header .navbar {
   display: flex;

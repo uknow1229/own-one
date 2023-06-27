@@ -1,37 +1,36 @@
 <div class= 'container mt-4'>
-  <div class='col-sm-8 mx-auto'>
+  <div class='col-sm-4 mx-auto'>
     <h2 class="text-center">Sign up</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
 
-    <div class="field">
+    <div class="field pt-2">
       <%= f.label :user_name %><br />
-      <%= f.text_field :user_name, class: 'form-control' %>
+      <%= f.text_field :user_name, class: 'form-control', placeholder: "中山 翔二" %>
     </div>
 
-    <div class="field">
+    <div class="field pt-2">
       <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: "ownone@exaple.com" %>
     </div>
 
-    <div class="field">
+    <div class="field pt-2">
       <%= f.label :password %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> 文字以上)</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: "password" %>
     </div>
 
-    <div class="field">
+    <div class="field pt-2 pb-4">
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: "password" %>
     </div>
-
+    <%= render "public/shared/links" %>
     <div class="actions d-flex justify-content-center">
       <%= f.submit "Sign up", :class => "btn btn-success mt-4" %>
     </div>
     <% end %>
-    <%= render "public/shared/links" %>
   </div>
 </div>
