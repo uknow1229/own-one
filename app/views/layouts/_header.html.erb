@@ -5,9 +5,9 @@
         <%= image_tag 'logo5.png', alt: "ロゴ", width: "70px" %>
       <% end %>
       <!-- 検索機能 -->
-      <div class="serch_form">
+      <div class="search_form ms-4">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
-          <%= f.text_field :q, class:"form-control d-inline-block" %>
+          <%= f.text_field :q, class: "form-control d-inline-block", type: "search", placeholder: "検索", aria_label: "検索" %>
           <button class="btn btn-outline-success" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
@@ -23,7 +23,7 @@
       </li>
       <li class="nav-item">
         <%= link_to weights_path, class: "nav-link" do %>
-        <i class="fa-sharp fa-solid fa-dumbbell"></i>
+        <i class="fa-sharp fa-solid fa-weight-scale"></i>
         Weight
         <% end %>
       </li>
@@ -74,37 +74,37 @@
           </li>
         </div>
       </div>
-        <% else %>
-      <div class="navbar navbar-brand">
-        <%= link_to root_path do %>
-          <%= image_tag 'logo.png', alt: "ロゴ", width: "70" %>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to homes_about_path, class: "nav-link" do %>
-        <i class="fa-solid fa-face-smile"></i>
-          About
-          <% end %>
-        <li class="nav-item">
-          <%= link_to new_end_user_registration_path, class: "nav-link" do %>
-          <i class="fa-solid fa-user-plus"></i>
-          Signup
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to new_end_user_session_path, class: "nav-link"  do %>
-          <i class="fa-solid fa-right-to-bracket"></i>
-          Login
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to end_users_guest_sign_in_path, class: "nav-link", method: :post  do %>
-          <i class="fa-solid fa-right-to-bracket"></i>
-          Guest
-          <% end %>
-        </li>
-      </div>
-      <% end %>
     </ul>
+  <% else %>
+    <%= link_to root_path do %>
+      <%= image_tag 'logo5.png', alt: "ロゴ", width: "70px" %>
+    <% end %>
+    <ul class="navbar-nav ml-auto" style="flex-direction:row;">
+      <li class="nav-item">
+        <%= link_to root_path, class: "nav-link" do %>
+      <i class="fa-solid fa-face-smile"></i>
+        About
+        <% end %>
+      <li class="nav-item">
+        <%= link_to new_end_user_registration_path, class: "nav-link" do %>
+        <i class="fa-solid fa-user-plus"></i>
+        Signup
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_end_user_session_path, class: "nav-link"  do %>
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Login
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to end_users_guest_sign_in_path, class: "nav-link", method: :post  do %>
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Guest
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
 </nav>
 
 <script>

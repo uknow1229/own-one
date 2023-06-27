@@ -11,14 +11,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=M+PLUS+Rounded+1c&family=Merriweather&family=Playfair+Display&display=swap" rel="stylesheet">
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body>
-    <header>
+    <header id="header">
       <%= render 'layouts/header' %>
     </header>
     <main>
-      <h5><%= flash[:notice] %></h5>
+      <% if flash[:notice] %>
+        <p class="alert alert-primary mb-0"><%= flash[:notice] %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p class="alert alert-danger mb-0"><%= flash.now[:alert] %></p>
+      <% end %>
       <%= yield %>
     </main>
     <footer>
@@ -26,3 +32,21 @@
     </footer>
   </body>
 </html>
+
+<script>
+  $(function () {
+    var $header = $("#header");
+    // スクロール位置の閾値を設定
+    var scrollPosition = 200; 
+
+    $(window).on("scroll", function () {
+      var value = $(this).scrollTop();
+      // スクロール位置が閾値を超えたら.scroll付与
+      if (value > scrollPosition) { 
+        $header.addClass("scroll");
+      } else {
+        $header.removeClass("scroll");
+      }
+    });
+  });
+</script>

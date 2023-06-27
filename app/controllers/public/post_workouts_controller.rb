@@ -2,8 +2,13 @@ class Public::PostWorkoutsController < ApplicationController
   before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
-    @post_workouts = PostWorkout.all.page(params[:page]).per(9)
+    @post_workouts = PostWorkout.all
     @tag_list = WorkoutTag.all
+    @end_user = current_end_user
+    # フォロー中のユーザーを取得するための関連名を適用
+    @followed_end_users = @end_user.following_end_users
+    # フォロー中のユーザーの投稿を取得
+    @followed_post_workouts = PostWorkout.where(end_user_id: @followed_end_users.pluck(:id))
   end
 
   def show
@@ -33,7 +38,7 @@ class Public::PostWorkoutsController < ApplicationController
       @post_workout.save_workout_tags(tag_list)
       redirect_to post_workouts_path, notice:'投稿が完了しました'
     else
-      flash[:notice] = "投稿を作成できませんでした"
+      flash[:alert] = "投稿を作成できませんでした"
       render :new
     end
   end
@@ -46,7 +51,7 @@ class Public::PostWorkoutsController < ApplicationController
       redirect_to post_workouts_path
       flash[:notice] = "更新が完了しました"
     else
-      flash[:notice] = "フィットネス投稿を更新できませんでした"
+      flash[:alert] = "フィットネス投稿を更新できませんでした"
       render :edit
     end
   end

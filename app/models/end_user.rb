@@ -70,4 +70,10 @@ class EndUser < ApplicationRecord
     following_end_users.include?(end_user)
   end
 
+  def last_reset_date
+    latest_post_meal_start_time = post_meals.maximum(:start_time)
+    latest_post_meal_start_time || Date.current
+  end
+
+
 end

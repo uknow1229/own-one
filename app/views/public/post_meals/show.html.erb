@@ -1,27 +1,27 @@
 <div class="post-meal container mt-4 mb-4">
   <h2 class="text-center">Meal Post Details</h2>
 
-  <div class="post-meal__wrapper mx-auto col-sm-10">
+  <div class="post-meal__wrapper mx-auto col-sm-8">
     <div class="post-meal__profile">
       <%= render "public/post_meals/profile", post_meal: @post_meal %>
     </div>
 
-  <div class="post-meal__content row">
-    <div class="post-meal__details me-5 col-sm-5">
-      <div class="post-meal__image">
-        <%= image_tag get_image(@post_meal, 300, 300) %>
-      </div>
-      <% if @end_user == current_end_user %>
-        <div class="post-meal__action-links mt-2">
-          <%= link_to edit_post_meal_path, :class => "btn" do %>
-            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-          <% end %>
-          <%= link_to post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn ms-3" do %>
-            <i class="fa fa-trash"></i>
-          <% end %>
+    <div class="post-meal__content row">
+      <div class="post-meal__details me-5 col-sm-5">
+        <div class="post-meal__image">
+          <%= image_tag get_image(@post_meal, 300, 300) %>
         </div>
-      <% end %>
-    </div>
+        <% if @end_user == current_end_user %>
+          <div class="post-meal__action-links mt-2">
+            <%= link_to edit_post_meal_path, :class => "btn" do %>
+              <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+            <% end %>
+            <%= link_to post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn ms-3" do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     <div class="post-meal__details col-sm-5">
       <h4>Meal Timing</h4>
       <p><%= @post_meal.timing_i18n %></p>
@@ -41,7 +41,9 @@
             </tr>
           </thead>
           <tbody>
+            <% total_calorie = 0 %>
             <% @post_meal.meal_menus.each do |menu| %>
+            <% total_calorie += menu.calorie %>
               <div class="post-meal__menu">
                 <tr>
                   <td><%= menu.title %></td>
@@ -50,6 +52,7 @@
                 </tr>
               </div>
             <% end %>
+            <p>合計カロリー: <%= total_calorie %>カロリー</p>
           </tbody>
         </table>
       <% end %>

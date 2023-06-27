@@ -1,26 +1,22 @@
-<div class="workout-index d-flex flex-wrap justify-content-between gap-4">
+<div class="workout-index d-flex flex-wrap justify-content-center gap-4 pb-4">
   <% post_workouts.each do |post_workout| %>
-  
-    <div class="workout-index__wrapper d-flex">
-      <div class="workout-index__image me-4">
+    <div class="workout-index__wrapper p-3">
+      <div class="workout-index__image">
         <%= link_to post_workout_path(post_workout), class: 'no-decoration' do %>
           <% if post_workout.image.attached? %>
-            <%= image_tag post_workout.image, class: "profile-image" %>
+            <%= image_tag post_workout.image, class: "fitness-image" %>
           <% else %>
             <%= image_tag 'noimage.jpg', class: "no-image" %>
           <% end %>
         <% end %>
-        <p><%= link_to post_workout.end_user.user_name, end_user_path(post_workout.end_user) %></p>
       </div>
-
-      <div class="workout-index__details">
-        <p><%= post_workout.start_time.strftime("%Y-%m-%d") %></p>
-        <p><%= post_workout.title.truncate(18, omission: "...") %></p>
-        <p>コメント数:<%= post_workout.workout_comments.count %></p>
-
+      <p><%= link_to post_workout.end_user.user_name, end_user_path(post_workout.end_user) %></p>
+      <p><%= post_workout.title.truncate(18, omission: "...") %></p>
+      <div class="workout-index__details d-flex gap-2">
+        <%= " #{time_ago_in_words(post_workout.created_at)}前" %>
         <!-- いいね機能 -->  
         <span id="workout-like_<%= post_workout.id %>">
-          <p><%= render "public/post_workouts/like-btn", post_workout: post_workout %></p>
+          <%= render "public/post_workouts/like-btn", post_workout: post_workout %>
         </span>
       </div>
     </div>

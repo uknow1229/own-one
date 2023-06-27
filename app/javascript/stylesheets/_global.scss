@@ -5,10 +5,14 @@
   font-family: 'M PLUS Rounded 1c', serif;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body {
-  // background-color: color(primary);
   position: relative;
-  
 
   a {
     color: black;
@@ -40,4 +44,8 @@ main {
   a {
     color: black;
   }
+}
+
+footer {
+  margin-top: auto;
 }

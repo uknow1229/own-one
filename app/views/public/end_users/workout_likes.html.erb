@@ -1,25 +1,29 @@
 <div class="liked-users container mt-4">
   <% if @post_workout.liked_end_users.present? %>
-    <h2>Liked User</h2>
+    <h2 class="text-center">Liked User</h2>
     <% @post_workout.liked_end_users.each do |end_user| %>
-      <div class="liked-users__profile d-flex align-items-center gap-2">
-        <%= image_tag end_user.get_profile_image(50, 50) %>
-        <p><%= end_user.user_name %></p>
-        <p>フォロー中</p>
-        <p><%= link_to  followeds_end_user_path(end_user) do %>
-          <p><%= end_user.followers.count %></p>
-        <% end %></p>
-        <p>フォロワー</p>
-        <p><%= link_to followers_end_user_path(end_user) do %>
-          <p><%= end_user.followeds.count %></p>
-        <% end %></p>
-        <% if current_end_user != end_user %>
-          <% if current_end_user.following?(end_user)%>
-            <p><%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-sm btn-danger" %></p>
-          <% else %>
-            <p><%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-sm btn-success" %></p>
-          <% end %>
-        <% end %>
+      <div class="list-group mt-2 col-sm-8 mx-auto">
+        <div class="list-group-item">
+          <div class="liked-users__profile d-flex align-items-center gap-2">
+            <div><%= image_tag end_user.get_profile_image(50, 50), class: "rounded-circle" %></div>
+            <%= end_user.user_name %>
+            フォロー中
+            <%= link_to  followeds_end_user_path(end_user) do %>
+              <%= end_user.followers.count %>
+            <% end %>
+            フォロワー
+            <%= link_to followers_end_user_path(end_user) do %>
+              <%= end_user.followeds.count %>
+            <% end %>
+            <% if current_end_user != end_user %>
+              <% if current_end_user.following?(end_user)%>
+                <%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-sm btn-danger" %>
+              <% else %>
+                <%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-sm btn-success" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     <% end %>
   <% else %>
