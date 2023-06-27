@@ -4,6 +4,11 @@ class Public::PostBlogsController < ApplicationController
   def index
     @post_blogs = PostBlog.all.page(params[:page]).per(9)
     @tag_list = BlogTag.all
+    @end_user = current_end_user
+    # フォロー中のユーザーを取得するための関連名を適用
+    @followed_end_users = @end_user.following_end_users
+    # フォロー中のユーザーの投稿を取得
+    @followed_post_blogs = PostBlog.where(end_user_id: @followed_end_users.pluck(:id))
   end
 
   def show
@@ -28,7 +33,7 @@ class Public::PostBlogsController < ApplicationController
       redirect_to post_blogs_path
       flash[:notice] = "更新が完了しました"
     else
-      flash[:notice] = "ブログ投稿を更新できませんでした"
+      flash[:alert] = "ブログ投稿を更新できませんでした"
       render :edit
     end
   end
@@ -45,7 +50,7 @@ class Public::PostBlogsController < ApplicationController
       @post_blog.save_blog_tags(tag_list)
       redirect_to post_blogs_path, notice:'投稿が完了しました'
     else
-      flash[:notice] = "投稿を作成できませんでした"
+      flash[:alert] = "投稿を作成できませんでした"
       render :new
     end
   end

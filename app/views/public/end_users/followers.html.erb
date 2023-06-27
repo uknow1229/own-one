@@ -1,29 +1,32 @@
 <div class="user-followers container mt-4">
-  <% if @end_user.follower_end_users.present? %>
-    <h2>Followers List</h2>
-    <div class="user-followers__wrapper d-flex align-items-center mt-4 gap-2">
-      <% @end_user.follower_end_users.each do |end_user| %>
-        <%= image_tag end_user.get_profile_image(50, 50) %>
-        <p>User Name</p>
-        <p><%= link_to end_user.user_name, end_user_path(end_user) %></p>
-        <p>Following</p>
-        <p><%= link_to followeds_end_user_path(end_user) do %>
-        <p><%= end_user.followers.count %></p>
-        <% end %></p>
-        <p>Followed</p>
-        <p><%= link_to followers_end_user_path(end_user) do %>
-        <p><%= end_user.followeds.count %></p>
-        <% end %></p>
-        <% if current_end_user != end_user %>
-          <% if current_end_user.following?(end_user)%>
-            <p><%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-sm" %></p>
-          <% else %>
-            <p><%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-sm" %></p>
+  <div class="row justify-content-center">
+    <div class="col-sm-10">
+      <% if @end_user.follower_end_users.present? %>
+        <h2>Followers List</h2>
+        <div class="user-followers__wrapper d-flex align-items-center mt-4 gap-2">
+          <% @end_user.follower_end_users.each do |end_user| %>
+            <%= image_tag end_user.get_profile_image(50, 50) %>
+            <p><%= link_to end_user.user_name, end_user_path(end_user) %></p>
+            <p>Followings</p>
+            <p><%= link_to followeds_end_user_path(end_user) do %>
+              <p><%= end_user.followers.count %></p>
+            <% end %></p>
+            <p>Followees</p>
+            <p><%= link_to followers_end_user_path(end_user) do %>
+              <p><%= end_user.followeds.count %></p>
+            <% end %></p>
+            <% if current_end_user != end_user %>
+              <% if current_end_user.following?(end_user)%>
+                <p><%= link_to "フォロー外す", end_user_relationships_path(end_user.id), method: :delete, class: "btn btn-sm" %></p>
+              <% else %>
+                <p><%= link_to "フォローする", end_user_relationships_path(end_user.id), method: :post, class:"btn btn-sm" %></p>
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+      <% else %>
+        <h4>フォローされているユーザーはいません</h4>
       <% end %>
     </div>
-  <% else %>
-    <h4>フォローされているユーザーはいません</h4>
-  <% end %>
+  </div>
 </div>

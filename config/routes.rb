@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
     resources :post_workouts do
       resources :workout_comments, only: [:create, :destroy]
-      resource :workout_likes, only: [:create, :destroy]
+      resource :workout_likes, only: [:create, :destroy, :index]
     end
     # end_users
     resources :end_users, only: [:show, :edit, :update] do
