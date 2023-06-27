@@ -1,6 +1,6 @@
-<div class= 'container mt-5'>
-  <div class='row'>
-    <h2>Log in</h2>
+<div class= 'container mt-4'>
+  <div class='col-sm-8 mx-auto'>
+    <h2 class="text-center">Log in</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
@@ -19,7 +19,7 @@
         <%= f.label :remember_me %>
       </div>
     <% end %>
-    <div class="actions">
+    <div class="actions d-flex justify-content-center">
       <%= f.submit "Log in", :class => "btn btn-success mt-4" %>
     </div>
     <% end %>
