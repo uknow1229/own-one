@@ -2,19 +2,33 @@
   <div><%= image_tag end_user.get_profile_image(120, 120) ,class: "rounded-circle img-thumbnail" %></div>
   <div class="">
     <h4><%= end_user.user_name %></h4>
-    <p>1日の目標カロリー</p>
-    <p><%= end_user.target_calorie.blank? ? '未設定' : "#{end_user.target_calorie}kcal/日" %></p>
+    <p>1日の目標カロリー: <%= end_user.target_calorie.blank? ? '未設定' : "#{end_user.target_calorie}kcal/日" %></p>
+
+    <!-- 1日のカロリー計算 -->
     <% total_calorie = 0 %>
-    <% if @end_user.post_meals.any? %>
-      <% @end_user.post_meals.each do |post_meal| %>
-        <% post_meal.meal_menus.each do |menu| %>
+    <% @end_user.post_meals.each do |post_meal| %>
+      <% post_meal.meal_menus.each do |menu| %>
+        <% if post_meal.start_time.today? %>
           <% total_calorie += menu.calorie %>
         <% end %>
       <% end %>
-      <p>今日の合計カロリー: <%= total_calorie %>カロリー</p>
-    <% else %>
-      <p>今日の合計カロリー: 0カロリー</p>
     <% end %>
+    <p>今日の合計カロリー: <%= total_calorie %>カロリー</p>
+
+    <!-- カロリーの達成率を計算 -->
+    <% target_calorie = @end_user.target_calorie %>
+    <% if target_calorie.present? %>
+      <% achievement_rate = [(total_calorie / target_calorie.to_f) * 100, 100].min %>
+
+      <!-- プログレスバーの表示 -->
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: <%= achievement_rate %>%;" aria-valuenow="<%= achievement_rate %>" aria-valuemin="0" aria-valuemax="100">
+        </div>
+        <%= total_calorie %> / <%= target_calorie %> カロリー
+      </div>
+      <p>（達成率 <%= achievement_rate.round(2) %> %）</p>
+    <% end %>
+
     <p>自己紹介</p>
     <p>
       <%= end_user.introduction.blank? ? '未設定' : end_user.introduction %>
