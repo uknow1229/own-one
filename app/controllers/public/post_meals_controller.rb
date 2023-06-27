@@ -24,7 +24,7 @@ class Public::PostMealsController < ApplicationController
       @post_meal.save_meal_tags(tag_list)
       redirect_to post_meals_path, notice:'投稿が完了しました'
     else
-      flash[:notice] = "投稿を作成できませんでした"
+      flash[:alert] = "投稿を作成できませんでした"
       render :new
     end
   end
@@ -51,7 +51,7 @@ class Public::PostMealsController < ApplicationController
       redirect_to post_meals_path
       flash[:notice] = "更新が完了しました"
     else
-      flash[:notice] = "食事投稿を更新できませんでした"
+      flash[:alert] = "食事投稿を更新できませんでした"
       render :edit
     end
   end

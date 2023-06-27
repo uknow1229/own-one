@@ -33,7 +33,7 @@ class Public::PostBlogsController < ApplicationController
       redirect_to post_blogs_path
       flash[:notice] = "更新が完了しました"
     else
-      flash[:notice] = "ブログ投稿を更新できませんでした"
+      flash[:alert] = "ブログ投稿を更新できませんでした"
       render :edit
     end
   end
@@ -50,7 +50,7 @@ class Public::PostBlogsController < ApplicationController
       @post_blog.save_blog_tags(tag_list)
       redirect_to post_blogs_path, notice:'投稿が完了しました'
     else
-      flash[:notice] = "投稿を作成できませんでした"
+      flash[:alert] = "投稿を作成できませんでした"
       render :new
     end
   end
