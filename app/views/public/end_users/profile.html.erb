@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-between mt-4">
+      <div class="d-flex justify-content-between mt-4 mb-4">
         <% unless @end_user.guest_user? %>
           <div class="user-profile__actions">
             <%= link_to edit_end_user_path(current_end_user), :class => "btn btn-success" do %>
@@ -69,6 +69,10 @@
           </div>
         <% end %>
         <%= link_to "退会する", check_end_user_path, method: :get, :class => "btn btn-danger" %>
+      </div>
+      <div class="user-profile__calorie text-center">
+        <h4>あなたの1日の適正カロリーは<%= @calories %>カロリーです！</h4>
+        <p>※身長・体重・年齢・性別・活動レベルを登録すると、自動で計算されます。</p>
       </div>
     </div>
   </div>

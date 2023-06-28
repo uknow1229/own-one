@@ -81,11 +81,6 @@
     <% end %>
     <ul class="navbar-nav ml-auto" style="flex-direction:row;">
       <li class="nav-item">
-        <%= link_to root_path, class: "nav-link" do %>
-      <i class="fa-solid fa-face-smile"></i>
-        About
-        <% end %>
-      <li class="nav-item">
         <%= link_to new_end_user_registration_path, class: "nav-link" do %>
         <i class="fa-solid fa-user-plus"></i>
         Signup
@@ -99,7 +94,7 @@
       </li>
       <li class="nav-item">
         <%= link_to end_users_guest_sign_in_path, class: "nav-link", method: :post  do %>
-        <i class="fa-solid fa-right-to-bracket"></i>
+        <i class="fa-solid fa-users"></i>
         Guest
         <% end %>
       </li>
