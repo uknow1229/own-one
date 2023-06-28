@@ -17,6 +17,9 @@
   <body>
     <header id="header">
       <%= render 'layouts/header' %>
+      <% if Rails.env.production? %>
+        <%= render 'layouts/google_analytics' %>
+      <% end %>
     </header>
     <main>
       <% if flash[:notice] %>
