@@ -4,5 +4,4 @@ class PostWorkoutTag < ApplicationRecord
 
   validates :post_workout_id, presence: true
   validates :workout_tag_id, presence: true
-
 end

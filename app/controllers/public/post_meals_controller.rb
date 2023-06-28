@@ -22,7 +22,7 @@ class Public::PostMealsController < ApplicationController
     tag_list = params[:post_meal][:name].split(',')
     if @post_meal.save
       @post_meal.save_meal_tags(tag_list)
-      redirect_to post_meals_path, notice:'投稿が完了しました'
+      redirect_to post_meals_path, notice:"投稿が完了しました"
     else
       flash[:alert] = "投稿を作成できませんでした"
       render :new

@@ -2,12 +2,11 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: 'OWN ONE',
-      title: 'フィットネス・食事・体重記録＆共有サービス',
+      title: 'OWN ONE',
       reverse: true,
       charset: 'utf-8',
-      description: 'OWN ONEは、日々のフィットネスや食事を記録したり、他のユーザーの投稿を見たり共有することで、
-      モチベーションの維持に繋げ、毎日のフィットネスをさらに楽しくするサービスです',
-      keywords: 'フィットネス,食事記録,ジム',
+      description: 'フィットネス・食事・体重記録＆共有サービス',
+      keywords: 'トレーニー,食事記録,運動記録',
       canonical: request.original_url,
       separator: '|',
       icon: [

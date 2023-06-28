@@ -36,7 +36,7 @@ class Public::PostWorkoutsController < ApplicationController
     tag_list = params[:post_workout][:name].split(',')
     if @post_workout.save
       @post_workout.save_workout_tags(tag_list)
-      redirect_to post_workouts_path, notice:'投稿が完了しました'
+      redirect_to post_workouts_path, notice:"投稿が完了しました"
     else
       flash[:alert] = "投稿を作成できませんでした"
       render :new

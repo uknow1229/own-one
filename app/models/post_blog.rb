@@ -3,9 +3,9 @@ class PostBlog < ApplicationRecord
   belongs_to :end_user
 
   has_many :blog_likes, dependent: :destroy
-  has_many :blog_comments, dependent: :destroy
   has_many :liked_end_users, through: :blog_likes, source: :end_user
-  has_many :commenting_end_users, through: :blog_comments, source: :end_user
+
+  has_many :blog_comments, dependent: :destroy
 
   has_many :post_blog_tags, dependent: :destroy
   has_many :blog_tags, through: :post_blog_tags
@@ -20,14 +20,6 @@ class PostBlog < ApplicationRecord
     blog_likes.exists?(end_user_id: end_user.id)
   end
 
-  def get_image(width, height)
-    if image.attached?
-      image.variant(resize_to_limit: [100, 100]).processed
-    else
-      'noimage.jpg'
-    end
-  end
-
   def self.ransackable_attributes(auth_object = nil)
     [ "title"]
   end
@@ -37,12 +29,12 @@ class PostBlog < ApplicationRecord
     old_tags = current_tags - tags
     new_tags = tags - current_tags
 
-    # 古いタグを消す
+    # 古いタグを削除
     old_tags.each do |old_name|
       self.blog_tags.delete BlogTag.find_by(name:old_name)
     end
 
-    # 新しいタグを保存
+    # 新しいタグを作成
     new_tags.each do |new_name|
       blog_tag = BlogTag.find_or_create_by(name:new_name)
       self.blog_tags << blog_tag

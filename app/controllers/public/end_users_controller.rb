@@ -25,6 +25,7 @@ class Public::EndUsersController < ApplicationController
 
   def profile
     @end_user = EndUser.find(current_end_user.id)
+    @calories = calculate_daily_calories(@end_user)
   end
 
   def update
@@ -96,4 +97,36 @@ class Public::EndUsersController < ApplicationController
     end
   end
 
+  # 適正カロリー計算
+  def calculate_daily_calories(end_user)
+    bmr = calculate_bmr(end_user.height, end_user.body_weight, end_user.age, end_user.sex)
+    activity_multiplier = determine_activity_multiplier(end_user.activelevel)
+    daily_calories = bmr * activity_multiplier
+    # 小数点以下の桁数を調整
+    daily_calories.round(2) 
+  end
+
+  def calculate_bmr(height, body_weight, age, sex)
+    case sex.to_sym
+    when :man
+      bmr = 10 * body_weight + 6.25 * height - 5 * age + 5
+    when :woman
+      bmr = 10 * body_weight + 6.25 * height - 5 * age - 161
+    else
+      bmr
+    end
+    bmr
+  end
+
+  def determine_activity_multiplier(activelevel)
+    case activelevel.to_sym
+    when :level1
+      multiplier = 1.2
+    when :level2
+      multiplier = 1.55
+    when :level3
+      multiplier = 1.9
+    end
+    multiplier 
+  end
 end
