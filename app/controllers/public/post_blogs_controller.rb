@@ -48,7 +48,7 @@ class Public::PostBlogsController < ApplicationController
     tag_list = params[:post_blog][:name].split(',')
     if @post_blog.save
       @post_blog.save_blog_tags(tag_list)
-      redirect_to post_blogs_path, notice:'投稿が完了しました'
+      redirect_to post_blogs_path, notice:"投稿が完了しました"
     else
       flash[:alert] = "投稿を作成できませんでした"
       render :new
