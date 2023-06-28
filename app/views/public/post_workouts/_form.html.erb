@@ -8,12 +8,14 @@
     <label>タイトル</label>
     <%= f.text_field :title, class: 'form-control mb-2' %>
     <div class="post-workout__site">
+
       <label>トレーニング部位</label><br>
       <% PostWorkout.sites.each do |key, value| %>
         <%= f.radio_button :site, key %>
         <%= f.label "site_#{key}", t("activerecord.attributes.post_workout.sites.#{key}"), class: 'mb-2' %>
       <% end %>
     </div>
+    
     <label>時間</label>
     <%= f.number_field :time, class: 'form-control mb-2' %>
     <label>メモ</label>
@@ -45,7 +47,7 @@
     </div>
 
     <div class="post-workout__field">
-      <label>Tag(,で区切ると複数タグ登録できます)</label>
+      <label>タグ(,で区切ると複数タグ登録できます)</label>
       <%= f.text_field :name,value: tag_list, class: 'form-control mb-2' %>
     </div>
     <div class="post-workout__submit-field text-center">

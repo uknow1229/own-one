@@ -27,8 +27,8 @@
         <% if @post_workouts.exists? %>
           <%= render "index", post_workouts: @post_workouts %>
         <% else %>
-          <div class="post-workout__empty-posts pb-4">
-            <h4 class="text-center pb-4">投稿はありません</h4>
+          <div class="post-workout__empty-posts pt-4 pb-4">
+            <h4 class="text-center pt-4 pb-4">投稿はありません</h4>
             <%= image_tag 'j285_5_1.png', class: 'yet-image rounded-3 img-fluid mx-auto d-block' %>
           </div>
         <% end %>
