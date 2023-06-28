@@ -2,7 +2,9 @@
   <h2 class="text-center">New Weight Registration</h2>
   <div class="row justify-content-center">
     <div class="col-sm-8">
+      <!--エラーメッセージ-->
       <%= render "public/shared/error_messages", resource: @weight %>
+      <!--新規投稿フォーム-->
       <%= render "form", weight: @weight %>
     </div>
   </div>
@@ -14,13 +16,16 @@
       <p><%= form.submit 'Select Month', class: 'btn' %></p>
     <% end %>
 
+    <!-- チャートを表示 -->
     <canvas id="myChart"></canvas>
     <script>
       $(document).on('turbolinks:load', function() {
+      // チャートの描画処理
       var ctx = document.getElementById('myChart').getContext('2d');
       var targetWeight = <%= @target_weight.to_json.html_safe %>; // 目標体重をJavascriptに渡す
       var weight = <%= @weights_data.to_json.html_safe %>
 
+      // チャートオブジェクトの作成と設定
       var chart = new Chart(ctx, {
         type: 'line',
         data: {

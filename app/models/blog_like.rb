@@ -4,7 +4,6 @@ class BlogLike < ApplicationRecord
 
   validates :end_user_id, uniqueness: { scope: :post_blog_id }
 
-
   has_one :notification, as: :subject, dependent: :destroy
 
   after_create_commit :create_notifications

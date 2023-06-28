@@ -4,7 +4,4 @@ class Public::HomesController < ApplicationController
     @post_meals = PostMeal.all
     @post_blogs = PostBlog.all
   end
-
-  def about
-  end
 end

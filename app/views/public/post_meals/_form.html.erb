@@ -5,12 +5,14 @@
     <label>Date</label>
     <%= f.date_field :start_time,  class: 'form-control' %>
     <label>Timing</label><br>
+
     <div class="post-meal__timing">
       <% PostMeal.timings.each do |key, value| %>
         <%= f.radio_button :timing, key %>
         <%= f.label "timing_#{key}", t("activerecord.attributes.post_meal.timings.#{key}") %>
       <% end %>
     </div>
+
     <div class="post-meal__type">
       <label>Meal Type</label><br>
       <% PostMeal.meal_types.each do |key, value| %>
@@ -18,10 +20,11 @@
         <%= f.label "meal_type_#{key}", t("activerecord.attributes.post_meal.meal_types.#{key}") %>
       <% end %>
     </div>
+
     <label>Memo</label>
     <%= f.text_field :memo, class: 'form-control' %>
 
-    <!-- meal_menus form -->
+    <!-- 食事メニュー追加フォーム -->
     <div class="post-meal__menu">
       <div class="post-meal__menu-list" id="post-meal-menus">
         <%= f.fields_for :meal_menus do |menu_form| %>
@@ -48,6 +51,7 @@
       <label>Tag(,で区切ると複数タグ登録できます)</label>
       <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
     </div>
+
     <div class="post-meal__submit-field text-center">
       <% if post_meal.new_record? %>
         <%= f.submit '新規作成', class: "btn mt-4" %>
@@ -58,7 +62,7 @@
   </div>
 <% end %>
   
-
+<!--「メニュー追加はこちらから」の選択時に発火-->
 <script>
   document.getElementById("add-menu-button").addEventListener("click", function() {
     var container = document.getElementById("post-meal-menus");

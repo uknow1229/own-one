@@ -3,7 +3,8 @@
   &__wrapper {
     position: relative;
     height: 90vh;
-    background-image: url(/assets/slide-2.jpg);
+    // background-image: url(/assets/slide-2.jpg);
+    background-image: image-url("slide-2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -19,15 +20,7 @@
       letter-spacing: 4px;
       z-index: 3;
     }
-  
   }
-
-  // &__details {
-  //   background-color: rgba(255, 255, 255, 0.2);
-  //   padding: 2px 4px;
-  //   border-radius: 10px;
-  //   z-index: 3;
-  // }
 
   &__wrapper::after {
     content: "";

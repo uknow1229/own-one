@@ -34,7 +34,7 @@ class Public::WeightsController < ApplicationController
   def update
     @weight = Weight.find(params[:id])
     if @weight.update(weight_params) 
-      redirect_to weights_path, notice: '更新に成功しました'
+      redirect_to weights_path, notice: "更新に成功しました"
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class Public::WeightsController < ApplicationController
     @weight = Weight.new(weight_params)
     @weight.end_user_id = current_end_user.id
     if @weight.save
-      redirect_to weights_path, notice: '登録に成功しました'
+      redirect_to weights_path, notice: "登録に成功しました"
     else
       render :index
     end
