@@ -4,15 +4,15 @@
       <% search_word = @q %>
       <% if @post_workout.present? || @post_meal.present? || @post_blog.present? %>
         <h2 class="mt-3">検索結果 "<%= search_word %>"</h2>
-          <% if @post_workout.present? %>
-            <%= render "public/post_workouts/index", post_workouts: @post_workout %>
-          <% end %>
-          <% if @post_meal.present? %>
-            <%= render "public/post_meals/index", post_meals: @post_meal %>
-          <% end %>
-          <% if @post_blog.present? %>
-            <%= render "public/post_blogs/index", post_blogs: @post_blog %>
-          <% end %>
+        <% if @post_workout.present? %>
+          <%= render "public/post_workouts/index", post_workouts: @post_workout %>
+        <% end %>
+        <% if @post_meal.present? %>
+          <%= render "public/post_meals/index", post_meals: @post_meal %>
+        <% end %>
+        <% if @post_blog.present? %>
+          <%= render "public/post_blogs/index", post_blogs: @post_blog %>
+        <% end %>
       <% else %>
         <h3 class="mt-3 text-center">検索結果がありません。</h3>
       <% end %>

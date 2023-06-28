@@ -2,7 +2,9 @@
   <h2 class="post-workout__tittle text-center">New Fitness Posts</h2>
   <div class="row justify-content-center">
     <div class="post-blog__form col-sm-8">
+      <!--エラーメッセージ-->
       <%= render "public/shared/error_messages", resource: @post_workout %>
+      <!--新規投稿フォーム-->
       <%= render "form", post_workout: @post_workout, tag_list: @tag_list %>
     </div>
   </div>

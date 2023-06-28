@@ -5,6 +5,7 @@ class EndUser < ApplicationRecord
         :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_image
+
   has_many :post_workouts, dependent: :destroy
   has_many :post_blogs, dependent: :destroy
   has_many :post_meals, dependent: :destroy
@@ -13,13 +14,12 @@ class EndUser < ApplicationRecord
   has_many :workout_comments, dependent: :destroy
 
   has_many :meal_likes, dependent: :destroy
-  # has_many :like_post_meals, through: :blog_likes, source: :post_meal
   has_many :meal_comments, dependent: :destroy
 
   has_many :blog_likes, dependent: :destroy
-  # has_many :like_post_blogs, through: :blog_likes, source: :post_blog
   has_many :blog_comments, dependent: :destroy
 
+  # フォロー機能
   has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
@@ -50,6 +50,7 @@ class EndUser < ApplicationRecord
     super && (is_deleted == false)
   end
 
+  # プロフィール画像の取得
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/noimage.jpg')
@@ -58,22 +59,24 @@ class EndUser < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  # ユーザーをフォローする
   def follow(end_user_id)
     followers.create(followed_id: end_user_id)
   end
 
+  # ユーザーのフォローを外す
   def unfollow(end_user_id)
     followers.find_by(followed_id: end_user_id).destroy
   end
 
+  # フォローしていればtrueを返す
   def following?(end_user)
     following_end_users.include?(end_user)
   end
 
+  # 1日の総カロリー計算のリセット日を特定
   def last_reset_date
     latest_post_meal_start_time = post_meals.maximum(:start_time)
     latest_post_meal_start_time || Date.current
   end
-
-
 end

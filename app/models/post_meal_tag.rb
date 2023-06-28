@@ -4,5 +4,4 @@ class PostMealTag < ApplicationRecord
 
   validates :meal_tag_id, presence: true
   validates :post_meal_id, presence: true
-
 end

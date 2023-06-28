@@ -25,14 +25,6 @@ class PostWorkout < ApplicationRecord
     workout_likes.exists?(end_user_id: end_user.id)
   end
 
-  def get_profile_image(width, height)
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/noimage.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-    image.variant(resize_to_limit: [100, 100]).processed
-  end
-
   def self.ransackable_attributes(auth_object = nil)
     [ "title"]
   end
@@ -42,12 +34,12 @@ class PostWorkout < ApplicationRecord
     old_tags = current_tags - tags
     new_tags = tags - current_tags
 
-    # Destroy old taggings:
+    # 古いタグを削除
     old_tags.each do |old_name|
       self.workout_tags.delete WorkoutTag.find_by(name:old_name)
     end
 
-    # Create new taggings:
+    # 新しいタグを作成
     new_tags.each do |new_name|
       workout_tag = WorkoutTag.find_or_create_by(name:new_name)
       self.workout_tags << workout_tag

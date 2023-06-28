@@ -2,7 +2,9 @@
   <h2 class="post-blog__tittle text-center">New Blog Posts</h2>
   <div class="row justify-content-center">
     <div class="post-blog__form col-sm-8">
+      <!--エラーメッセージ-->
       <%= render "public/shared/error_messages", resource: @post_blog %>
+      <!--新規投稿フォーム-->
       <%= render "form", post_blog: @post_blog %>
     </div>
   </div>

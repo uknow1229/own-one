@@ -2,7 +2,9 @@
   <h2 class="text-center">Weight Edit</h2>
   <div class="row justify-content-center">
     <div class="col-sm-8">
+      <!--エラーメッセージ-->
       <%= render "public/shared/error_messages", resource: @weight %>
+      <!--編集フォーム-->
       <%= render "form", weight: @weight %>
     </div>
   </div>

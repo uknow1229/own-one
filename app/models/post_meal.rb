@@ -3,10 +3,10 @@ class PostMeal < ApplicationRecord
   belongs_to :end_user
 
   has_many :meal_likes, dependent: :destroy
+  has_many :liked_end_users, through: :meal_likes, source: :end_user
+
   has_many :meal_comments, dependent: :destroy
   has_many :meal_menus, dependent: :destroy
-  has_many :liked_end_users, through: :meal_likes, source: :end_user
-  # has_many :commenting_end_users, through: :meal_comments, source: :end_user
 
   has_many :post_meal_tags, dependent: :destroy
   has_many :meal_tags, through: :post_meal_tags
@@ -33,12 +33,12 @@ class PostMeal < ApplicationRecord
     old_tags = current_tags - tags
     new_tags = tags - current_tags
 
-    # Destroy old taggings:
+    # 古いタグを削除
     old_tags.each do |old_name|
       self.meal_tags.delete MealTag.find_by(name:old_name)
     end
 
-    # Create new taggings:
+    # 新しいタグを作成
     new_tags.each do |new_name|
       meal_tag = MealTag.find_or_create_by(name:new_name)
       self.meal_tags << meal_tag
