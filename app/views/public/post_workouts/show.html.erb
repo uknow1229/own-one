@@ -2,45 +2,45 @@
   <h2 class="text-center">Fitness Post Details</h2>
 
   <div class="post-workout__wrapper mx-auto col-sm-8">
-    <div class="post-workout__profile">
+    <div class="post-workout__profile ms-4">
       <%= render "public/post_workouts/profile", post_workout: @post_workout %>
     </div>
 
-    <div class="post-workout__content row">
-      <div class="post-workout__details me-5 col-sm-5">
+    <div class="post-workout__content row m-4">
+      <div class="post-workout__details col-sm-4 mx-auto">
         <div class="post-workout__image">
-          <%= image_tag get_image(@post_workout, 300, 300) %>
+          <%= image_tag get_image(@post_workout, 300, 300), class: "rounded" %>
         </div>
         <% if @end_user == current_end_user %>
           <div class="post-workout__action-links mt-2">
-            <%= link_to edit_post_workout_path, :class => "btn" do %>
+            <%= link_to edit_post_workout_path, :class => "btn btn-success" do %>
               <i class="fa-sharp fa-solid fa-pen-to-square"></i>
             <% end %>
-            <%= link_to post_workout_path, method: :delete, data: { confirm: "本当に削除しますか？" } , :class => "btn ms-3" do %>
+            <%= link_to post_workout_path, method: :delete, data: { confirm: "本当に削除しますか？" } , :class => "btn btn-danger ms-3" do %>
               <i class="fa fa-trash"></i>
             <% end %>
           </div>
         <% end %>
       </div>
-      <div class="post-workout__details col-sm-5">
-        <h4>Title</h4>
+      <div class="post-workout__details col-sm-4 mx-auto mt-4">
+        <h4>タイトル</h4>
         <p><%= @post_workout.title %></p>
-        <h4>Site</h4>
+        <h4>トレーニング部位</h4>
         <p><%= @post_workout.site_i18n %></p>
-        <h4>Time</h4>
+        <h4>時間</h4>
         <p><%= @post_workout.time %>分</p>
-        <h4>Memo</h4>
+        <h4>メモ</h4>
         <p><%= @post_workout.memo %></p>
 
         <% if @post_workout.workout_menus.any? %>
-          <h4>WorkoutMenu</h4>
-          <table class="table table-hover text-center">
+          <h4>筋トレメニュー</h4>
+          <table class="table table-hover text-center rounded">
             <thead>
               <tr>
-                <th scope="col">Event</th>
-                <th scope="col">Weight</th>
-                <th scope="col">Reptition Count</th>
-                <th scope="col">Set Count</th>
+                <th scope="col">種目</th>
+                <th scope="col">重量</th>
+                <th scope="col">レップ数</th>
+                <th scope="col">セット数</th>
               </tr>
             </thead>
             <tbody>
@@ -72,6 +72,7 @@
         <!-- コメント機能 -->
         <div class="post-workout__comment-section">
           <p>コメント数:<%= @post_workout.workout_comments.count %></p>
+
           <div class="post-workout__comment-index mb-4" id="post-workout-comment">
             <%= render 'comment-index', post_workout: @post_workout %>
           </div>
