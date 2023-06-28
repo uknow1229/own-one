@@ -1,10 +1,10 @@
 <div class="user-page mt-4">
-  <div class="row justify-content-center">
-    <div class="d-flex justify-content-center mb-4">
-      <div class="user-page__profile col-sm-5 d-flex align-items-center">
+  <div class="row pe-0">
+    <div class="row justify-content-center mb-4 pe-0">
+      <div class="user-page__profile col-sm-5 d-flex align-items-center ps-4">
         <%= render "public/end_users/profile", end_user: @end_user, events: @events, post_meals: @post_meals %>
       </div>
-      <div class="user-profile__calendar col-sm-3">
+      <div class="user-profile__calendar col-sm-3 ps-4">
         <h4>Posting Calender</h4>
         <div id="calendar">
           <%= render 'public/end_users/calendar', events: @events %>

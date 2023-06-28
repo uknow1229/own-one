@@ -5,10 +5,12 @@
   font-family: 'M PLUS Rounded 1c', serif;
 }
 
+html {
+  height: 100%;
+}
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 body {
@@ -34,8 +36,6 @@ body {
   .pagination>li>a:hover {        
     border-radius: 15px;
   }
-
-
 }
 
 main {

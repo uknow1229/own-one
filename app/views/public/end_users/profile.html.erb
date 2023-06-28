@@ -11,7 +11,7 @@
             <h4 class="card-title">User Information</h4>
             <span><%= image_tag current_end_user.get_profile_image(100,100) %></span>
             <div class="mb-3">
-              <label class="form-label">User Name</label>
+              <label class="form-label">ユーザー名</label>
               <p class="form-control-plaintext"><%= @end_user.user_name %></p>
             </div>
             <div class="mb-3">
@@ -19,11 +19,11 @@
               <p class="form-control-plaintext"><%= @end_user.email%></p>
             </div>
             <div class="mb-3">
-              <label class="form-label">Target Calorie</label>
+              <label class="form-label">目標カロリー</label>
               <p class="form-control-plaintext"><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
             </div>
             <div class="mb-3">
-              <label class="form-label">Introduction</label>
+              <label class="form-label">自己紹介</label>
               <p class="form-control-plaintext"><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
             </div>
           </div>
@@ -34,27 +34,27 @@
           <div class="card-body">
             <h4 class="card-title">Additional Information</h4>
             <div class="mb-3">
-              <label class="form-label">Height</label>
+              <label class="form-label">身長</label>
               <p class="form-control-plaintext"><%= @end_user.height %>cm</p>
             </div>
             <div class="mb-3">
-              <label class="form-label">Weight</label>
-              <p class="form-control-plaintext"><%= @end_user.body_weight %>kg</p>
+              <label class="form-label">体重</label>
+              <p class="form-control-plaintext"><%= number_with_precision(@end_user.body_weight, precision: 1) %>kg</p>
             </div>
             <div class="mb-3">
-              <label class="form-label">Age</label>
-              <p class="form-control-plaintext"><%= @end_user.age %>years old</p>
+              <label class="form-label">年齢</label>
+              <p class="form-control-plaintext"><%= @end_user.age %>歳</p>
             </div>
             <div class="mb-3">
-              <label class="form-label">Sex</label>
+              <label class="form-label">性別</label>
               <p class="form-control-plaintext"><%= @end_user.sex_i18n %></p>
             </div>
             <div class="mb-3">
-              <label class="form-label">Target Weight</label>
+              <label class="form-label">目標体重</label>
               <p class="form-control-plaintext"><%= @end_user.target_weight %>kg</p>
             </div>
             <div class="mb-3">
-              <label class="form-label">Active Level</label>
+              <label class="form-label">活動レベル</label>
               <p class="form-control-plaintext"><%= @end_user.activelevel_i18n %></p>
             </div>
           </div>
@@ -71,8 +71,12 @@
         <%= link_to "退会する", check_end_user_path, method: :get, :class => "btn btn-danger" %>
       </div>
       <div class="user-profile__calorie text-center">
-        <h4>あなたの1日の適正カロリーは<%= @calories %>カロリーです！</h4>
-        <p>※身長・体重・年齢・性別・活動レベルを登録すると、自動で計算されます。</p>
+        <% if @calories %>
+          <h4>あなたの1日の適正カロリーは<%= @calories %>カロリーです！</h4>
+          <p>※身長・体重・年齢・性別・活動レベルを登録すると、自動で計算されます。</p>
+        <% else %>
+          <h4>あなたの1日の適正カロリーは??カロリーです！</h4>
+        <% end %>
       </div>
     </div>
   </div>
