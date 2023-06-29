@@ -1,7 +1,6 @@
 .workout {
   background-color: rgba(26, 48, 245, 0.8);
 }
-  
 
 .workout-index {
   &__wrapper {
@@ -18,5 +17,22 @@
 
 .tab-content {
   background-color: #ececec;
-  
+  min-height: 1200px;
+}
+
+.post-workout__empty-posts {
+    h4 {
+      font-weight: bold;
+    }
+  }
+
+.post-workout__menu-detail {
+  background-color: #f4f4f4;
+}
+
+.preview-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin: 10px 0;
+  border-radius: 10px;
 }

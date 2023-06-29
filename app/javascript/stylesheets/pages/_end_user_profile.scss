@@ -1,7 +1,20 @@
 .user-profile {
+
+  .card {
+    border: none;
+    p {
+      background-color: aliceblue;
+    }
+  }
   &__calorie {
     h4{
       background-color: aliceblue;
     }
+  }
+  h4 {
+    font-weight: bold;
+  }
+  p {
+    font-weight: bold;
   }
 }
