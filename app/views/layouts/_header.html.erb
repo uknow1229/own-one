@@ -7,7 +7,7 @@
       <!-- 検索機能 -->
       <div class="search_form ms-4">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
-          <%= f.text_field :q, class: "form-control d-inline-block", type: "search", placeholder: "検索", aria_label: "検索" %>
+          <%= f.text_field :q, class: "form-control d-inline-block w-auto", type: "search", placeholder: "検索", aria_label: "検索" %>
           <button class="btn btn-outline-success" type="submit">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>

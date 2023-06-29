@@ -1,28 +1,25 @@
 <div class="post-meal container mt-4 mb-4">
   <h2 class="text-center">Meal Post Details</h2>
 
-  <div class="post-meal__wrapper mx-auto col-sm-8">
-    <div class="post-meal__profile ms-4">
-      <%= render "public/post_meals/profile", post_meal: @post_meal %>
-    </div>
-
-    <div class="post-meal__content row m-4">
-      <div class="post-meal__details col-sm-4 mx-auto">
-        <div class="post-meal__image">
-          <%= image_tag get_image(@post_meal, 300, 300), class: "rounded" %>
-        </div>
-        <% if @end_user == current_end_user %>
-          <div class="post-meal__action-links mt-2">
+  <div class="d-flex justify-content-center">
+    <div class="post-meal__content col-sm-6 mt-4">
+      <div class="d-flex">
+        <%= render "public/post_meals/profile", post_meal: @post_meal %>
+        <div class="post-meal__action-links ms-auto">
+          <% if @end_user == current_end_user %>
             <%= link_to edit_post_meal_path, :class => "btn btn-success" do %>
               <i class="fa-sharp fa-solid fa-pen-to-square"></i>
             <% end %>
             <%= link_to post_meal_path, method: :delete, "data-confirm" => "本当に削除しますか？", :class => "btn btn-danger ms-3" do %>
               <i class="fa fa-trash"></i>
             <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-      <div class="post-meal__details col-sm-4 mx-auto mt-4">
+      <div class="post-meal__image">
+        <%= image_tag get_image(@post_meal, 300, 300), class: "rounded w-100" %>
+      </div>
+      <div class="post-meal__details mt-4">
         <h4>食事タイミング</h4>
         <p><%= @post_meal.timing_i18n %></p>
         <h4>食事タイプ</h4>
@@ -86,3 +83,4 @@
     </div>
   </div>
 </div>
+

@@ -6,11 +6,12 @@
       <%= render "public/shared/error_messages", resource: @weight %>
       <!--新規投稿フォーム-->
       <%= render "form", weight: @weight %>
+      <%= render "index", weights: @weights %>
     </div>
   </div>
-  <%= render "index", weights: @weights %>
+  
 
-  <div class="col-sm-8 w-100">
+  <div class="col-sm-8 mx-auto">
     <%= form_with url: weights_path, method: :get, class: 'd-flex gap-2' do |form| %>
       <p><%= form.date_field :month, value: params[:month] || Date.today.strftime('%Y-%m'), type: 'month', class: 'form-control' %></p>
       <p><%= form.submit 'Select Month', class: 'btn' %></p>
