@@ -99,34 +99,44 @@ class Public::EndUsersController < ApplicationController
 
   # 適正カロリー計算
   def calculate_daily_calories(end_user)
+    # 値がnilの場合、計算を中断
+    return if any_value_nil?(end_user.height, end_user.body_weight, end_user.age, end_user.sex)
+
     bmr = calculate_bmr(end_user.height, end_user.body_weight, end_user.age, end_user.sex)
     activity_multiplier = determine_activity_multiplier(end_user.activelevel)
-    daily_calories = bmr * activity_multiplier
-    # 小数点以下の桁数を調整
-    daily_calories.round(2) 
+    (bmr * activity_multiplier).round(2)
   end
 
   def calculate_bmr(height, body_weight, age, sex)
+    # 値がnilの場合、計算を中断
+    return if any_value_nil?(height, body_weight, age, sex)
+
+    # body_weightがnilの場合、デフォルト値として0.0を設定
+    body_weight ||= 0.0  
     case sex.to_sym
     when :man
-      bmr = 10 * body_weight + 6.25 * height - 5 * age + 5
+      bmr = 10 * body_weight.to_f + 6.25 * height - 5 * age + 5
     when :woman
-      bmr = 10 * body_weight + 6.25 * height - 5 * age - 161
+      bmr = 10 * body_weight.to_f + 6.25 * height - 5 * age - 161
     else
-      bmr
+      0.0
     end
-    bmr
   end
 
   def determine_activity_multiplier(activelevel)
+    # 活動レベルに基づいて活動係数を返す
     case activelevel.to_sym
     when :level1
-      multiplier = 1.2
+      1.2
     when :level2
-      multiplier = 1.55
+      1.55
     when :level3
-      multiplier = 1.9
+      1.9
     end
-    multiplier 
+  end
+
+  def any_value_nil?(*values)
+    # 値のいずれかがnilかどうかを確認
+    values.any?(&:nil?)
   end
 end
