@@ -2,15 +2,7 @@
   <div class="post-workout__index row">
     <div class="post-workout__header col-sm-8 d-flex justify-content-center">
       <h2>List of fitness posts</h2>
-      <p><%= link_to '投稿する', new_post_workout_path, class: 'btn ms-4' %></p>
-    </div>
-    <!--タグリスト-->
-    <div class="post-workout__tag col-sm-8 d-flex justify-content-center">
-      <% @tag_list.each do |list|%>
-        <p><i class="fa-sharp fa-solid fa-tag"></i>
-        <%=link_to list.name,search_workout_tag_path(workout_tag_id: list.id) %></p>
-        <p><%="(#{list.post_workouts.count})" %></p>
-      <% end %>
+      <p><%= link_to '投稿する', new_post_workout_path, class: 'btn btn-success mt-4 ms-4' %></p>
     </div>
     <ul class="nav nav-tabs col-sm-8 d-flex justify-content-center mt-4">
       <li class="nav-item">
@@ -21,25 +13,33 @@
       </li>
     </ul>
 
-    <div class="tab-content  d-flex justify-content-center pt-4">
-      <div class="tab-pane fade show active col-sm-8" id="all">
+    <div class="tab-content row justify-content-center pt-4">
+      <!--タグリスト-->
+      <div class="post-workout__tag mt-4 col-sm-2 text-center">
+        <% @tag_list.each do |list|%>
+          <p><i class="fa-sharp fa-solid fa-tag"></i>
+          <%=link_to list.name,search_workout_tag_path(workout_tag_id: list.id) %>
+          <%="(#{list.post_workouts.count})" %></p>
+        <% end %>
+      </div>
+      <div class="tab-pane fade show active col-sm-6" id="all">
         <!-- 全ユーザーの投稿を表示 -->
         <% if @post_workouts.exists? %>
           <%= render "index", post_workouts: @post_workouts %>
         <% else %>
-          <div class="post-workout__empty-posts pb-4">
-            <h4 class="text-center pb-4">投稿はありません</h4>
+          <div class="post-workout__empty-posts pt-4 pb-4">
+            <h4 class="text-center pt-4 pb-4">投稿はありません</h4>
             <%= image_tag 'j285_5_1.png', class: 'yet-image rounded-3 img-fluid mx-auto d-block' %>
           </div>
         <% end %>
       </div>
-      <div class="tab-pane fade col-sm-8" id="followed">
+      <div class="tab-pane fade col-sm-6" id="followed">
         <!-- フォロー中のユーザーの投稿を表示 -->
         <% if @followed_post_workouts.exists? %>
           <%= render "index", post_workouts: @followed_post_workouts %>
         <% else %>
-          <div class="post-workout__empty-posts pb-4">
-            <h4 class="text-center pb-4">投稿はありません</h4>
+          <div class="post-workout__empty-posts pt-4 pb-4">
+            <h4 class="text-center pt-4 pb-4">投稿はありません</h4>
             <%= image_tag 'j285_5_1.png', class: 'yet-image rounded-3 img-fluid mx-auto d-block' %>
           </div>
         <% end %> 

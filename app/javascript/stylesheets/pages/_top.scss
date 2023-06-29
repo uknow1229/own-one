@@ -4,7 +4,8 @@
     position: relative;
     height: 90vh;
     // background-image: url(/assets/slide-2.jpg);
-    background-image: image-url("slide-2.jpg");
+    // background-image: image-url("slide-2.jpg");
+    background-image: url("../images/slide-2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -19,6 +20,7 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
       letter-spacing: 4px;
       z-index: 3;
+      font-weight: bold;
     }
   }
 
@@ -37,7 +39,19 @@
   &__introduction {
     height: 80vh;
     background-color: #4F6CE3;
+
+    h4 {
+      font-weight: bold;
+    }
   }
+  
+  &__content {
+
+    h4 {
+      font-weight: bold;
+    }
+  }
+
 
   &__description {
     height: 80vh;

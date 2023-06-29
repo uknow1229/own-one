@@ -1,12 +1,9 @@
-.user-page__wrapper {
-  background-color: #ececec;
-  min-height: 900px;
-
+.container {
   h2 {
-    font-weight: bold;
-    position: relative;
-    padding: 1.5rem;
-    text-align: center;
+  font-weight: bold;
+  position: relative;
+  padding: 1.5rem;
+  text-align: center;
   }
   h2:before {
     position: absolute;
@@ -19,4 +16,7 @@
     background: rgba(26, 48, 245, 0.8);
   }
 
+  .list-group-item {
+    background-color: #ececec;
+  }
 }

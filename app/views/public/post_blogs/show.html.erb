@@ -2,14 +2,14 @@
   <h2 class="text-center">Blog Post Details</h2>
 
   <div class="post-blog__wrapper mx-auto col-sm-8">
-    <div class="post-meal__profile">
+    <div class="post-meal__profile ms-4">
       <%= render "public/post_blogs/profile", post_blog: @post_blog %>
     </div>
 
-    <div class="post-blog__content row">
-      <div class="post-blog__details col-sm-5">
+    <div class="post-blog__content row m-4">
+      <div class="post-blog__details col-sm-4 mx-auto">
         <div class="post-blog__image">
-          <%= image_tag get_image(@post_blog, 300, 300) %>
+          <%= image_tag get_image(@post_blog, 300, 300), class: "rounded" %>
         </div>
         <% if @end_user == current_end_user %>
           <div class="post-blog__action-links mt-2">
@@ -23,7 +23,7 @@
         <% end %>
       </div>
 
-      <div class="post-blog__details col-sm-5">
+      <div class="post-blog__details col-sm-4 mx-auto mt-4">
         <h4>Title</h4>
         <p><%= @post_blog.title %></p>
         <h4>Contents</h4>

@@ -1,79 +1,81 @@
-<div class="user-profile container mt-4">
-  <div class="row">
-    <div class="user-profile__wrapper mx-auto col-sm-8">
-      <h2>Plofile Details</h2>
-      <p>※このページは他ユーザーには表示されません</p>
-  
-      <!-- ユーザー情報 -->
-      <div class="d-flex">
-        <div class="card w-100">
-          <div class="card-body">
-            <h4 class="card-title">User Information</h4>
-            <span><%= image_tag current_end_user.get_profile_image(100,100) %></span>
-            <div class="mb-3">
-              <label class="form-label">User Name</label>
-              <p class="form-control-plaintext"><%= @end_user.user_name %></p>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">E-Mail</label>
-              <p class="form-control-plaintext"><%= @end_user.email%></p>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Target Calorie</label>
-              <p class="form-control-plaintext"><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Introduction</label>
-              <p class="form-control-plaintext"><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
-            </div>
+<div class="user-profile container p-4">
+  <div class="user-profile__wrapper mx-auto col-sm-8">
+    <h2>Plofile Details</h2>
+    <p class="pt-4">※このページは他ユーザーには表示されません</p>
+
+    <!-- ユーザー情報 -->
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title fw-bold">User Information</h4>
+          <span><%= image_tag current_end_user.get_profile_image(100,100) %></span>
+          <div class="mb-3">
+            <label class="form-label fw-bold">ユーザー名</label>
+            <p class="form-control-plaintext"><%= @end_user.user_name %></p>
           </div>
-        </div>
-      
-        <!-- 追加ユーザー情報 -->
-        <div class="card w-100">
-          <div class="card-body">
-            <h4 class="card-title">Additional Information</h4>
-            <div class="mb-3">
-              <label class="form-label">Height</label>
-              <p class="form-control-plaintext"><%= @end_user.height %>cm</p>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Weight</label>
-              <p class="form-control-plaintext"><%= @end_user.body_weight %>kg</p>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Age</label>
-              <p class="form-control-plaintext"><%= @end_user.age %>years old</p>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Sex</label>
-              <p class="form-control-plaintext"><%= @end_user.sex_i18n %></p>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Target Weight</label>
-              <p class="form-control-plaintext"><%= @end_user.target_weight %>kg</p>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Active Level</label>
-              <p class="form-control-plaintext"><%= @end_user.activelevel_i18n %></p>
-            </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">E-Mail</label>
+            <p class="form-control-plaintext"><%= @end_user.email%></p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">目標カロリー</label>
+            <p class="form-control-plaintext"><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">自己紹介</label>
+            <p class="form-control-plaintext"><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-between mt-4 mb-4">
-        <% unless @end_user.guest_user? %>
-          <div class="user-profile__actions">
-            <%= link_to edit_end_user_path(current_end_user), :class => "btn btn-success" do %>
-              <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-            <% end %>
+    
+      <!-- 追加ユーザー情報 -->
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title fw-bold">Additional Information</h4>
+          <div class="mb-3">
+            <label class="form-label fw-bold">身長</label>
+            <p class="form-control-plaintext"><%= @end_user.height %>cm</p>
           </div>
-        <% end %>
-        <%= link_to "退会する", check_end_user_path, method: :get, :class => "btn btn-danger" %>
+          <div class="mb-3">
+            <label class="form-label fw-bold">体重</label>
+            <p class="form-control-plaintext"><%= number_with_precision(@end_user.body_weight, precision: 1) %>kg</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">年齢</label>
+            <p class="form-control-plaintext"><%= @end_user.age %>歳</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">性別</label>
+            <p class="form-control-plaintext"><%= @end_user.sex_i18n %></p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">目標体重</label>
+            <p class="form-control-plaintext"><%= @end_user.target_weight %>kg</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">活動レベル</label>
+            <p class="form-control-plaintext"><%= @end_user.activelevel_i18n %></p>
+          </div>
+        </div>
       </div>
-      <div class="user-profile__calorie text-center">
+    </div>
+    <div class="d-flex justify-content-between mt-4 mb-4">
+      <% unless @end_user.guest_user? %>
+        <div class="user-profile__actions">
+          <%= link_to edit_end_user_path(current_end_user), :class => "btn btn-success" do %>
+            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+          <% end %>
+        </div>
+      <% end %>
+      <%= link_to "退会する", check_end_user_path, method: :get, :class => "btn btn-danger" %>
+    </div>
+    <div class="user-profile__calorie text-center pt-4 mb-4">
+      <% if @calories %>
         <h4>あなたの1日の適正カロリーは<%= @calories %>カロリーです！</h4>
         <p>※身長・体重・年齢・性別・活動レベルを登録すると、自動で計算されます。</p>
-      </div>
+      <% else %>
+        <h4>あなたの1日の適正カロリーは??カロリーです！</h4>
+      <% end %>
     </div>
   </div>
 </div>

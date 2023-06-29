@@ -1,15 +1,15 @@
 <%= form_with model: post_blog , local: true do |f| %>
-  <div class="post-blog">
-    <label>Image</label>
-    <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
-    <label>Title</label>
-    <%= f.text_field :title, class: 'form-control' %>
-    <label>Date</label>
-    <%= f.date_field :start_time,  class: 'form-control' %>
-    <label>Content</label>
-    <%= f.text_area :content, rows: 25, cols: 10, class: 'form-control' %>
-    <label>Tag(,で区切ると複数タグ登録できます)</label>
-    <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
+  <div class="post-blog m-4">
+    <label>画像</label>
+    <%= f.file_field :image, accept: "image/*", class: 'form-control mb-2' %>
+    <label>タイトル</label>
+    <%= f.text_field :title, class: 'form-control mb-2' %>
+    <label>日付</label>
+    <%= f.date_field :start_time,  class: 'form-control mb-2' %>
+    <label>内容</label>
+    <%= f.text_area :content, rows: 25, cols: 10, class: 'form-control mb-2' %>
+    <label>タグ(,で区切ると複数タグ登録できます)</label>
+    <%= f.text_field :name,value: @tag_list, class: 'form-control mb-2' %>
 
     <div class="post-blog__submit-field text-center">
       <% if post_blog.new_record? %>

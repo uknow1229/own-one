@@ -1,4 +1,4 @@
-<div class="container mt-4 mb-4">
+<div class="container p-4">
   <h2 class="text-center">New Weight Registration</h2>
   <div class="row justify-content-center">
     <div class="col-sm-8">
@@ -10,7 +10,7 @@
   </div>
   <%= render "index", weights: @weights %>
 
-  <div class="col-sm-8 mx-auto">
+  <div class="col-sm-8 w-100">
     <%= form_with url: weights_path, method: :get, class: 'd-flex gap-2' do |form| %>
       <p><%= form.date_field :month, value: params[:month] || Date.today.strftime('%Y-%m'), type: 'month', class: 'form-control' %></p>
       <p><%= form.submit 'Select Month', class: 'btn' %></p>

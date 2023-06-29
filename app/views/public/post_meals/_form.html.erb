@@ -1,62 +1,63 @@
 <%= form_with model: post_meal , local: true do |f| %>
-  <div class="post-meal">
-    <label>Image</label>
-    <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
-    <label>Date</label>
-    <%= f.date_field :start_time,  class: 'form-control' %>
-    <label>Timing</label><br>
+  <div class="post-meal m-4">
+    <label>画像</label>
+    <%= f.file_field :image, accept: "image/*", class: 'form-control mb-2', onchange: "previewImage(this);" %>
+    <div id="image-preview"></div>
+    <label>日付</label>
+    <%= f.date_field :start_time,  class: 'form-control mb-2' %>
 
+    <label>食事タイミング</label><br>
     <div class="post-meal__timing">
       <% PostMeal.timings.each do |key, value| %>
         <%= f.radio_button :timing, key %>
-        <%= f.label "timing_#{key}", t("activerecord.attributes.post_meal.timings.#{key}") %>
+        <%= f.label "timing_#{key}", t("activerecord.attributes.post_meal.timings.#{key}"), class: 'mb-2' %>
       <% end %>
     </div>
 
     <div class="post-meal__type">
-      <label>Meal Type</label><br>
+      <label>食事タイプ</label><br>
       <% PostMeal.meal_types.each do |key, value| %>
         <%= f.radio_button :meal_type, key %>
-        <%= f.label "meal_type_#{key}", t("activerecord.attributes.post_meal.meal_types.#{key}") %>
+        <%= f.label "meal_type_#{key}", t("activerecord.attributes.post_meal.meal_types.#{key}"), class: 'mb-2' %>
       <% end %>
     </div>
 
-    <label>Memo</label>
+    <label>メモ</label>
     <%= f.text_field :memo, class: 'form-control' %>
 
     <!-- 食事メニュー追加フォーム -->
     <div class="post-meal__menu">
-      <div class="post-meal__menu-list" id="post-meal-menus">
+      <div class="post-meal__menu-list mt-3" id="post-meal-menus">
         <%= f.fields_for :meal_menus do |menu_form| %>
-          <div class="post-meal__menu-detail mt-4 gap-2" style="display: <%= 'none' if post_meal.new_record? %>;">
-            <label>Menu</label>
+          <div class="post-meal__menu-detail row mb-3 p-4 rounded" style="display: <%= 'none' if post_meal.new_record? %>;">
+            <label>メニュー</label>
             <%= menu_form.text_field :title, class: 'form-control' %>
-            <label>Amount(g)</label>
+            <label>量(g)</label>
             <%= menu_form.number_field :quantity, class: 'form-control', step: '1', min: '0' %>
-            <label>Calories</label>
+            <label>カロリー</label>
             <%= menu_form.number_field :calorie, class: 'form-control', step: '1', min: '0' %>
           </div>
         <% end %>
       </div>
       <div class="post-meal__menu-button mt-3 mb-3">
         <% if post_meal.new_record? %>
-        <button id="add-menu-button" type="button" class="btn btn-light">メニュー追加はこちらから</button>
+        <button id="add-menu-button" type="button" class="btn btn-secondary w-100 mb-2">メニュー追加はこちらから</button>
         メニューは5つまで追加可能
-        <button id="hide-menu-button" type="button" class="btn btn-secondary"><i class="fa-sharp fa-solid fa-minus"></i></button>
+        <button id="hide-menu-button" type="button" class="btn btn-secondary rounded-circle"><i class="fa-sharp fa-solid fa-minus"></i></button>
         <% end %>
       </div>
     </div>
 
     <div class="post-meal__field">
-      <label>Tag(,で区切ると複数タグ登録できます)</label>
-      <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
+      <label>タグ(,で区切ると複数タグ登録できます)</label>
+      <%= f.text_field :name,value: @tag_list, class: 'form-control mb-2' %>
     </div>
 
     <div class="post-meal__submit-field text-center">
       <% if post_meal.new_record? %>
-        <%= f.submit '新規作成', class: "btn mt-4" %>
+        <%= f.submit '新規作成', class: "btn btn-success mt-2" %>
       <% else %>
-        <%= f.submit '更新する', class: "btn mt-4" %>
+        <%= f.submit '更新する', class: "btn btn-success mt-2" %>
       <% end %>
     </div>
   </div>
@@ -88,4 +89,27 @@
       }
     }
   });
+
+ // 画像のプレビューを表示する
+  function previewImage(input) {
+  var previewElement = document.getElementById('image-preview');
+  // 既存のプレビューをクリア
+  previewElement.innerHTML = ''; 
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    // 画像が読み込まれた時の処理
+    reader.onload = function(e) {
+      var image = document.createElement('img');
+      image.src = e.target.result;
+      image.classList.add('preview-image');
+
+      previewElement.appendChild(image);
+    };
+
+    // 選択した画像を読み込む
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 </script>
