@@ -1,7 +1,7 @@
 <%= link_to transition_path(notification) do %>
   <div>
     <%= image_tag notification.subject.end_user.get_profile_image(30, 30), class: "rounded-circle" %>
-    <%= link_to notification.subject.end_user.first_name, end_user_path(notification.subject.end_user) %>
+    <%= link_to notification.subject.end_user.user_name, end_user_path(notification.subject.end_user) %>
     さんがあなたの
     <%= link_to '投稿', post_meal_path(notification.subject.post_meal) %>
     にコメントしました
