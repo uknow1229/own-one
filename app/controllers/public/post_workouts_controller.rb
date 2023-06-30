@@ -2,7 +2,7 @@ class Public::PostWorkoutsController < ApplicationController
   before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
-    @post_workouts = PostWorkout.all
+    @post_workouts = PostWorkout.with_attached_image.includes(:image_attachment, :end_user).all
     @tag_list = WorkoutTag.all
     @end_user = current_end_user
     # フォロー中のユーザーを取得するための関連名を適用
@@ -12,17 +12,13 @@ class Public::PostWorkoutsController < ApplicationController
   end
 
   def show
-    @post_workouts = PostWorkout.all
-    @post_workout = PostWorkout.find(params[:id])
+    @post_workout = PostWorkout.includes(:end_user, :workout_tags).find(params[:id])
     @workout_comment = WorkoutComment.new
     @tag_list = @post_workout.workout_tags.pluck(:name).join(',')
     @post_workout_tags = @post_workout.workout_tags
     @end_user = @post_workout.end_user
-  end
 
-  def edit
-    @post_workout = PostWorkout.find(params[:id])
-    @tag_list = @post_workout.workout_tags.pluck(:name).join(',')
+    @workout_comments = @post_workout.workout_comments.includes(:end_user)
   end
 
   def new
@@ -43,6 +39,11 @@ class Public::PostWorkoutsController < ApplicationController
     end
   end
     
+  def edit
+    @post_workout = PostWorkout.find(params[:id])
+    @tag_list = @post_workout.workout_tags.pluck(:name).join(',')
+  end
+  
   def update
     @post_workout = PostWorkout.find(params[:id])
     tag_list=params[:post_workout][:name].split(',')
@@ -65,7 +66,7 @@ class Public::PostWorkoutsController < ApplicationController
   end
 
   def search_tag
-    @tag_list = WorkoutTag.all
+    @tag_list = WorkoutTag.includes(:end_user)
     @tag = WorkoutTag.find(params[:workout_tag_id])
     @post_workouts = @tag.post_workouts
   end

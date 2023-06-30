@@ -71,9 +71,9 @@
         </div>
         <!-- コメント機能 -->
         <div class="post-meal__comment-section">
-          <p>コメント数:<%= @post_meal.meal_comments.count %></p>
+          <p>コメント数:<%= @post_meal.meal_comments.size %></p>
           <div class="post-meal__comment-index mb-4" id="post-meal-comment">
-            <%= render 'comment-index', post_meal: @post_meal %>
+            <%= render 'comment-index', meal_comments: @meal_comments %>
           </div>
           <div class="post-meal__comment-form">
             <%= render 'comment-form', post_meal: @post_meal, meal_comment: @meal_comment %>

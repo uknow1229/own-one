@@ -62,6 +62,8 @@ group :test do
   gem 'rspec-rails'
   # テスト用データの作成
   gem 'factory_bot_rails'
+  # N+1問題の検知
+  gem 'bullet', group: 'development'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
