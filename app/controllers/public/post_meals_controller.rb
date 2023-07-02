@@ -2,13 +2,22 @@ class Public::PostMealsController < ApplicationController
   before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
-    @post_meals = PostMeal.all.page(params[:page]).per(9)
+    @post_meals = PostMeal.with_attached_image.includes(:image_attachment, :end_user).all
     @tag_list = MealTag.all
     @end_user = current_end_user
     # フォロー中のユーザーを取得するための関連名を適用
     @followed_end_users = @end_user.following_end_users
     # フォロー中のユーザーの投稿を取得
     @followed_post_meals = PostMeal.where(end_user_id: @followed_end_users.pluck(:id))
+  end
+
+  def show
+    @post_meal = PostMeal.includes(:end_user, :meal_tags).find(params[:id])
+    @meal_comment = MealComment.new
+    @meal_comments = @post_meal.meal_comments.includes(:end_user)
+    @tag_list = @post_meal.meal_tags.pluck(:name).join(',')
+    @post_meal_tags = @post_meal.meal_tags
+    @end_user = @post_meal.end_user
   end
 
   def new
@@ -27,15 +36,6 @@ class Public::PostMealsController < ApplicationController
       flash[:alert] = "投稿を作成できませんでした"
       render :new
     end
-  end
-
-  def show
-    @post_meals = PostMeal.all
-    @post_meal = PostMeal.find(params[:id])
-    @meal_comment = MealComment.new
-    @tag_list = @post_meal.meal_tags.pluck(:name).join(',')
-    @post_meal_tags = @post_meal.meal_tags
-    @end_user = @post_meal.end_user
   end
 
   def edit
@@ -65,7 +65,7 @@ class Public::PostMealsController < ApplicationController
   end
 
   def search_tag
-    @tag_list = MealTag.all
+    @tag_list = MealTag.includes(:end_user)
     @tag = MealTag.find(params[:meal_tag_id])
     @post_meals = @tag.post_meals
   end
