@@ -22,7 +22,7 @@ class PostWorkout < ApplicationRecord
   validates :memo, length: { maximum: 800 } , presence: true
 
   def liked_by?(end_user)
-    workout_likes.exists?(end_user_id: end_user.id)
+    workout_likes.pluck(:end_user_id).include?(end_user.id)
   end
 
   def self.ransackable_attributes(auth_object = nil)

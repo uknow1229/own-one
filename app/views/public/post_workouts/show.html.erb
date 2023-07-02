@@ -69,9 +69,9 @@
       </div>
       <!-- コメント機能 -->
       <div class="post-workout__comment-section">
-        <p>コメント数:<%= @post_workout.workout_comments.count %></p>
+        <p>コメント数:<%= @post_workout.workout_likes.size %></p>
         <div class="post-workout__comment-index mb-4" id="post-workout-comment">
-          <%= render 'comment-index', post_workout: @post_workout %>
+          <%= render 'comment-index', workout_comments: @workout_comments %>
         </div>
         <div class="post-workout__comment-form">
           <%= render 'comment-form', post_workout: @post_workout, workout_comment: @workout_comment %>

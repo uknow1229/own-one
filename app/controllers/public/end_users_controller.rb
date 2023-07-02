@@ -5,18 +5,18 @@ class Public::EndUsersController < ApplicationController
 
   def show
     @end_user = EndUser.find(params[:id])
-    @post_workouts = @end_user.post_workouts
-    @post_blogs = @end_user.post_blogs
-    @post_meals = @end_user.post_meals
+    @post_workouts = @end_user.post_workouts.with_attached_image
+    @post_blogs = @end_user.post_blogs.with_attached_image
+    @post_meals = @end_user.post_meals.includes(:meal_menus).with_attached_image
     @events = @post_workouts + @post_meals + @post_blogs
-    
+
     @following_end_users = @end_user.following_end_users
     @follower_end_users = @end_user.follower_end_users
     
     # いいねした投稿を取得
-    @liked_post_workouts = @end_user.workout_likes.includes(:post_workout).map(&:post_workout)
-    @liked_post_meals = @end_user.meal_likes.includes(:post_meal).map(&:post_meal)
-    @liked_post_blogs = @end_user.blog_likes.includes(:post_blog).map(&:post_blog)
+    @liked_post_workouts = @end_user.workout_likes.includes(post_workout: :end_user).map(&:post_workout)
+    @liked_post_meals = @end_user.meal_likes.includes(post_meal: :end_user).map(&:post_meal)
+    @liked_post_blogs = @end_user.blog_likes.includes(post_blog: :end_user).map(&:post_blog)
   end
 
   def edit
