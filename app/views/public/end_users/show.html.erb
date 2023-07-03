@@ -63,7 +63,6 @@
             <% if @liked_post_workouts.present? %>
               <div><p class="badge bg-primary ms-4">Fitness</p><%= render "public/post_workouts/index", post_workouts: @liked_post_workouts %></div>
               <div><p class="badge bg-success ms-4">Meal<%= render "public/post_meals/index", post_meals: @liked_post_meals %></div>
-              <div><p class="badge bg-warning ms-4">Blog<%= render "public/post_blogs/index", post_blogs: @liked_post_blogs %></div>
             <% else %>
               <div class="user-page__empty-posts mx-auto">
                 <p class="text-center pt-4">いいねした投稿はありません</p>
