@@ -2,13 +2,13 @@ class Public::PostMealsController < ApplicationController
   before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
-    @post_meals = PostMeal.with_attached_image.includes(:image_attachment, :end_user).all
+    @post_meals = PostMeal.with_attached_image.includes(:image_attachment, :end_user).all.page(params[:page]).per(9)
     @tag_list = MealTag.all
     @end_user = current_end_user
     # フォロー中のユーザーを取得するための関連名を適用
     @followed_end_users = @end_user.following_end_users
     # フォロー中のユーザーの投稿を取得
-    @followed_post_meals = PostMeal.where(end_user_id: @followed_end_users.pluck(:id))
+    @followed_post_meals = PostMeal.where(end_user_id: @followed_end_users.pluck(:id)).page(params[:page]).per(9)
   end
 
   def show

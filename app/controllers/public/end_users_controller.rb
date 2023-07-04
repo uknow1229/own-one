@@ -5,9 +5,9 @@ class Public::EndUsersController < ApplicationController
 
   def show
     @end_user = EndUser.find(params[:id])
-    @post_workouts = @end_user.post_workouts.with_attached_image
+    @post_workouts = @end_user.post_workouts.with_attached_image.page(params[:page]).per(9)
     @post_blogs = @end_user.post_blogs.with_attached_image
-    @post_meals = @end_user.post_meals.includes(:meal_menus).with_attached_image
+    @post_meals = @end_user.post_meals.includes(:meal_menus).with_attached_image.page(params[:page]).per(9)
     @events = @post_workouts + @post_meals + @post_blogs
 
     @following_end_users = @end_user.following_end_users
