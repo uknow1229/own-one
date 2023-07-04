@@ -33,6 +33,7 @@
         <div class="post_workout d-flex justify-content-center mt-2 pb-4">
           <% if @post_workouts.exists? %>
             <%= render "public/post_workouts/index", post_workouts: @post_workouts  %>
+            <%= paginate @post_workouts %>
           <% else %>
             <div class="user-page__empty-posts">
               <p class="text-center pt-4">投稿はありません</p>
@@ -49,6 +50,7 @@
         <div class="posts__meal d-flex justify-content-center mt-2 mb-4">
           <% if @post_meals.exists? %>
             <%= render "public/post_meals/index", post_meals: @post_meals %>
+            <%= paginate @post_meals %>
           <% else %>
             <div class="user-page__empty-posts">
               <p class="text-center pt-4">投稿はありません</p>
@@ -62,7 +64,9 @@
           <div class="liked_posts  justify-content-center mt-2 mb-4">
             <% if @liked_post_workouts.present? %>
               <div><p class="badge bg-primary ms-4">Fitness</p><%= render "public/post_workouts/index", post_workouts: @liked_post_workouts %></div>
+
               <div><p class="badge bg-success ms-4">Meal<%= render "public/post_meals/index", post_meals: @liked_post_meals %></div>
+
             <% else %>
               <div class="user-page__empty-posts mx-auto">
                 <p class="text-center pt-4">いいねした投稿はありません</p>

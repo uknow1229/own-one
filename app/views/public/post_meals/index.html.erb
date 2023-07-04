@@ -25,6 +25,7 @@
         <!-- 全ユーザーの投稿を表示 -->
         <% if @post_meals.exists? %>
           <%= render "index", post_meals: @post_meals %>
+          <%= paginate @post_meals %>
         <% else %>
           <div class="post-meal__empty-posts pt-4 pb-4">
             <h4 class="text-center pt-4 pb-4">投稿はありません</h4>
@@ -36,6 +37,7 @@
         <!-- フォロー中のユーザーの投稿を表示 -->
         <% if @followed_post_meals.exists? %>
           <%= render "index", post_meals: @followed_post_meals %>
+          <%= paginate @followed_post_meals %>
         <% else %>
           <div class="post-meal__empty-posts pt-4 pb-4">
             <h4 class="text-center pt-4 pb-4">投稿はありません</h4>
