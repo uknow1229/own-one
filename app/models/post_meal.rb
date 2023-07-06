@@ -21,7 +21,7 @@ class PostMeal < ApplicationRecord
   validates :start_time, :timing, :meal_type, :memo, presence: true
   
   def liked_by?(end_user)
-    meal_likes.exists?(end_user_id: end_user.id)
+    meal_likes.pluck(:end_user_id).include?(end_user.id)
   end
 
   def self.ransackable_attributes(auth_object = nil)

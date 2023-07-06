@@ -1,4 +1,4 @@
-<% post_meal.meal_comments.each do |meal_comment| %>
+<% meal_comments.each do |meal_comment| %>
   <div class="meal-comment d-flex align-items-center mb-2 gap-2">
     <div class="meal-comment__image">
       <%= image_tag meal_comment.end_user.get_profile_image(30,30) %>

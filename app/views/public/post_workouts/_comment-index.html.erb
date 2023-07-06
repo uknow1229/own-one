@@ -1,4 +1,4 @@
-<% post_workout.workout_comments.each do |workout_comment| %>
+<% workout_comments.each do |workout_comment| %>
   <div class="workout-comment d-flex align-items-center mb-2 gap-2">
     <div class="workout-comment__image">
       <%= image_tag workout_comment.end_user.get_profile_image(30,30) %>

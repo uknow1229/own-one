@@ -33,7 +33,8 @@ body {
   // 表示しているページ番号のデザイン
   .pagination>.active>a {     
     background-color: rgba(26, 48, 245, 0.8);
-    border-radius: 15px;
+    border-radius: 50%;
+
   }
 
   // ホバー時のデザイン

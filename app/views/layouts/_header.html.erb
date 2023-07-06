@@ -40,12 +40,6 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to post_blogs_path ,class: "nav-link" do %>
-        <i class="fa-sharp fa-solid fa-blog"></i>
-        Blog
-        <% end %>
-      </li>
-      <li class="nav-item">
         <%= link_to notifications_path, class: "nav-link" do %>
           <% if current_end_user && current_end_user.notifications.where(checked: false).exists? %>
             <i class="fa-sharp fa-solid fa-bell fa-beat" style="color: #f2ee7d;"></i>
