@@ -63,7 +63,7 @@ group :test do
   # テスト用データの作成
   gem 'factory_bot_rails'
   # N+1問題の検知
-  gem 'bullet', group: 'development'
+  # gem 'bullet', group: 'development'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -97,7 +97,7 @@ gem 'jquery-rails'
 gem 'faker'
 
 # 管理画面
-gem 'rails_admin'
+gem 'rails_admin', '3.0.0'
 
 # 権限管理
 gem 'cancancan'
@@ -117,4 +117,4 @@ gem "meta-tags"
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
-
+gem "bullet"
