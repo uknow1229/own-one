@@ -60,7 +60,7 @@ OWN ONEとは、韓国語で「今日も運動完了（오늘도 운동 완료�
 - UI flow
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/19KD0X8YphOv07WbU9ZDgNzTipnJbWq0nHtJ8T8nulvo/edit#gid=776768521)
 - ER図
-- インフラ構築
+- [インフラ構築](https://docs.google.com/spreadsheets/d/1aWWsBzEBmqRDDmQxwRabimYOlmN0ecUfm-pZIOkuNuA/edit#gid=270052000)
 
 ## 開発環境
 - OS：Linux(CentOS)
