@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "blog_comments", force: :cascade do |t|
-    t.bigint "end_user_id", null: false
-    t.bigint "post_blog_id", null: false
+    t.integer "end_user_id", null: false
+    t.integer "post_blog_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "blog_likes", force: :cascade do |t|
-    t.bigint "end_user_id", null: false
-    t.bigint "post_blog_id", null: false
+    t.integer "end_user_id", null: false
+    t.integer "post_blog_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_blog_likes_on_end_user_id"
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "meal_comments", force: :cascade do |t|
-    t.bigint "end_user_id", null: false
-    t.bigint "post_meal_id", null: false
+    t.integer "end_user_id", null: false
+    t.integer "post_meal_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -114,8 +114,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "meal_likes", force: :cascade do |t|
-    t.bigint "end_user_id", null: false
-    t.bigint "post_meal_id", null: false
+    t.integer "end_user_id", null: false
+    t.integer "post_meal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_meal_likes_on_end_user_id"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "meal_menus", force: :cascade do |t|
-    t.bigint "post_meal_id", null: false
+    t.integer "post_meal_id", null: false
     t.string "title"
     t.string "quantity"
     t.integer "calorie"
@@ -154,8 +154,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "post_blog_tags", force: :cascade do |t|
-    t.bigint "post_blog_id", null: false
-    t.bigint "blog_tag_id", null: false
+    t.integer "post_blog_id", null: false
+    t.integer "blog_tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_tag_id"], name: "index_post_blog_tags_on_blog_tag_id"
@@ -175,8 +175,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "post_meal_tags", force: :cascade do |t|
-    t.bigint "post_meal_id", null: false
-    t.bigint "meal_tag_id", null: false
+    t.integer "post_meal_id", null: false
+    t.integer "meal_tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["meal_tag_id"], name: "index_post_meal_tags_on_meal_tag_id"
@@ -197,8 +197,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "post_workout_tags", force: :cascade do |t|
-    t.bigint "post_workout_id", null: false
-    t.bigint "workout_tag_id", null: false
+    t.integer "post_workout_id", null: false
+    t.integer "workout_tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_workout_id", "workout_tag_id"], name: "index_post_workout_tags_on_post_workout_id_and_workout_tag_id", unique: true
@@ -241,8 +241,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "workout_comments", force: :cascade do |t|
-    t.bigint "end_user_id", null: false
-    t.bigint "post_workout_id", null: false
+    t.integer "end_user_id", null: false
+    t.integer "post_workout_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -251,8 +251,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "workout_likes", force: :cascade do |t|
-    t.bigint "end_user_id", null: false
-    t.bigint "post_workout_id", null: false
+    t.integer "end_user_id", null: false
+    t.integer "post_workout_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_workout_likes_on_end_user_id"
@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
   end
 
   create_table "workout_menus", force: :cascade do |t|
-    t.bigint "post_workout_id"
+    t.integer "post_workout_id"
     t.string "title"
     t.float "weight"
     t.integer "reptition_count"

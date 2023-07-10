@@ -97,7 +97,7 @@ gem 'jquery-rails'
 gem 'faker'
 
 # 管理画面
-gem 'rails_admin', '3.0.0'
+gem 'rails_admin', '3.1.2'
 
 # 権限管理
 gem 'cancancan'
