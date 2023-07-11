@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.string "name", null: false
     t.string "record_type", null: false
     t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false 
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -277,8 +277,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["name"], name: "index_workout_tags_on_name", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id", :bigint
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id", :bigint
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "meal_comments", "end_users"
   add_foreign_key "meal_comments", "post_meals"
   add_foreign_key "meal_likes", "end_users"
