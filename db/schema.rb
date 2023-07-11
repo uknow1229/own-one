@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_28_144825) do
+ActiveRecord::Schema.define(version: 2023_07_11_102319) do
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.bigint "blob_id", null: false 
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "last_name"
     t.string "first_name"
     t.string "email", default: "", null: false
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "blog_comments", force: :cascade do |t|
-    t.integer "end_user_id", null: false
-    t.integer "post_blog_id", null: false
+  create_table "blog_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
+    t.bigint "post_blog_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -64,23 +64,16 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["post_blog_id"], name: "index_blog_comments_on_post_blog_id"
   end
 
-  create_table "blog_likes", force: :cascade do |t|
-    t.integer "end_user_id", null: false
-    t.integer "post_blog_id", null: false
+  create_table "blog_likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
+    t.bigint "post_blog_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_blog_likes_on_end_user_id"
     t.index ["post_blog_id"], name: "index_blog_likes_on_post_blog_id"
   end
 
-  create_table "blog_tags", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_blog_tags_on_name", unique: true
-  end
-
-  create_table "end_users", force: :cascade do |t|
+  create_table "end_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "user_name"
     t.integer "height"
     t.float "body_weight"
@@ -103,9 +96,9 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
-  create_table "meal_comments", force: :cascade do |t|
-    t.integer "end_user_id", null: false
-    t.integer "post_meal_id", null: false
+  create_table "meal_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
+    t.bigint "post_meal_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -113,17 +106,17 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["post_meal_id"], name: "index_meal_comments_on_post_meal_id"
   end
 
-  create_table "meal_likes", force: :cascade do |t|
-    t.integer "end_user_id", null: false
-    t.integer "post_meal_id", null: false
+  create_table "meal_likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
+    t.bigint "post_meal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_meal_likes_on_end_user_id"
     t.index ["post_meal_id"], name: "index_meal_likes_on_post_meal_id"
   end
 
-  create_table "meal_menus", force: :cascade do |t|
-    t.integer "post_meal_id", null: false
+  create_table "meal_menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "post_meal_id", null: false
     t.string "title"
     t.string "quantity"
     t.integer "calorie"
@@ -132,17 +125,17 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["post_meal_id"], name: "index_meal_menus_on_post_meal_id"
   end
 
-  create_table "meal_tags", force: :cascade do |t|
+  create_table "meal_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_meal_tags_on_name", unique: true
   end
 
-  create_table "notifications", force: :cascade do |t|
+  create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "subject_type"
-    t.integer "subject_id"
-    t.integer "end_user_id"
+    t.bigint "subject_id"
+    t.bigint "end_user_id", null: false
     t.integer "action_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -153,18 +146,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
   end
 
-  create_table "post_blog_tags", force: :cascade do |t|
-    t.integer "post_blog_id", null: false
-    t.integer "blog_tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["blog_tag_id"], name: "index_post_blog_tags_on_blog_tag_id"
-    t.index ["post_blog_id", "blog_tag_id"], name: "index_post_blog_tags_on_post_blog_id_and_blog_tag_id", unique: true
-    t.index ["post_blog_id"], name: "index_post_blog_tags_on_post_blog_id"
-  end
-
-  create_table "post_blogs", force: :cascade do |t|
-    t.integer "end_user_id", null: false
+  create_table "post_blogs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
     t.string "title", null: false
     t.datetime "start_time", null: false
     t.text "content", null: false
@@ -174,9 +157,9 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["end_user_id"], name: "index_post_blogs_on_end_user_id"
   end
 
-  create_table "post_meal_tags", force: :cascade do |t|
-    t.integer "post_meal_id", null: false
-    t.integer "meal_tag_id", null: false
+  create_table "post_meal_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "post_meal_id", null: false
+    t.bigint "meal_tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["meal_tag_id"], name: "index_post_meal_tags_on_meal_tag_id"
@@ -184,8 +167,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["post_meal_id"], name: "index_post_meal_tags_on_post_meal_id"
   end
 
-  create_table "post_meals", force: :cascade do |t|
-    t.integer "end_user_id", null: false
+  create_table "post_meals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
     t.datetime "start_time"
     t.integer "timing", default: 0
     t.integer "meal_type", default: 0
@@ -196,9 +179,9 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["end_user_id"], name: "index_post_meals_on_end_user_id"
   end
 
-  create_table "post_workout_tags", force: :cascade do |t|
-    t.integer "post_workout_id", null: false
-    t.integer "workout_tag_id", null: false
+  create_table "post_workout_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "post_workout_id", null: false
+    t.bigint "workout_tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_workout_id", "workout_tag_id"], name: "index_post_workout_tags_on_post_workout_id_and_workout_tag_id", unique: true
@@ -206,8 +189,8 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["workout_tag_id"], name: "index_post_workout_tags_on_workout_tag_id"
   end
 
-  create_table "post_workouts", force: :cascade do |t|
-    t.integer "end_user_id", null: false
+  create_table "post_workouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
     t.datetime "start_time"
     t.string "title"
     t.integer "site", default: 0
@@ -219,30 +202,30 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["end_user_id"], name: "index_post_workouts_on_end_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "searches", force: :cascade do |t|
+  create_table "searches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "weights", force: :cascade do |t|
+  create_table "weights", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.float "value"
     t.datetime "start_time"
-    t.integer "end_user_id", null: false
+    t.bigint "end_user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_weights_on_end_user_id"
   end
 
-  create_table "workout_comments", force: :cascade do |t|
-    t.integer "end_user_id", null: false
-    t.integer "post_workout_id", null: false
+  create_table "workout_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
+    t.bigint "post_workout_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -250,17 +233,17 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["post_workout_id"], name: "index_workout_comments_on_post_workout_id"
   end
 
-  create_table "workout_likes", force: :cascade do |t|
-    t.integer "end_user_id", null: false
-    t.integer "post_workout_id", null: false
+  create_table "workout_likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "end_user_id", null: false
+    t.bigint "post_workout_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_workout_likes_on_end_user_id"
     t.index ["post_workout_id"], name: "index_workout_likes_on_post_workout_id"
   end
 
-  create_table "workout_menus", force: :cascade do |t|
-    t.integer "post_workout_id"
+  create_table "workout_menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "post_workout_id"
     t.string "title"
     t.float "weight"
     t.integer "reptition_count"
@@ -270,7 +253,7 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["post_workout_id"], name: "index_workout_menus_on_post_workout_id"
   end
 
-  create_table "workout_tags", force: :cascade do |t|
+  create_table "workout_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -279,12 +262,17 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_comments", "end_users"
+  add_foreign_key "blog_comments", "post_blogs"
+  add_foreign_key "blog_likes", "end_users"
+  add_foreign_key "blog_likes", "post_blogs"
   add_foreign_key "meal_comments", "end_users"
   add_foreign_key "meal_comments", "post_meals"
   add_foreign_key "meal_likes", "end_users"
   add_foreign_key "meal_likes", "post_meals"
   add_foreign_key "meal_menus", "post_meals"
   add_foreign_key "notifications", "end_users"
+  add_foreign_key "post_blogs", "end_users"
   add_foreign_key "post_meal_tags", "meal_tags"
   add_foreign_key "post_meal_tags", "post_meals"
   add_foreign_key "post_meals", "end_users"
