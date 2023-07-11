@@ -277,21 +277,14 @@ ActiveRecord::Schema.define(version: 2023_06_28_144825) do
     t.index ["name"], name: "index_workout_tags_on_name", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "blog_comments", "end_users"
-  add_foreign_key "blog_comments", "post_blogs"
-  add_foreign_key "blog_likes", "end_users"
-  add_foreign_key "blog_likes", "post_blogs"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id", :bigint
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id", :bigint
   add_foreign_key "meal_comments", "end_users"
   add_foreign_key "meal_comments", "post_meals"
   add_foreign_key "meal_likes", "end_users"
   add_foreign_key "meal_likes", "post_meals"
   add_foreign_key "meal_menus", "post_meals"
   add_foreign_key "notifications", "end_users"
-  add_foreign_key "post_blog_tags", "blog_tags"
-  add_foreign_key "post_blog_tags", "post_blogs"
-  add_foreign_key "post_blogs", "end_users"
   add_foreign_key "post_meal_tags", "meal_tags"
   add_foreign_key "post_meal_tags", "post_meals"
   add_foreign_key "post_meals", "end_users"
