@@ -4,11 +4,9 @@
       <h2>タグが<%=@tag.name%>の投稿一覧</h2>
 
       <!--タグリスト-->
-      <% @tag_list.each do |list|%>
         <i class="tag__item fa-sharp fa-solid fa-tag"></i>
-        <%=link_to list.name,search_workout_tag_path(workout_tag_id: list.id) %>
-        <span class="tag__item-count"><%="(#{list.post_workouts.count})" %></span>
-      <% end %>
+        <%= @tag.name %>
+        <span class="tag__item-count"><%="(#{@post_workouts.count})" %></span>
 
       <%= render "index", post_workouts: @post_workouts %>
     </div>
