@@ -1,7 +1,7 @@
 <div class="container p-4">
   <div class="row justify-content-center">
     <div class="col-sm-8">
-      <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex justify-content-center align-items-center mb-4">
         <h2>Notice</h2>
         <% if @notifications.present? %>
           <%= link_to "全削除", notification_path(@notifications), method: :delete, class: "btn btn-danger" %>
@@ -16,7 +16,7 @@
           </div>
         <% end %>
       <% else %>
-        通知はありません
+        <p class="text-center">通知はありません</p>
       <% end %>
     </div>
   </div>

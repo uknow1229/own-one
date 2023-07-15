@@ -1,14 +1,16 @@
 <div class="tag container mt-4">
   <div class="row justify-content-center">
-    <div class="col-sm-10">
-      <h2>タグが<%=@tag.name%>の投稿一覧</h2>
+  <h2>タグが<%=@tag.name%>の投稿一覧</h2>
+    <div class="col-sm-8 pt-3">
 
       <!--タグリスト-->
-      <% @tag_list.each do |list|%>
-        <i class="tag__item fa-sharp fa-solid fa-tag"></i>
-        <%=link_to list.name,search_workout_tag_path(workout_tag_id: list.id) %>
-        <span class="tag__item-count"><%="(#{list.post_workouts.count})" %></span>
-      <% end %>
+      <div class="mb-3">
+        <% @tag_list.each do |list|%>
+          <i class="tag__item fa-sharp fa-solid fa-tag"></i>
+          <%=link_to list.name,search_workout_tag_path(workout_tag_id: list.id) %>
+          <span class="tag__item-count"><%="(#{list.post_workouts.count})" %></span>
+        <% end %>
+      </div>
 
       <%= render "index", post_workouts: @post_workouts %>
     </div>

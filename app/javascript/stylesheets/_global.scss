@@ -25,20 +25,19 @@ body {
   }
 
   // ページネーション自体のデザイン
-  .pagination>li>a {          
+  .pagination > li > a {
     border: none;
     color: black;
   }
 
   // 表示しているページ番号のデザイン
-  .pagination>.active>a {     
+  .pagination > .active > a {
     background-color: rgba(26, 48, 245, 0.8);
     border-radius: 50%;
-
   }
 
   // ホバー時のデザイン
-  .pagination>li>a:hover {        
+  .pagination > li > a:hover {
     border-radius: 15px;
   }
 }

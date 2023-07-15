@@ -11,19 +11,19 @@
           <span><%= image_tag current_end_user.get_profile_image(100,100) %></span>
           <div class="mb-3">
             <label class="form-label fw-bold">ユーザー名</label>
-            <p class="form-control-plaintext"><%= @end_user.user_name %></p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.user_name %></p>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">E-Mail</label>
-            <p class="form-control-plaintext"><%= @end_user.email%></p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.email%></p>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">目標カロリー</label>
-            <p class="form-control-plaintext"><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.target_calorie.blank? ? '未設定' : "#{@end_user.target_calorie} kcal/日" %></p>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">自己紹介</label>
-            <p class="form-control-plaintext"><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.introduction.blank? ? '未設定' : @end_user.introduction %></p>
           </div>
         </div>
       </div>
@@ -34,27 +34,27 @@
           <h4 class="card-title fw-bold">Additional Information</h4>
           <div class="mb-3">
             <label class="form-label fw-bold">身長</label>
-            <p class="form-control-plaintext"><%= @end_user.height %>cm</p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.height %>cm</p>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">体重</label>
-            <p class="form-control-plaintext"><%= number_with_precision(@end_user.body_weight, precision: 1) %>kg</p>
+            <p class="form-control-plaintext ps-3"><%= number_with_precision(@end_user.body_weight, precision: 1) %>kg</p>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">年齢</label>
-            <p class="form-control-plaintext"><%= @end_user.age %>歳</p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.age %>歳</p>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">性別</label>
-            <p class="form-control-plaintext"><%= @end_user.sex_i18n %></p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.sex_i18n %></p>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">目標体重</label>
-            <p class="form-control-plaintext"><%= @end_user.target_weight %>kg</p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.target_weight %>kg</p>
           </div>
           <div class="mb-3">
             <label class="form-label fw-bold">活動レベル</label>
-            <p class="form-control-plaintext"><%= @end_user.activelevel_i18n %></p>
+            <p class="form-control-plaintext ps-3"><%= @end_user.activelevel_i18n %></p>
           </div>
         </div>
       </div>

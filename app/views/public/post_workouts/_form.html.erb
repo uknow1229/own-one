@@ -40,8 +40,10 @@
       <div class="post-workout__menu-button mt-3 mb-3">
         <% if post_workout.new_record? %>
         <button id="add-menu-button" type="button" class="btn btn-secondary w-100 mb-2">筋トレメニュー追加はこちらから</button>
+        <div class="d-flex justify-content-between">
         メニューは5つまで追加可能
         <button id="hide-menu-button" type="button" class="btn btn-secondary rounded-circle"><i class="fa-sharp fa-solid fa-minus"></i></button>
+        </div>
         <% end %>
       </div>
     </div>

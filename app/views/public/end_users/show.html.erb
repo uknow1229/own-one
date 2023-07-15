@@ -4,7 +4,7 @@
       <div class="user-page__profile col-sm-5 d-flex align-items-center">
         <%= render "public/end_users/profile", end_user: @end_user, events: @events, post_meals: @post_meals %>
       </div>
-      <div class="user-profile__calendar col-sm-3">
+      <div class="user-profile__calendar col-sm-3 pt-3">
         <h4 class="fw-bold">Posting Calender</h4>
         <div id="calendar">
           <%= render 'public/end_users/calendar', events: @events %>
@@ -14,13 +14,13 @@
     
     <ul class="nav nav-tabs justify-content-center col-sm-8">
       <li class="nav-item col col-sm-auto">
-        <a class="nav-link active" data-bs-toggle="tab" href="#fitness">Fitness</a>
+        <a class="nav-link active text-center" data-bs-toggle="tab" href="#fitness">Fitness</a>
       </li>
       <li class="nav-item col col-sm-auto">
-        <a class="nav-link" data-bs-toggle="tab" href="#meal">Meal</a>
+        <a class="nav-link text-center" data-bs-toggle="tab" href="#meal">Meal</a>
       </li>
       <li class="nav-item col col-sm-auto">
-        <a class="nav-link" data-bs-toggle="tab" href="#liked">Liked Posts</a>
+        <a class="nav-link text-center" data-bs-toggle="tab" href="#liked">Liked Posts</a>
       </li>
     </ul>
     
@@ -60,17 +60,15 @@
         </div>
       </div>
       <div class="tab-pane fade mx-auto col-sm-8" id="liked">
-        <h2 class="text-center">Liked Posts</h2>
-          <div class="liked_posts  justify-content-center mt-2 mb-4">
+        <h2>Liked Posts</h2>
+          <div class="liked_posts d-flex justify-content-center mt-2 mb-4">
             <% if @liked_post_workouts.present? %>
               <div><p class="badge bg-primary ms-4">Fitness</p><%= render "public/post_workouts/index", post_workouts: @liked_post_workouts %></div>
-
               <div><p class="badge bg-success ms-4">Meal<%= render "public/post_meals/index", post_meals: @liked_post_meals %></div>
-
             <% else %>
-              <div class="user-page__empty-posts mx-auto">
+              <div class="user-page__empty-posts">
                 <p class="text-center pt-4">いいねした投稿はありません</p>
-                <%= image_tag 'undraw_Post_re_mtr4.png', class: 'yet-image rounded-3 img-fluid mx-auto' %>
+                <%= image_tag 'undraw_Post_re_mtr4.png', class: 'yet-image rounded-3 img-fluid' %>
               </div>
             <% end %>
           </div>

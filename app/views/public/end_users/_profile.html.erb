@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center align-items-center gap-4">
-  <div><%= image_tag end_user.get_profile_image(120, 120) ,class: "rounded-circle img-thumbnail" %></div>
+  <div><%= image_tag end_user.get_profile_image(80, 80) ,class: "rounded-circle img-thumbnail" %></div>
   <div class="user-profile">
     <h4><%= end_user.user_name %></h4>
     <p>1日の目標カロリー: <%= end_user.target_calorie.blank? ? '未設定' : "#{end_user.target_calorie}kcal/日" %></p>

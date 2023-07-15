@@ -1,15 +1,17 @@
 <nav class="navbar text-center">
   <% if end_user_signed_in? %>
-    <div class="navbar navbar-brand">
+    <div class="navbar navbar-brand d-flex justify-content-between">
+    <div>
       <%= link_to root_path do %>
         <%= image_tag 'logo5.png', alt: "ロゴ", width: "70px" %>
       <% end %>
+      </div>
       <!-- 検索機能 -->
       <div class="search_form ms-4">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
           <%= f.text_field :q, class: "form-control d-inline-block w-auto", type: "search", placeholder: "検索", aria_label: "検索" %>
-          <button class="btn btn-outline-success" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
+          <button class="btn btn-success" type="submit">
+            <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
           </button>
         <% end %>
       </div>

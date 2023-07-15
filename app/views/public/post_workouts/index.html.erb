@@ -1,5 +1,5 @@
 <div class="post-workout pt-4">
-  <div class="post-workout__index row">
+  <div class="post-workout__index row" style="--bs-gutter-x: none;">
     <div class="post-workout__header col-sm-8 d-flex justify-content-center">
       <h2>Post Fitness</h2>
       <p><%= link_to '投稿する', new_post_workout_path, class: 'btn btn-success mt-4 ms-4' %></p>
@@ -13,15 +13,7 @@
       </li>
     </ul>
 
-    <div class="tab-content row justify-content-center pt-4">
-      <!--タグリスト-->
-      <div class="post-workout__tag mt-4 col-sm-2 text-center">
-        <% @tag_list.each do |list|%>
-          <p><i class="fa-sharp fa-solid fa-tag"></i>
-          <%=link_to list.name,search_workout_tag_path(workout_tag_id: list.id) %>
-          <%="(#{list.post_workouts.count})" %></p>
-        <% end %>
-      </div>
+    <div class="tab-content d-flex justify-content-center p-4">
       <div class="tab-pane fade show active col-sm-6" id="all">
         <!-- 全ユーザーの投稿を表示 -->
         <% if @post_workouts.exists? %>
