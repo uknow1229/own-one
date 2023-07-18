@@ -12,6 +12,31 @@
   }
 }
 
+.pagination {
+  li {
+    a {
+      min-width: 23px;
+      display: block;
+      text-align: center;
+      width: 10px;
+    }
+  }
+  .next-page {
+    li {
+      a {
+        margin-right: 10px;
+      }
+    }
+  }
+  .last-page {
+    li {
+      a {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
 .post-meal__empty-posts {
   h4 {
     font-weight: bold;

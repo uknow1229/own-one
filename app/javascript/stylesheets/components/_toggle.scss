@@ -15,8 +15,14 @@
   border-radius: 10%;
   height: 100px;
   position: absolute;
-  top: 80px;
-  right: 10px;
+  width: 100px;
+  top: 61px;
+  right: -9px;
   padding: 10px;
   z-index: 3;
+  li {
+    a {
+      color: #ffffff;
+    }
+  }
 }

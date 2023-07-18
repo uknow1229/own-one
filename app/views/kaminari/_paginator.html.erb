@@ -9,7 +9,7 @@
         <%= gap_tag %>
       <% end -%>
     <% end -%>
-    <%= next_page_tag unless current_page.last? %>
-    <%= last_page_tag unless current_page.last? %>
+    <div class="next-page"><%= next_page_tag unless current_page.last? %></div>
+    <div class="last-page"><%= last_page_tag unless current_page.last? %></div>
   </ul>
 <% end -%>

@@ -7,9 +7,9 @@
       <% end %>
       </div>
       <!-- 検索機能 -->
-      <div class="search_form ms-4">
+      <div class="search_form ms-4" style="width: 180px; margin-left: 10px;">
         <%= form_with url: search_path, local: true, method: :get do |f| %>
-          <%= f.text_field :q, class: "form-control d-inline-block w-auto", type: "search", placeholder: "検索", aria_label: "検索" %>
+          <%= f.text_field :q, class: "form-control d-inline-block", type: "search", placeholder: "検索", aria_label: "検索" %>
           <button class="btn btn-success" type="submit">
             <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
           </button>
@@ -51,8 +51,8 @@
           Notice
         <% end %>
       </li>
-      <div>
-        <li class="nav-item rounded-image" id="toggle-button">
+      <div style="position:relative;">
+        <li class="nav-item rounded-image" style="position:relative;" id="toggle-button">
           <%= image_tag current_end_user.get_profile_image(50, 50) %>
         </li>
         <div class="toggle-item">
