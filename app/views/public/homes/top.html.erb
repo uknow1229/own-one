@@ -51,6 +51,29 @@
         <p><%= link_to 'ログイン', end_users_guest_sign_in_path, class: 'btn btn-success ms-4' %></p>
       <% end %>
     </div>
+
+    <div class="col-sm-8 mx-auto pb-5">
+      <h2>ACCESS</h2>
+      <div id="map" style="height: 400px; width: 100%;"></div>
+      <script src="http://maps.google.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&language=ja"></script>
+
+      <script>
+        var MyLatLng = new google.maps.LatLng(35.66215921498525, 139.70255068829647);
+        var Options = {
+        zoom: 15,      //地図の縮尺値
+        center: MyLatLng,    //地図の中心座標
+        mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(document.getElementById('map'), Options);
+
+        // マーカーを追加する部分
+        var marker = new google.maps.Marker({
+          position: MyLatLng,
+          map: map,
+          title: 'マーカーのタイトル'  // オプション：マーカーにマウスを合わせたときに表示されるテキスト
+        });
+      </script>
+    </div>
   </div>
-</div>
+
 
